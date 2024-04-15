@@ -9,6 +9,10 @@ public class SquareMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
 
+    void Awake(){
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update()
     {
         // Movement based on W and S keys

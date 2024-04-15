@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2779956950580424682}
   - component: {fileID: 5668109668371246381}
   - component: {fileID: 7352269053578699988}
+  - component: {fileID: 2709392238220394798}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17348121280921102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b7ed3752db298447817c382c200b37a, type: 3}
   m_Name: 
@@ -123,6 +124,19 @@ MonoBehaviour:
   rotationSpeed: 30
   barrelMinAngle: 80
   barrelMaxAngle: 100
+--- !u!114 &2709392238220394798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17348121280921102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123cc148b4a102848abc0bbff641c891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 15
 --- !u!1 &636285236445581055
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 636285236445581055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.21900176, z: 0.25783226}
+  m_LocalPosition: {x: 0, y: 0.21900176, z: -0.6}
   m_LocalScale: {x: 0.6362345, y: 1.3518629, z: 0.71196324}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -740,6 +754,7 @@ MonoBehaviour:
   firePoint: {fileID: 5595679796169457614}
   target: {fileID: 7478374129500055181}
   force: 100
+  speed: 5
 --- !u!1 &4183342220896636444
 GameObject:
   m_ObjectHideFlags: 0

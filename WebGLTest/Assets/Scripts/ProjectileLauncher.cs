@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileLauncher : MonoBehaviour
@@ -9,6 +10,14 @@ public class ProjectileLauncher : MonoBehaviour
     public GameObject target; // Reference to the target GameObject
     public float force = 10f; // Force to be applied to the projectile
     public float speed = 5f; // Speed of the projectile
+
+    void Update(){
+        if (Input.GetMouseButtonDown(0)) // Change to 0 for left mouse button, 1 for right mouse button
+        {
+            // Call FireProjectile method when left mouse button is pressed
+            FireProjectile();
+        }
+    }
 
     public void FireProjectile()
     {
