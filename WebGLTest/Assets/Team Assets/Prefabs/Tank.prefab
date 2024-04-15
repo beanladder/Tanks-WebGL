@@ -859,9 +859,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 928893599305615142, guid: eaea518216cbf7b419340b6078f22453, type: 3}
   firePoint: {fileID: 5595679796169457614}
+  turret: {fileID: 1771929040173436937}
   target: {fileID: 7478374129500055181}
   force: 100
   speed: 100
+  recoilDistance: 0.1
+  recoilDuration: 0.1
 --- !u!1 &4183342220896636444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3550779206230381408}
   - component: {fileID: 4839848410848150867}
+  - component: {fileID: 1696651598644393836}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -1288,3 +1292,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 30
+  accelerationRotationAmount: -1
+  brakingRotationAmount: 1
+--- !u!65 &1696651598644393836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8509349882655782030}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

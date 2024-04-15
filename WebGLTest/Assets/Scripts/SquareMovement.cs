@@ -8,11 +8,18 @@ public class SquareMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
+    public float accelerationRotationAmount = 1f; // Rotation amount when accelerating
+    public float brakingRotationAmount = -1f; // Rotation amount when braking
 
-    void Awake(){
+    private Quaternion initialRotation; // Initial rotation of the tank
+
+    void Awake()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        initialRotation = transform.rotation; // Store the initial rotation
     }
+
     void Update()
     {
         // Movement based on W and S keys
@@ -30,6 +37,24 @@ public class SquareMovement : MonoBehaviour
         {
             float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
+        }
+
+        // Rotate backward for acceleration (W key)
+        if (verticalInput > 0f)
+        {
+            // Rotate relative to the initial rotation
+            LeanTween.rotateX(gameObject, initialRotation.eulerAngles.x + accelerationRotationAmount, 0.1f);
+        }
+        // Rotate forward for braking (S key)
+        else if (verticalInput < 0f)
+        {
+            // Rotate relative to the initial rotation
+            LeanTween.rotateX(gameObject, initialRotation.eulerAngles.x + brakingRotationAmount, 0.1f);
+        }
+        // Rotate back to the initial rotation if not accelerating or braking
+        else
+        {
+            LeanTween.rotate(gameObject, initialRotation.eulerAngles, 0.1f);
         }
     }
 }
