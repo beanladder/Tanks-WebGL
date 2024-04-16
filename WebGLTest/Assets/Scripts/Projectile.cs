@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    TrailRenderer trailRenderer;
     
-    private void Start()
-    {
-        // Get the TrailRenderer component
-        trailRenderer = GetComponent<TrailRenderer>();
-
-        // Enable the TrailRenderer
-        if (trailRenderer != null)
-        {
-            trailRenderer.enabled = true;
-        }
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,5 +14,6 @@ public class Projectile : MonoBehaviour
             // Destroy the projectile GameObject
             Destroy(gameObject);
         }
+        
     }
 }
