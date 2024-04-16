@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private TrailRenderer trailRenderer;
-
+    TrailRenderer trailRenderer;
+    
     private void Start()
     {
         // Get the TrailRenderer component

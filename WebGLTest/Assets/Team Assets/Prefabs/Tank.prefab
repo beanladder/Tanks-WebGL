@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 8209269916056667538}
   - component: {fileID: 3227446666194684696}
   - component: {fileID: 4504679863651754863}
+  - component: {fileID: 3352139233960944308}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -277,6 +278,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &3352139233960944308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771929040173436937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa884f2e8586254398ae9a923497894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1
+  minRotation: 60
+  maxRotation: 100
 --- !u!1 &2048840941331432368
 GameObject:
   m_ObjectHideFlags: 0
