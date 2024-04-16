@@ -39,22 +39,6 @@ public class SquareMovement : MonoBehaviour
             transform.Rotate(Vector3.up, rotationAmount);
         }
 
-        // Rotate backward for acceleration (W key)
-        if (verticalInput > 0f)
-        {
-            // Rotate relative to the initial rotation
-            LeanTween.rotateX(gameObject, initialRotation.eulerAngles.x + accelerationRotationAmount, 0.1f);
-        }
-        // Rotate forward for braking (S key)
-        else if (verticalInput < 0f)
-        {
-            // Rotate relative to the initial rotation
-            LeanTween.rotateX(gameObject, initialRotation.eulerAngles.x + brakingRotationAmount, 0.1f);
-        }
-        // Rotate back to the initial rotation if not accelerating or braking
-        else
-        {
-            LeanTween.rotate(gameObject, initialRotation.eulerAngles, 0.1f);
-        }
+       
     }
 }
