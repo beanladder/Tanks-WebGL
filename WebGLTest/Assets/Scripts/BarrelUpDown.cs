@@ -11,11 +11,14 @@ public class BarrelUpDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        float mouseX = Input.GetAxis("Mouse Y");
-        float newRotation = transform.rotation.eulerAngles.x - mouseX * rotationSpeed;
+        float mouseY = Input.GetAxis("Mouse Y");
+        float newRotation = transform.rotation.eulerAngles.x - mouseY * rotationSpeed;
 
         // Ensure rotation is within the desired range
+        if (newRotation > 180)
+        {
+            newRotation -= 360;
+        }
         newRotation = Mathf.Clamp(newRotation, minRotation, maxRotation);
 
         // Apply the new rotation
