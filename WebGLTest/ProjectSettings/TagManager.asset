@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Bullet
   - Tank
+  - Cylinder
   layers:
   - Default
   - TransparentFX
