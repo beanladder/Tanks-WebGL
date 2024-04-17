@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e85712b5d07f6448b38a6c1ab2a52c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 15
 --- !u!96 &8554177643414215197
 TrailRenderer:
   serializedVersion: 3

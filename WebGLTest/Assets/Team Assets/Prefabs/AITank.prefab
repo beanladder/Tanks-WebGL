@@ -6238,7 +6238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aad461abad4edad4580188140f39a392, type: 2}
+  - {fileID: 2100000, guid: 5f3cf631eeb49624fb5d8b609f308493, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9393,7 +9393,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aad461abad4edad4580188140f39a392, type: 2}
+  - {fileID: 2100000, guid: 5f3cf631eeb49624fb5d8b609f308493, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12469,7 +12469,6 @@ GameObject:
   - component: {fileID: 1500476842747116751}
   - component: {fileID: 7597092980878660694}
   - component: {fileID: 2355141382921332226}
-  - component: {fileID: 6897544681419673414}
   - component: {fileID: 9076626116671239881}
   m_Layer: 0
   m_Name: Turret
@@ -12546,19 +12545,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6897544681419673414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3758539659159287278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123cc148b4a102848abc0bbff641c891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnSpeed: 2
 --- !u!64 &9076626116671239881
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24178,7 +24164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dcf310aad92f3f04d8149c9bf5951471, type: 2}
+  - {fileID: 2100000, guid: 22c71f4721f9dcf4a99e3594f1e9eaa9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28014,11 +28000,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3550779206230381408}
-  - component: {fileID: 4839848410848150867}
   - component: {fileID: 1696651598644393836}
   - component: {fileID: 5397645091193906715}
   m_Layer: 0
-  m_Name: Tank
+  m_Name: AITank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28041,22 +28026,6 @@ Transform:
   - {fileID: 7890426259997264664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4839848410848150867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8509349882655782030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e8d59417f09124199ab6f26ab107ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rotationSpeed: 30
-  accelerationRotationAmount: -1
-  brakingRotationAmount: 1
 --- !u!65 &1696651598644393836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28090,6 +28059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6673de9de27240e4a656bffcf075f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &8516346080080152796
 GameObject:
   m_ObjectHideFlags: 0
