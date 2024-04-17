@@ -1,27 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BarrelUpDown : MonoBehaviour
 {
-    public float rotationSpeed = 1.0f;
-    public float minRotation = 60.0f;
-    public float maxRotation = 100.0f;
+    public float rotationSpeed = 5f;
+    public float minRotation = 60f;
+    public float maxRotation = 100f;
 
-    // Update is called once per frame
     void Update()
     {
-        float mouseY = Input.GetAxis("Mouse Y");
-        float newRotation = transform.rotation.eulerAngles.x - mouseY * rotationSpeed;
+        float mouseY = -Input.GetAxis("Mouse Y");
 
-        // Ensure rotation is within the desired range
-        if (newRotation > 180)
+        // Rotate around X-axis based on mouse input
+        transform.Rotate(Vector3.right, mouseY * rotationSpeed * Time.deltaTime);
+
+        // Get the current rotation around X-axis
+        float currentRotationX = transform.localEulerAngles.x;
+
+        // Adjust rotation clamping based on mouse direction
+        if (mouseY > 0) // Moving mouse up
         {
-            newRotation -= 360;
+            currentRotationX = Mathf.Clamp(currentRotationX, minRotation, maxRotation);
         }
-        newRotation = Mathf.Clamp(newRotation, minRotation, maxRotation);
+        else if (mouseY < 0) // Moving mouse down
+        {
+            // Allow rotation down to minRotation but clamp it to maxRotation when it exceeds
+            currentRotationX = Mathf.Clamp(currentRotationX, minRotation, 360f - (360f - maxRotation));
+        }
 
-        // Apply the new rotation
-        transform.rotation = Quaternion.Euler(newRotation, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        // Apply the adjusted rotation
+        transform.localEulerAngles = new Vector3(currentRotationX, transform.localEulerAngles.y, transform.localEulerAngles.z);
     }
 }
