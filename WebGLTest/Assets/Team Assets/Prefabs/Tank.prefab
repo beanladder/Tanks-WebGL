@@ -12913,6 +12913,7 @@ MonoBehaviour:
   recoilDistance: 0.1
   recoilDuration: 0.1
   trailDuration: 2
+  cooldownTime: 2.5
 --- !u!82 &4088315191280433210
 AudioSource:
   m_ObjectHideFlags: 0

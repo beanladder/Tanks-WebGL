@@ -16,9 +16,12 @@ public class ProjectileLauncher : MonoBehaviour
     public float recoilDistance = 0.1f; // Distance for turret recoil
     public float recoilDuration = 0.1f; // Duration of recoil animation
     public float trailDuration = 2f;
+    public float cooldownTime = 1f; // Cooldown time in seconds
 
     private AudioSource audioSource; // Reference to the AudioSource component
     private Vector3 originalTurretPosition; // Original position of the turret
+    private bool canFire = true; // Flag to control firing cooldown
+    private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
 
     void Start()
     {
@@ -30,9 +33,9 @@ public class ProjectileLauncher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Change to 0 for left mouse button, 1 for right mouse button
+        if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
         {
-            // Call FireProjectile method when left mouse button is pressed
+            // Call FireProjectile method when left mouse button is pressed and firing is allowed
             FireProjectile();
             // Trigger recoil animation
             RecoilAnimation();
@@ -42,7 +45,22 @@ public class ProjectileLauncher : MonoBehaviour
             {
                 audioSource.Play();
             }
+
+            // Start the cooldown coroutine
+            cooldownCoroutine = StartCoroutine(Cooldown());
         }
+    }
+
+    IEnumerator Cooldown()
+    {
+        // Set the firing flag to false to prevent further firing during cooldown
+        canFire = false;
+
+        // Wait for the cooldown time
+        yield return new WaitForSeconds(cooldownTime);
+
+        // Reset the firing flag to allow firing again
+        canFire = true;
     }
 
     public void FireProjectile()
