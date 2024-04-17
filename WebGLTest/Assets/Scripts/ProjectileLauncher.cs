@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class ProjectileLauncher : MonoBehaviour
 {
     public GameObject projectilePrefab;// Reference to the projectile prefab
@@ -16,12 +17,15 @@ public class ProjectileLauncher : MonoBehaviour
     public float recoilDuration = 0.1f; // Duration of recoil animation
     public float trailDuration = 2f;
 
-
+    private AudioSource audioSource; // Reference to the AudioSource component
     private Vector3 originalTurretPosition; // Original position of the turret
 
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
+
+        // Get the AudioSource component attached to the same GameObject
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -32,39 +36,44 @@ public class ProjectileLauncher : MonoBehaviour
             FireProjectile();
             // Trigger recoil animation
             RecoilAnimation();
+
+            // Play the audio
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
         }
     }
 
-public void FireProjectile()
-{
-    // Instantiate projectile at the fire point
-    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-
-    // Instantiate trail effect
-    GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
-    
-    // Parent the trail effect to the projectile
-    trailEffect.transform.parent = projectile.transform;
-
-    // Calculate direction to the target
-    Vector3 direction = (target.transform.position - firePoint.position).normalized;
-
-    // Apply force to the rigidbody of the projectile
-    Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-    if (projectileRigidbody != null)
+    public void FireProjectile()
     {
-        // Apply initial force with adjusted magnitude to control speed and distance
-        projectileRigidbody.velocity = direction * speed;
+        // Instantiate projectile at the fire point
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
-        // Apply a damping effect to gradually reduce the velocity
-        projectileRigidbody.drag = 2.5f; // Adjust the value as needed
+        // Instantiate trail effect
+        GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
+
+        // Parent the trail effect to the projectile
+        trailEffect.transform.parent = projectile.transform;
+
+        // Calculate direction to the target
+        Vector3 direction = (target.transform.position - firePoint.position).normalized;
+
+        // Apply force to the rigidbody of the projectile
+        Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+        if (projectileRigidbody != null)
+        {
+            // Apply initial force with adjusted magnitude to control speed and distance
+            projectileRigidbody.velocity = direction * speed;
+
+            // Apply a damping effect to gradually reduce the velocity
+            projectileRigidbody.drag = 2.5f; // Adjust the value as needed
+        }
+
+        // Destroy the trail effect after a certain duration
+        Destroy(trailEffect, trailDuration);
     }
 
-
-
-    // Destroy the trail effect after a certain duration
-    Destroy(trailEffect, trailDuration);
-}
     public void RecoilAnimation()
     {
         // Move the turret back along the Z-axis
@@ -78,3 +87,4 @@ public void FireProjectile()
                  });
     }
 }
+
