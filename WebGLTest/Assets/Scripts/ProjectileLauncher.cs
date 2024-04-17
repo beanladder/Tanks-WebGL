@@ -7,6 +7,7 @@ using UnityEngine;
 public class ProjectileLauncher : MonoBehaviour
 {
     public GameObject projectilePrefab;// Reference to the projectile prefab
+    public GameObject BarrelSmokePrefab;
     public GameObject trailPrefab; // Reference to the Trail prefab
     public Transform firePoint; // Reference to the point where the projectile will be instantiated
     public GameObject turret; // Reference to the turret GameObject
@@ -90,6 +91,10 @@ public class ProjectileLauncher : MonoBehaviour
 
         // Destroy the trail effect after a certain duration
         Destroy(trailEffect, trailDuration);
+
+        GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
+
+        Destroy(smoke, 2f);
     }
 
     public void RecoilAnimation()
