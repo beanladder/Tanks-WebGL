@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 
 
 public class SquareMovement : MonoBehaviour
@@ -10,6 +10,7 @@ public class SquareMovement : MonoBehaviour
     public float rotationSpeed = 100f;
     public float accelerationRotationAmount = 1f; // Rotation amount when accelerating
     public float brakingRotationAmount = -1f; // Rotation amount when braking
+    public AudioSource engineSound; // Reference to the AudioSource component for the tank engine sound
 
     private Quaternion initialRotation; // Initial rotation of the tank
 
@@ -39,6 +40,39 @@ public class SquareMovement : MonoBehaviour
             transform.Rotate(Vector3.up, rotationAmount);
         }
 
-       
+        // Adjust engine sound pitch based on movement
+        if (engineSound != null)
+        {
+            // Calculate the magnitude of movement (speed)
+            float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
+
+            // Adjust pitch based on movement magnitude
+            float minPitch = 0.3f; // Minimum pitch value
+            float maxPitch = 1.0f; // Maximum pitch value
+            float pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude);
+            engineSound.pitch = pitch;
+            
+            // Adjust volume based on movement magnitude (optional)
+            float minVolume = 0.1f; // Minimum volume value
+            float maxVolume = 0.3f; // Maximum volume value
+            float volume = Mathf.Lerp(minVolume, maxVolume, movementMagnitude);
+            engineSound.volume = volume;
+            
+            // Play or stop the engine sound based on movement
+            if (movementMagnitude > 0)
+            {
+                if (!engineSound.isPlaying)
+                {
+                    engineSound.Play();
+                }
+            }
+            else
+            {
+                if (engineSound.isPlaying)
+                {
+                    engineSound.Stop();
+                }
+            }
+        }
     }
 }
