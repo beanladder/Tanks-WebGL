@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 1446477476}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Cylinder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -960,15 +960,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7792402007704570719, guid: becce18a6dd1a1f4b8ff5543870d0aa8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.09096389
+      value: -0.090963885
       objectReference: {fileID: 0}
     - target: {fileID: 7792402007704570719, guid: becce18a6dd1a1f4b8ff5543870d0aa8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00052678416
+      value: -0.00052679155
       objectReference: {fileID: 0}
     - target: {fileID: 7792402007704570719, guid: becce18a6dd1a1f4b8ff5543870d0aa8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000048117836
+      value: -0.000048118505
       objectReference: {fileID: 0}
     - target: {fileID: 8164490731319300494, guid: becce18a6dd1a1f4b8ff5543870d0aa8, type: 3}
       propertyPath: m_Name
