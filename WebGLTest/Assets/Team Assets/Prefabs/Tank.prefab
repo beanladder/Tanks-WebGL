@@ -12945,11 +12945,12 @@ MonoBehaviour:
   firePoint: {fileID: 5595679796169457614}
   turret: {fileID: 1771929040173436937}
   target: {fileID: 7478374129500055181}
-  force: 100
+  force: 1000
   speed: 477.8
   recoilDistance: 0.1
   recoilDuration: 0.1
   trailDuration: 2
+  tankRigidbody: {fileID: 1473091278716990901}
 --- !u!1 &3895389667165078639
 GameObject:
   m_ObjectHideFlags: 0
@@ -28017,6 +28018,7 @@ GameObject:
   - component: {fileID: 4839848410848150867}
   - component: {fileID: 1696651598644393836}
   - component: {fileID: 5397645091193906715}
+  - component: {fileID: 1473091278716990901}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -28090,6 +28092,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6673de9de27240e4a656bffcf075f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+--- !u!54 &1473091278716990901
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8509349882655782030}
+  serializedVersion: 4
+  m_Mass: 1000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8516346080080152796
 GameObject:
   m_ObjectHideFlags: 0

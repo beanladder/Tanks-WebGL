@@ -16,6 +16,7 @@ public class ProjectileLauncher : MonoBehaviour
     public float recoilDuration = 0.1f; // Duration of recoil animation
     public float trailDuration = 2f;
 
+
     private Vector3 originalTurretPosition; // Original position of the turret
 
     void Start()
@@ -34,7 +35,7 @@ public class ProjectileLauncher : MonoBehaviour
         }
     }
 
-    public void FireProjectile()
+public void FireProjectile()
 {
     // Instantiate projectile at the fire point
     GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -52,16 +53,18 @@ public class ProjectileLauncher : MonoBehaviour
     Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
     if (projectileRigidbody != null)
     {
-        // Apply force with adjusted magnitude to control speed and distance
+        // Apply initial force with adjusted magnitude to control speed and distance
         projectileRigidbody.velocity = direction * speed;
+
+        // Apply a damping effect to gradually reduce the velocity
+        projectileRigidbody.drag = 2.5f; // Adjust the value as needed
     }
 
+
+
     // Destroy the trail effect after a certain duration
-    //Destroy(projectile, trailDuration);
     Destroy(trailEffect, trailDuration);
 }
-
-
     public void RecoilAnimation()
     {
         // Move the turret back along the Z-axis
