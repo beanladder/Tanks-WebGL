@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+
 public class CrosshairController : MonoBehaviour
 {
     public GameObject tankBarrel; // Reference to the tank barrel GameObject
@@ -9,14 +10,14 @@ public class CrosshairController : MonoBehaviour
         // Ensure tankBarrel reference is not null
         if (tankBarrel != null)
         {
-            // Get the position of the tank barrel
+            // Get the position of the tank barrel in world space
             Vector3 targetPosition = tankBarrel.transform.position;
 
-            // Set the crosshair position to match the tank barrel position
-            transform.position = targetPosition;
+            // Convert world space position to screen space
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetPosition);
 
-            // Make the crosshair always face the camera
-            transform.LookAt(Camera.main.transform);
+            // Set the crosshair position to the converted screen position
+            transform.position = screenPosition;
         }
     }
 }
