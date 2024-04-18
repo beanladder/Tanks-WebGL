@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,33 +24,35 @@ public class NetworkProjectileLauncher : MonoBehaviour
     private Vector3 originalTurretPosition; // Original position of the turret
     private bool canFire = true; // Flag to control firing cooldown
     private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
-
+    PhotonView view;
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
-
+        view = GetComponent<PhotonView>();
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
-        {
-            // Call FireProjectile method when left mouse button is pressed and firing is allowed
-            FireProjectile();
-            // Trigger recoil animation
-            RecoilAnimation();
-
-            // Play the audio
-            if (audioSource != null)
+        if(view.IsMine){
+                if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
             {
-                audioSource.Play();
-            }
+                // Call FireProjectile method when left mouse button is pressed and firing is allowed
+                FireProjectile();
+                // Trigger recoil animation
+                RecoilAnimation();
 
-            // Start the cooldown coroutine
-            cooldownCoroutine = StartCoroutine(Cooldown());
-        }
+                // Play the audio
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+
+                // Start the cooldown coroutine
+                cooldownCoroutine = StartCoroutine(Cooldown());
+            }
+        }        
     }
 
     IEnumerator Cooldown()
@@ -66,40 +69,40 @@ public class NetworkProjectileLauncher : MonoBehaviour
 
     public void FireProjectile()
     {
-        // Instantiate projectile at the fire point
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+                // Instantiate projectile at the fire point
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
-        // Instantiate trail effect
-        GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
+            // Instantiate trail effect
+            GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
 
-        // Parent the trail effect to the projectile
-        trailEffect.transform.parent = projectile.transform;
+            // Parent the trail effect to the projectile
+            trailEffect.transform.parent = projectile.transform;
 
-        // Calculate direction to the target
-        Vector3 direction = (target.transform.position - firePoint.position).normalized;
+            // Calculate direction to the target
+            Vector3 direction = (target.transform.position - firePoint.position).normalized;
 
-        // Apply force to the rigidbody of the projectile
-        Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-        if (projectileRigidbody != null)
-        {
-            // Apply initial force with adjusted magnitude to control speed and distance
-            projectileRigidbody.velocity = direction * speed;
+            // Apply force to the rigidbody of the projectile
+            Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+            if (projectileRigidbody != null)
+            {
+                // Apply initial force with adjusted magnitude to control speed and distance
+                projectileRigidbody.velocity = direction * speed;
 
-            // Apply a damping effect to gradually reduce the velocity
-            projectileRigidbody.drag = 2.5f; // Adjust the value as needed
+                // Apply a damping effect to gradually reduce the velocity
+                projectileRigidbody.drag = 2.5f; // Adjust the value as needed
+            }
+
+            // Destroy the trail effect after a certain duration
+            Destroy(trailEffect, trailDuration);
+
+            GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
+
+            Destroy(smoke, 2f);
         }
-
-        // Destroy the trail effect after a certain duration
-        Destroy(trailEffect, trailDuration);
-
-        GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
-
-        Destroy(smoke, 2f);
-    }
 
     public void RecoilAnimation()
     {
-        // Move the turret back along the Z-axis
+            // Move the turret back along the Z-axis
         LeanTween.moveLocalZ(turret, originalTurretPosition.z - recoilDistance, recoilDuration)
                  .setEase(LeanTweenType.easeOutQuad)
                  .setOnComplete(() =>
@@ -108,6 +111,6 @@ public class NetworkProjectileLauncher : MonoBehaviour
                      LeanTween.moveLocalZ(turret, originalTurretPosition.z, recoilDuration)
                               .setEase(LeanTweenType.easeInQuad);
                  });
+        }
     }
-}
 

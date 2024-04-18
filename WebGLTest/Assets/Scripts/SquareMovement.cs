@@ -80,5 +80,3 @@ public class SquareMovement : MonoBehaviour
        // }
     }
 }
-          }      
-    }

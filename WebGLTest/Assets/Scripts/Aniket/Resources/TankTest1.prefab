@@ -16547,7 +16547,7 @@ GameObject:
   - component: {fileID: 6235936474123812615}
   - component: {fileID: 234066648781943936}
   - component: {fileID: 2956623397053313536}
-  - component: {fileID: 2398357578517531234}
+  - component: {fileID: 552641360712808260}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -16774,11 +16774,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 2398357578517531234}
+  - {fileID: 552641360712808260}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &2398357578517531234
+--- !u!114 &552641360712808260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24360,8 +24360,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6879408442032917287}
-  - component: {fileID: 4006534706775145302}
+  - component: {fileID: 710748979196231250}
   - component: {fileID: 212924047754472705}
+  - component: {fileID: 4748091027503660771}
+  - component: {fileID: 1996276432127337292}
   m_Layer: 0
   m_Name: BarrelEND
   m_TagString: Untagged
@@ -24384,7 +24386,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1125368428755691850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4006534706775145302
+--- !u!114 &710748979196231250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24393,7 +24395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7370908410342672547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ba56096f56d6240a7ed0e18cc8bc0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 29e3cf6169f16f24da06c2e1677ba95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 928893599305615142, guid: eaea518216cbf7b419340b6078f22453, type: 3}
@@ -24504,6 +24506,62 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4748091027503660771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370908410342672547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1996276432127337292}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1996276432127337292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370908410342672547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &7417505968097543271
 GameObject:
   m_ObjectHideFlags: 0

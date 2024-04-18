@@ -12,18 +12,18 @@ public class NetworkTurretRotation : MonoBehaviour
     Camera maincam;
     bool isRotating = false; // Flag to track if the turret is currently rotating
     float rotationThreshold = 1f; // Threshold angle to determine when the turret stops rotating
-   // private PhotonView view;
+    private PhotonView view;
 
 
     void Start()
     {
-      //  view = GetComponent<PhotonView>();
+        view = GetComponent<PhotonView>();
         maincam = Camera.main;
     }
 
     void Update()
     {
-       // if(view.IsMine){
+        if(view.IsMine){
                 float yawCamera = maincam.transform.rotation.eulerAngles.y;
             Quaternion targetRotation = Quaternion.Euler(0, yawCamera, 0);
 
@@ -52,5 +52,5 @@ public class NetworkTurretRotation : MonoBehaviour
             }
         }
     }
-//}
+}
 
