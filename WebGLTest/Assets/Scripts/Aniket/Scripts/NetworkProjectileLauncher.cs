@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class NetworkProjectileLauncher : MonoBehaviour
+public class NetworkProjectileLauncher : MonoBehaviourPun
 {
     public GameObject projectilePrefab;// Reference to the projectile prefab
     public GameObject BarrelSmokePrefab;
@@ -39,7 +39,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
             {
                 // Call FireProjectile method when left mouse button is pressed and firing is allowed
-                FireProjectile();
+                photonView.RPC("FireProjectile",RpcTarget.All);
                 // Trigger recoil animation
                 RecoilAnimation();
 
@@ -67,6 +67,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
         canFire = true;
     }
 
+    [PunRPC]
     public void FireProjectile()
     {
                 // Instantiate projectile at the fire point
