@@ -86,7 +86,7 @@ public class ProjectileLauncher : MonoBehaviour
             projectileRigidbody.velocity = direction * speed;
 
             // Apply a damping effect to gradually reduce the velocity
-            projectileRigidbody.drag = 2.5f; // Adjust the value as needed
+            projectileRigidbody.drag = 1.5f; // Adjust the value as needed
         }
 
         // Destroy the trail effect after a certain duration

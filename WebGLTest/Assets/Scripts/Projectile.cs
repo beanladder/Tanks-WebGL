@@ -14,12 +14,6 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the projectile collides with an object tagged as "Ground"
-
-        if (collision.gameObject.CompareTag("Cylinder"))
-        {
-            gameObject.GetComponent<Renderer>().enabled = true;
-            StartCoroutine(PlayAudio("Ricochet"));
-        }
         if (collision.gameObject.CompareTag("Ground"))
         {
             
@@ -31,6 +25,12 @@ public class Projectile : MonoBehaviour
             StartCoroutine(PlayAudio("Boom"));
             
         }
+        if (collision.gameObject.CompareTag("Cylinder"))
+        {
+            gameObject.GetComponent<Renderer>().enabled = true;
+            StartCoroutine(PlayAudio("Ricochet"));
+        }
+        
         
         if(collision.gameObject.CompareTag("Tank")){
             Debug.Log("Hit Tank");
@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour
         if (ID == "Boom")
         {
             Boom.Play();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             Destroy(gameObject);
         }
         else if (ID == "Ricochet")

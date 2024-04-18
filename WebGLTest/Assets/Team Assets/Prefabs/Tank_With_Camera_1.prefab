@@ -955,7 +955,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4246965251926374036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3411,7 +3411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06773867, y: 0.702264, z: -0.067430675, w: 0.70547146}
+  m_LocalRotation: {x: 0.064154334, y: 0.7371636, z: -0.07069766, w: 0.66893643}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6336,7 +6336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.02440891, y: 0.7050754, z: -0.02429794, w: 0.7082956}
+  m_LocalRotation: {x: 0.023124576, y: 0.74010736, z: -0.025483124, w: 0.67160773}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10195,8 +10195,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.02775008, y: 0.59193546, z: -0.020398974, w: 0.8052492}
-  m_LocalPosition: {x: -12.049456, y: 3.5900002, z: -3.884098}
+  m_LocalRotation: {x: 0.024221392, y: 0.7088071, z: -0.02436722, w: 0.70456517}
+  m_LocalPosition: {x: -12.659996, y: 3.5900002, z: -0.010430336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13313,7 +13313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07764344, y: 0.70124733, z: -0.07729045, w: 0.7044501}
+  m_LocalRotation: {x: 0.07354945, y: 0.73609716, z: -0.08105102, w: 0.66796875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18637,7 +18637,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: -12.049456, y: 3.5900002, z: -3.884098}
+  m_LocalPosition: {x: -12.382576, y: 3.5900002, z: -2.6358032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19705,7 +19705,7 @@ MonoBehaviour:
   turret: {fileID: 4121236635223676754}
   target: {fileID: 8207396235333026693}
   force: 10
-  speed: 250
+  speed: 180
   recoilDistance: 0.1
   recoilDuration: 0.1
   trailDuration: 2
