@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class TankInfo : MonoBehaviour
 {
-    public static TankInfo Instance;
     public float maxHealth = 100f; // Maximum health of the tank
     public float currentHealth; // Current health of the tank
-
-    private void Awake() {
-        Instance = this;
-    }
 
     void Start()
     {
@@ -20,25 +15,31 @@ public class TankInfo : MonoBehaviour
 
     void Update()
     {
-        if(currentHealth<1)
+        if (currentHealth < 1)
         {
-            //Destroy(Tank);
+            // Destroy tank or perform other actions when health reaches zero
+            Destroy(gameObject);
         }
     }
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage(int damage)
     {
-        currentHealth -=Damage;
-        Debug.Log("Damage Inflicted");
+        currentHealth -= damage;
+        Debug.Log("Damage Inflicted: " + damage);
 
+        if (currentHealth < 1)
+        {
+            // Perform actions when tank's health reaches zero
+            Destroy(gameObject);
+        }
     }
 
     public void Repair(int heal)
     {
-        if(currentHealth<maxHealth){
-            currentHealth = currentHealth + heal;
-
+        if (currentHealth < maxHealth)
+        {
+            currentHealth = Mathf.Min(currentHealth + heal, maxHealth);
         }
-
     }
 }
+
