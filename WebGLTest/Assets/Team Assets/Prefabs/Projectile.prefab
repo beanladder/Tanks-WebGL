@@ -137,6 +137,7 @@ MonoBehaviour:
   - {fileID: 6956254112179373007}
   - {fileID: 3622409656835449171}
   TankHit: {fileID: 4080922398237230140}
+  boomPrefab: {fileID: 7723033018868520480, guid: 8acef261b1ab34c29a34718f2033085b, type: 3}
   DamageAmt: 5
 --- !u!96 &8554177643414215197
 TrailRenderer:
