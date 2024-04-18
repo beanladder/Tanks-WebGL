@@ -5,10 +5,10 @@ using UnityEngine.Animations;
 
 public class Projectile : MonoBehaviour
 {
-    public int Damage;
+    
     public AudioSource Boom;
     public AudioSource[] Ricochet;
-    
+    int DamageAmt = 10;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -31,6 +31,10 @@ public class Projectile : MonoBehaviour
             
         }
         
+        if(collision.gameObject.CompareTag("Tank")){
+            
+            gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+        }
         
         
     }
@@ -50,4 +54,5 @@ public class Projectile : MonoBehaviour
         }
         
     }
+    
 }

@@ -19,21 +19,22 @@ public class TankInfo : MonoBehaviour
     {
         if(currentHealth<1)
         {
-            Destroy(Tank);
+            //Destroy(Tank);
         }
     }
 
     public void TakeDamage(int Damage)
     {
-        currentHealth = currentHealth - Damage;
+        currentHealth -=Damage;
 
     }
 
     public void Repair(int heal)
     {
-        currentHealth = currentHealth + heal;
+        if(currentHealth<maxHealth){
+            currentHealth = currentHealth + heal;
+
+        }
 
     }
-
-
 }
