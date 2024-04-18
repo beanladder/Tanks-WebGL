@@ -3411,7 +3411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09704703, y: 0.070965044, z: -0.006937435, w: 0.99272245}
+  m_LocalRotation: {x: 0.08096608, y: 0.53639036, z: -0.051795483, w: 0.838479}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3519,7 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e8d59417f09124199ab6f26ab107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 5
   rotationSpeed: 30
   accelerationRotationAmount: -1
   brakingRotationAmount: 1
@@ -3658,9 +3658,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!65 &9085796009029215455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5789,7 +5789,7 @@ GameObject:
   - component: {fileID: 2366754216752762780}
   m_Layer: 6
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6335,7 +6335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034806553, y: 0.071259886, z: -0.002488155, w: 0.9968473}
+  m_LocalRotation: {x: 0.02913204, y: 0.538563, z: -0.018636301, w: 0.84187526}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13312,7 +13312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.110910594, y: 0.07086116, z: -0.007928476, w: 0.9912693}
+  m_LocalRotation: {x: 0.092718646, y: 0.53561115, z: -0.059313815, w: 0.83726096}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13382,7 +13382,7 @@ GameObject:
   - component: {fileID: 6235936474123812615}
   m_Layer: 6
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18636,7 +18636,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: 2.0438225, y: 3.5900002, z: -12.493934}
+  m_LocalPosition: {x: -9.338762, y: 3.5900002, z: -8.547697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19678,7 +19678,7 @@ Transform:
   m_GameObject: {fileID: 7370908410342672547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.236, z: 0}
+  m_LocalPosition: {x: 0, y: 1.475, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

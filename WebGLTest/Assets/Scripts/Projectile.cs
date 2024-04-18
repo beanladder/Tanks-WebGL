@@ -33,11 +33,12 @@ public class Projectile : MonoBehaviour
         
         if(collision.gameObject.CompareTag("Tank")){
             Debug.Log("Hit Tank");
-            StartCoroutine(InitiateDamage());
             gameObject.GetComponent<TrailRenderer>().enabled = false; 
             gameObject.GetComponent<Renderer>().enabled = false;
+            collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            StartCoroutine(InitiateDamage());
             
-                       
+
         }
         
         
@@ -52,7 +53,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
         else if (ID == "Ricochet")
-        { 
+        {
             int chance = Random.Range(0, Ricochet.Length);
             Ricochet[chance].Play();
         }
@@ -62,10 +63,11 @@ public class Projectile : MonoBehaviour
     public IEnumerator InitiateDamage()
     {
         Debug.Log("Damage Confirmed");
-        Ricochet[2].Play();
-        TankInfo.Instance.TakeDamage(DamageAmt);
-        yield return new WaitForSeconds(2f);
+        Ricochet[0].Play();
+        
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
+        
     }
     
 }
