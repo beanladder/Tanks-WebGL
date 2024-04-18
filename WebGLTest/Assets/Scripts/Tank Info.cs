@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankInfo : MonoBehaviour
 {
@@ -8,7 +10,6 @@ public class TankInfo : MonoBehaviour
     public GameObject Tank; 
     public float maxHealth = 100f; // Maximum health of the tank
     public float currentHealth; // Current health of the tank
-
     void Start()
     {
         // Initialize current health to max health at the start
@@ -33,7 +34,6 @@ public class TankInfo : MonoBehaviour
     {
         if(currentHealth<maxHealth){
             currentHealth = currentHealth + heal;
-
         }
 
     }
