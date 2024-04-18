@@ -14,11 +14,6 @@ public class SquareMovement : MonoBehaviour
 
     private Quaternion initialRotation; // Initial rotation of the tank
 
-    PhotonView view;
-
-    void Start(){
-        view = GetComponent<PhotonView>();
-    }
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,8 +23,7 @@ public class SquareMovement : MonoBehaviour
 
     void Update()
     {
-        if(view.IsMine){
-                // Movement based on W and S keys
+            // Movement based on W and S keys
             float verticalInput = Input.GetAxis("Vertical");
             float moveAmount = verticalInput * moveSpeed * Time.deltaTime;
             transform.Translate(Vector3.forward * moveAmount);
@@ -80,6 +74,5 @@ public class SquareMovement : MonoBehaviour
                     }
                 }
             }
-        }
+          }      
     }
-}
