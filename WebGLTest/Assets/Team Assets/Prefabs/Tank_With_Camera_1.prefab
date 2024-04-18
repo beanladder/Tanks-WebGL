@@ -897,9 +897,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219127403042168676}
-  m_LocalRotation: {x: -0.012805442, y: 0.9285501, z: -0.03217226, w: -0.3695885}
-  m_LocalPosition: {x: 0, y: 0, z: -63.366108}
-  m_LocalScale: {x: 0.07683441, y: 0.07683441, z: 0.07683441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7169946195620009441}
@@ -907,9 +907,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -59.76046, y: -3.3312597}
-  m_SizeDelta: {x: 1919.9998, y: 1078.1981}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!223 &4238907615449268933
 Canvas:
   m_ObjectHideFlags: 0
@@ -919,7 +919,7 @@ Canvas:
   m_GameObject: {fileID: 219127403042168676}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 1415272216626961890}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -3411,7 +3411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09704703, y: 0.07096535, z: -0.0069374642, w: 0.9927224}
+  m_LocalRotation: {x: 0.06773867, y: 0.702264, z: -0.067430675, w: 0.70547146}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3478,8 +3478,9 @@ GameObject:
   - component: {fileID: 7862261246647359588}
   - component: {fileID: 7963035148965281489}
   - component: {fileID: 2554187982060805917}
+  - component: {fileID: 475864366409865751}
   m_Layer: 6
-  m_Name: Tank With Camera 1
+  m_Name: Tank_With_Camera_1
   m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3535,7 +3536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6673de9de27240e4a656bffcf075f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tank: {fileID: 1324328266891732362}
   maxHealth: 100
   currentHealth: 0
 --- !u!82 &7963035148965281489
@@ -3658,9 +3658,30 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
+--- !u!65 &475864366409865751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324328266891732362}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.1479874, y: 1.5737982, z: 5.332389}
+  m_Center: {x: -0.04590416, y: -0.2868991, z: 0.30083418}
 --- !u!1 &1354106883447623182
 GameObject:
   m_ObjectHideFlags: 0
@@ -6315,7 +6336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034806557, y: 0.071260184, z: -0.0024881663, w: 0.9968472}
+  m_LocalRotation: {x: 0.02440891, y: 0.7050754, z: -0.02429794, w: 0.7082956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10174,8 +10195,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03478966, y: -0.07773549, z: 0.0027142628, w: 0.99636316}
-  m_LocalPosition: {x: 2.0438147, y: 3.5900002, z: -12.493935}
+  m_LocalRotation: {x: 0.02775008, y: 0.59193546, z: -0.020398974, w: 0.8052492}
+  m_LocalPosition: {x: -12.049456, y: 3.5900002, z: -3.884098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13292,7 +13313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.110910565, y: 0.07086148, z: -0.007928508, w: 0.9912693}
+  m_LocalRotation: {x: 0.07764344, y: 0.70124733, z: -0.07729045, w: 0.7044501}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18616,7 +18637,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: 2.0438147, y: 3.5900002, z: -12.493935}
+  m_LocalPosition: {x: -12.049456, y: 3.5900002, z: -3.884098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19642,6 +19663,7 @@ GameObject:
   - component: {fileID: 6879408442032917287}
   - component: {fileID: 4006534706775145302}
   - component: {fileID: 212924047754472705}
+  - component: {fileID: 6291231491840637314}
   m_Layer: 6
   m_Name: BarrelEND
   m_TagString: Untagged
@@ -19658,7 +19680,7 @@ Transform:
   m_GameObject: {fileID: 7370908410342672547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.0100003, z: 0}
+  m_LocalPosition: {x: 0, y: 1.408, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19784,6 +19806,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6291231491840637314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370908410342672547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1666947e77803bb459dcd856c5dd4e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelEnd: {fileID: 6879408442032917287}
+  targetObject: {fileID: 8276867083379645089}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 63
+  maxDistance: 64
 --- !u!1 &7417505968097543271
 GameObject:
   m_ObjectHideFlags: 0

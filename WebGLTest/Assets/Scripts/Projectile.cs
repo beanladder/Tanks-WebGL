@@ -8,7 +8,8 @@ public class Projectile : MonoBehaviour
     
     public AudioSource Boom;
     public AudioSource[] Ricochet;
-    int DamageAmt = 10;
+    public AudioSource TankHit;
+    public int DamageAmt = 5;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,8 +33,13 @@ public class Projectile : MonoBehaviour
         }
         
         if(collision.gameObject.CompareTag("Tank")){
+            Debug.Log("Hit Tank");
+            gameObject.GetComponent<TrailRenderer>().enabled = false; 
+            gameObject.GetComponent<Renderer>().enabled = false;
+            collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            StartCoroutine(InitiateDamage());
             
-            gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+
         }
         
         
@@ -48,10 +54,20 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
         else if (ID == "Ricochet")
-        { 
+        {
             int chance = Random.Range(0, Ricochet.Length);
             Ricochet[chance].Play();
         }
+        
+    }
+
+    public IEnumerator InitiateDamage()
+    {
+        Debug.Log("Damage Confirmed");
+        TankHit.Play();
+        
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
         
     }
     
