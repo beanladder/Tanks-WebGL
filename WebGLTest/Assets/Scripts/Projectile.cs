@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     
     public AudioSource Boom;
     public AudioSource[] Ricochet;
+    public AudioSource TankHit;
     public int DamageAmt = 5;
 
     private void OnCollisionEnter(Collision collision)
@@ -63,7 +64,7 @@ public class Projectile : MonoBehaviour
     public IEnumerator InitiateDamage()
     {
         Debug.Log("Damage Confirmed");
-        Ricochet[0].Play();
+        TankHit.Play();
         
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
