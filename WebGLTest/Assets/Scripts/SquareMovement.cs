@@ -23,8 +23,6 @@ public class SquareMovement : MonoBehaviour
 
     void Update()
     {
-        //if(view.IsMine){
-                // Movement based on W and S keys
 
             // Movement based on W and S keys
             float verticalInput = Input.GetAxis("Vertical");
@@ -77,8 +75,12 @@ public class SquareMovement : MonoBehaviour
                     }
                 }
             }
-       // }
     }
 }
-          }      
-    }
+
+              
+    
+
+
+
+
