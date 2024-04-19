@@ -8,9 +8,9 @@ public class Projectile : MonoBehaviour
 {
     public AudioSource Boom;
     public AudioSource[] Ricochet;
-    public AudioSource TankHit;
+    public GameObject TankHit;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
-    public int DamageAmt = 5;
+    public int DamageAmt = 20;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -31,8 +31,12 @@ public class Projectile : MonoBehaviour
             gameObject.GetComponent<Renderer>().enabled = false;
             GameObject explosion = Instantiate(boomPrefab, collision.contacts[0].point, Quaternion.identity);
             Destroy(explosion, 2f);
+            GameObject audioCont = Instantiate(TankHit, collision.contacts[0].point, Quaternion.identity);
+            AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
+            audioSrc.Play();
+            Destroy(audioCont, 2f);
             collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
-            StartCoroutine(InitiateDamage());
+            Destroy(gameObject);
         }
     }
 
@@ -41,7 +45,7 @@ public class Projectile : MonoBehaviour
         if (ID == "Boom")
         {
             Boom.Play();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             Destroy(gameObject);
         }
         else if (ID == "Ricochet")
@@ -51,10 +55,5 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public IEnumerator InitiateDamage()
-    {
-        TankHit.Play();
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
-    }
+   
 }
