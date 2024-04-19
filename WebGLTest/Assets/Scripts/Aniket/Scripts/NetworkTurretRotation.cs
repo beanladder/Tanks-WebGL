@@ -12,13 +12,11 @@ public class NetworkTurretRotation : MonoBehaviour
     Camera maincam;
     bool isRotating = false; // Flag to track if the turret is currently rotating
     float rotationThreshold = 1f; // Threshold angle to determine when the turret stops rotating
-    private PhotonView view;
-
-
+    PhotonView view;
     void Start()
     {
-        view = GetComponent<PhotonView>();
         maincam = Camera.main;
+        view = GetComponent<PhotonView>();
     }
 
     void Update()
