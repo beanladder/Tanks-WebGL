@@ -3447,7 +3447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06415436, y: 0.7371636, z: -0.07069769, w: 0.6689365}
+  m_LocalRotation: {x: 0.064154364, y: 0.7371636, z: -0.07069769, w: 0.6689365}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10781,7 +10781,7 @@ GameObject:
   - component: {fileID: 9181059498137676303}
   m_Layer: 6
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13536,7 +13536,7 @@ GameObject:
   - component: {fileID: 2931307576089813136}
   m_Layer: 6
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19877,7 +19877,7 @@ GameObject:
   - component: {fileID: 5770471874709354848}
   m_Layer: 6
   m_Name: BarrelEND
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19909,9 +19909,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e3cf6169f16f24da06c2e1677ba95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 928893599305615142, guid: eaea518216cbf7b419340b6078f22453, type: 3}
-  BarrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
-  trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
+  projectilePrefab: {fileID: 928893599305615142, guid: d9e0e86120f4e384db1e6d3204bbb7ee, type: 3}
+  BarrelSmokePrefab: {fileID: 18047338104297236, guid: d7ee59aeebb32d14f9ae6d3424d269f2, type: 3}
+  trailPrefab: {fileID: 8239218304392185808, guid: 5340b3c087935cb4c8459060cfad98c6, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
   target: {fileID: 8207396235333026693}

@@ -20,8 +20,8 @@ public class TankMovement : MonoBehaviour
     }
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
         initialRotation = transform.rotation; // Store the initial rotation
     }
 

@@ -5,35 +5,45 @@ using UnityEngine;
 
 public class NetworkTankInfo : MonoBehaviour
 {
-
-    public GameObject Tank; 
+    public GameObject Tank;
     public float maxHealth = 100f; // Maximum health of the tank
     public float currentHealth; // Current health of the tank
+    PhotonView view;
+
     void Start()
     {
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
+        view = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        if(currentHealth<1)
+        if (currentHealth < 1)
         {
-            Destroy(Tank);
+            SpawnPlayer.instance.SetDeadTankID(view.OwnerActorNr); // Pass the Photon ID of the killed tank
+            Destroy(Tank, 0.5f);
         }
     }
 
+    [PunRPC]
     public void TakeDamage(int Damage)
     {
-        currentHealth = currentHealth - Damage;
-
+        currentHealth -= Damage; // Simplified subtraction
+        currentHealth = Mathf.Max(currentHealth, 0f);
+        view.RPC("SyncHealth", RpcTarget.AllBuffered, currentHealth);
     }
 
     public void Repair(int heal)
     {
-        currentHealth = currentHealth + heal;
-
+        currentHealth += heal; // Simplified addition
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        view.RPC("SyncHealth", RpcTarget.AllBuffered, currentHealth);
     }
 
-
+    [PunRPC]
+    void SyncHealth(float health)
+    {
+        currentHealth = health;
+    }
 }
