@@ -138,9 +138,9 @@ MonoBehaviour:
   - {fileID: 341635434858627007}
   - {fileID: 6956254112179373007}
   - {fileID: 3622409656835449171}
-  TankHit: {fileID: 4080922398237230140}
-  boomPrefab: {fileID: 7723033018868520480, guid: 8acef261b1ab34c29a34718f2033085b, type: 3}
-  DamageAmt: 5
+  TankHit: {fileID: 8638387795967581127}
+  boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
+  DamageAmt: 10
 --- !u!96 &8554177643414215197
 TrailRenderer:
   serializedVersion: 3
@@ -749,7 +749,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4d35b0bcdca55dc46be45b2eac6695ee, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 29bd73d5ca9f54849b268c4000bbfd84, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -877,7 +877,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 29bd73d5ca9f54849b268c4000bbfd84, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4d35b0bcdca55dc46be45b2eac6695ee, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.44
   m_Pitch: 1
@@ -887,7 +887,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 131
   DopplerLevel: 1.2
-  MinDistance: 12.2
+  MinDistance: 12.3
   MaxDistance: 346.11
   Pan2D: 0
   rolloffMode: 0
@@ -923,7 +923,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -938,7 +938,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.083333336
+      value: 0.108333334
       inSlope: 0
       outSlope: 0
       tangentMode: 0
