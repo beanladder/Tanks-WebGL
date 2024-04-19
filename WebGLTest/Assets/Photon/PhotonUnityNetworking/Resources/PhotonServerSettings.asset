@@ -42,6 +42,7 @@ MonoBehaviour:
   - FireProjectile
   - SetNickname
   - SetDisplayNameRPC
+  - RecoilAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

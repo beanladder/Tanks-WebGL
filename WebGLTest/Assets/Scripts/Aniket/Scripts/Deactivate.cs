@@ -5,12 +5,12 @@ using Photon.Pun;
 
 public class Deactivate : MonoBehaviour
 {
-    private PhotonView viewCamera;
+    private PhotonView view;
     // Start is called before the first frame update
     void Start()
     {
-        viewCamera = GetComponent<PhotonView>();
-        if(!viewCamera.IsMine){
+        view = GetComponent<PhotonView>();
+        if(!view.IsMine){
             gameObject.SetActive(false);
         }
     }

@@ -7,7 +7,6 @@ public class NetworkBarrelUpDown : MonoBehaviour
     public float minRotation = 60f;
     public float maxRotation = 100f;
     PhotonView view;
-
     void Start(){
         view = GetComponent<PhotonView>();
     }
