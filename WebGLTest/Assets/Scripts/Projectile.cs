@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     public AudioSource[] Ricochet;
     public GameObject TankHit;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
-    public int DamageAmt = 20;
+    int DamageAmt;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
+            DamageAmt = Random.Range(5, 14);
             collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
             Destroy(gameObject);
         }
