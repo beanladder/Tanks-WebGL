@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1324328266891732362, guid: 3550d86edcaeb7947ae868e764ace44a, type: 3}
-  textPrefab: {fileID: 7363678066870122594, guid: 6920aa1fef9ced24d8a27b05a1cf5c63, type: 3}
+  textPrefab: {fileID: 2933439702819729926, guid: 6920aa1fef9ced24d8a27b05a1cf5c63, type: 3}
   minX: -47.47
   maxX: 47.47
   fixedY: 1.4

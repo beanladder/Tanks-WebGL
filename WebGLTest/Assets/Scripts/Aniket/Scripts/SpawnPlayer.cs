@@ -29,11 +29,13 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), fixedY);
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
 
-        GameObject textObject = Instantiate(textPrefab, player.transform.position, Quaternion.identity);
-        TextMeshPro textMesh = textObject.GetComponent<TextMeshPro>();
-        if(textMesh!=null){
-            textMesh.text = PhotonNetwork.NickName;
-        }
+        //if(player.GetComponent<PhotonView>().IsMine){
+            GameObject textObject = Instantiate(textPrefab, player.transform);
+            TextMeshProUGUI textMesh = textObject.GetComponent<TextMeshProUGUI>();
+            if(textMesh!=null){
+                textMesh.text = PhotonNetwork.NickName;
+            }
+        //}
         view = GetComponent<PhotonView>();
     }
 
