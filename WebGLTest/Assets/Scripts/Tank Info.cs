@@ -13,6 +13,8 @@ public class TankInfo : MonoBehaviour
     public TMP_Text healthText; // Reference to the TextMeshPro component for displaying health
     public KeyCode repairKey = KeyCode.X; // Key to trigger repair
     public GameObject healthIndicator; // Reference to the game object to enable/disable
+    public GameObject healthDeductUI;
+    public GameObject healthAddUI;
 
     private bool isRepairing = false; // Flag to indicate if the tank is currently in repair mode
     public float repairTime = 7f; // Time in seconds for repair
@@ -32,16 +34,13 @@ public class TankInfo : MonoBehaviour
 
     void Update()
     {
+        
         UpdateHealthText();
         // Check if the repair key is pressed
         if (Input.GetKeyDown(repairKey))
         {
             // Start the repair process
             StartRepair();
-        }
-        else
-        {
-            isRepairing = false;
         }
 
         // If currently repairing, decrease repair time
@@ -61,6 +60,8 @@ public class TankInfo : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        StartCoroutine(HealthDeduction(damage));
+        
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
         // Update the health UI text
@@ -77,30 +78,56 @@ public class TankInfo : MonoBehaviour
     {
         isRepairing = true;
         Debug.Log("Starting repair...");
+        HealthUIAnimation.instance.StartRepairAnimation();
+        
     }
 
     public void EndRepair()
     {
+
         isRepairing = false;
 
         // Generate random healing amount
         float healAmount = Random.Range(healAmountMin, healAmountMax);
 
         // Clamp heal amount so it doesn't exceed maxHealth
-        float potentialHealth = currentHealth + healAmount;
-        currentHealth = Mathf.Clamp(potentialHealth, 0f, maxHealth);
+
+        StartCoroutine(HealthAddition(healAmount));
 
         // Update the health UI text
 
         Debug.Log("Repair complete. Healed " + healAmount + " health.");
         repairTime = 7f;
-        isRepairing = true;
+        HealthUIAnimation.instance.StopRepairAnimation();
     }
 
     public void DestructionPhase()
     {
         GameObject newDestroy = Instantiate(destroyPrefab, transform.position, transform.rotation);
         Destroy(newDestroy, 2.5f);
+    }
+
+    public IEnumerator HealthAddition(float heal)
+    {
+        Debug.Log("Repair Animation should start");
+        healthAddUI.SetActive(true);
+        TMP_Text healText = healthAddUI.GetComponent<TMP_Text>();
+        healText.text = heal.ToString("0");
+        yield return new WaitForSeconds(1f);
+        healthAddUI.SetActive(false);
+        float potentialHealth = currentHealth + heal;
+        currentHealth = Mathf.Clamp(potentialHealth, 0f, maxHealth);
+    }
+
+    public IEnumerator HealthDeduction(float damage)
+    {
+        Debug.Log("Tank should take damage");
+        healthDeductUI.SetActive(true);
+        TMP_Text damagetext = healthDeductUI.GetComponent<TMP_Text>();
+        damagetext.text = damage.ToString("0");
+        yield return new WaitForSeconds(1f);
+        healthDeductUI.SetActive(false);
+        
     }
 
     private void UpdateHealthText()
