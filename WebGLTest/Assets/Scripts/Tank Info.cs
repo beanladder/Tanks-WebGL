@@ -15,14 +15,19 @@ public class TankInfo : MonoBehaviour
     public GameObject healthIndicator; // Reference to the game object to enable/disable
     public GameObject healthDeductUI;
     public GameObject healthAddUI;
+    public bool repairCooldown;
 
     private bool isRepairing = false; // Flag to indicate if the tank is currently in repair mode
     public float repairTime = 7f; // Time in seconds for repair
     private float healAmountMin = 5f; // Minimum amount of healing
     private float healAmountMax = 15f; // Maximum amount of healing
+    private SquareMovement squareMovementScript;
 
     void Start()
     {
+        repairCooldown = true;
+
+        squareMovementScript = GetComponent<SquareMovement>();
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
 
@@ -37,7 +42,7 @@ public class TankInfo : MonoBehaviour
         
         UpdateHealthText();
         // Check if the repair key is pressed
-        if (Input.GetKeyDown(repairKey))
+        if (Input.GetKeyDown(repairKey) && currentHealth<maxHealth && repairCooldown)
         {
             // Start the repair process
             StartRepair();
@@ -59,26 +64,48 @@ public class TankInfo : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        int hitResistor = 1;
         currentHealth -= damage;
         StartCoroutine(HealthDeduction(damage));
         
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
         // Update the health UI text
-
         if (currentHealth <= 0)
         {
             // Perform actions when tank's health reaches zero
             DestructionPhase();
             Destroy(gameObject);
         }
+        else if(currentHealth <=25)
+        {
+            maxHealth = 75;
+            hitResistor=hitResistor+3;
+        }
+        else if(currentHealth <=45)
+        {
+            maxHealth = 82;
+            hitResistor=hitResistor+2;
+        }
+        else if(currentHealth <= 60)
+        {
+            maxHealth = 93;
+            hitResistor++;
+        }
+        
+        
+        maxHealth=maxHealth-hitResistor;
+
+        
     }
 
     public void StartRepair()
     {
+        repairCooldown = false;
         isRepairing = true;
         Debug.Log("Starting repair...");
         HealthUIAnimation.instance.StartRepairAnimation();
+        squareMovementScript.enabled = false;
         
     }
 
@@ -99,6 +126,8 @@ public class TankInfo : MonoBehaviour
         Debug.Log("Repair complete. Healed " + healAmount + " health.");
         repairTime = 7f;
         HealthUIAnimation.instance.StopRepairAnimation();
+        squareMovementScript.enabled = true;
+        repairCooldown = true;
     }
 
     public void DestructionPhase()
