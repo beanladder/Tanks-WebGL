@@ -9,6 +9,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 {
     public static SpawnPlayer instance;
     public GameObject playerPrefab;
+    public GameObject textPrefab;
     public float minX;
     public float maxX;
     public float fixedY;
@@ -18,16 +19,21 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     private int deadTankID = -1; // Store the Photon ID of the killed tank
     PhotonView view;
 
-    void Awake()
-    {
-        instance = this;
-    }
+     void Awake()
+     {
+         instance = this;
+     }
 
     void Start()
     {
         Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), fixedY);
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        SetPlayerDisplayName(player);
+        GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+
+        GameObject textObject = Instantiate(textPrefab, player.transform.position, Quaternion.identity);
+        TextMeshPro textMesh = textObject.GetComponent<TextMeshPro>();
+        if(textMesh!=null){
+            textMesh.text = PhotonNetwork.NickName;
+        }
         view = GetComponent<PhotonView>();
     }
 
@@ -37,27 +43,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         {
             TankDeathCheck(deadTankID);
         }
-    }
-
-    void SetPlayerDisplayName(GameObject player)
-    {
-        // Retrieve the display name of the player from PhotonNetwork
-        string displayName = PhotonNetwork.NickName;
-
-        // Set the display name of the player using PhotonView
-        PhotonView photonView = player.GetComponent<PhotonView>();
-        if (photonView != null)
-        {
-            photonView.RPC("SetDisplayNameRPC", RpcTarget.AllBuffered, displayName);
-        }
-    }
-
-    // RPC method to set the display name of the player on all clients
-    [PunRPC]
-    void SetDisplayNameRPC(string displayName)
-    {
-        // Set the display name of the player
-        gameObject.name = displayName;
     }
 
     public void DeathScreenActive()
