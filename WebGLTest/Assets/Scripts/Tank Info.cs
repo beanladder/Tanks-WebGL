@@ -16,18 +16,21 @@ public class TankInfo : MonoBehaviour
     public GameObject healthDeductUI;
     public GameObject healthAddUI;
     public bool repairCooldown;
+    public AudioSource repairAudio;
 
     private bool isRepairing = false; // Flag to indicate if the tank is currently in repair mode
-    public float repairTime = 7f; // Time in seconds for repair
+    public float repairTime = 4f; // Time in seconds for repair
     private float healAmountMin = 5f; // Minimum amount of healing
     private float healAmountMax = 15f; // Maximum amount of healing
     private SquareMovement squareMovementScript;
+    private AudioSource moveAudio;
 
     void Start()
     {
         repairCooldown = true;
 
         squareMovementScript = GetComponent<SquareMovement>();
+        moveAudio = GetComponent<AudioSource>();
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
 
@@ -106,6 +109,8 @@ public class TankInfo : MonoBehaviour
         Debug.Log("Starting repair...");
         HealthUIAnimation.instance.StartRepairAnimation();
         squareMovementScript.enabled = false;
+        moveAudio.enabled = false;
+        repairAudio.Play();
         
     }
 
@@ -124,9 +129,11 @@ public class TankInfo : MonoBehaviour
         // Update the health UI text
 
         Debug.Log("Repair complete. Healed " + healAmount + " health.");
-        repairTime = 7f;
+        repairTime = 4f;
         HealthUIAnimation.instance.StopRepairAnimation();
         squareMovementScript.enabled = true;
+        repairAudio.Stop();
+        moveAudio.enabled = true;
         repairCooldown = true;
     }
 
