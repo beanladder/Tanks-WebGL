@@ -46,16 +46,20 @@ public class SquareMovement : MonoBehaviour
             {
                 // Calculate the magnitude of movement (speed)
                 float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
+            if (movementMagnitude == 0)
+                {
+                    movementMagnitude = 0.1f;
+                }
 
                 // Adjust pitch based on movement magnitude
-                float minPitch = 0.3f; // Minimum pitch value
-                float maxPitch = 1.0f; // Maximum pitch value
+                float minPitch = 0.7f; // Minimum pitch value
+                float maxPitch = 1.7f; // Maximum pitch value
                 float pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude);
                 engineSound.pitch = pitch;
                 
                 // Adjust volume based on movement magnitude (optional)
-                float minVolume = 0.1f; // Minimum volume value
-                float maxVolume = 0.3f; // Maximum volume value
+                float minVolume = 0.7f; // Minimum volume value
+                float maxVolume = 1f; // Maximum volume value
                 float volume = Mathf.Lerp(minVolume, maxVolume, movementMagnitude);
                 engineSound.volume = volume;
                 
