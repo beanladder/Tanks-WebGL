@@ -69,6 +69,9 @@ public class SquareMovement : MonoBehaviour
                     if (!engineSound.isPlaying)
                     {
                         engineSound.Play();
+                        
+                        float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
+                        transform.Rotate(Vector3.up, rotationAmount);
                     }
                 }
                 else

@@ -25,6 +25,9 @@ public class TankInfo : MonoBehaviour
     private SquareMovement squareMovementScript;
     private AudioSource moveAudio;
 
+
+    
+
     void Start()
     {
         repairCooldown = true;
@@ -185,4 +188,8 @@ public class TankInfo : MonoBehaviour
             healthIndicator.SetActive(false);
         }
     }
+
+
+
+
 }
