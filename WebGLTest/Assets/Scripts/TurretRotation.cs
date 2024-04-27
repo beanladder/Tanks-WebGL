@@ -11,7 +11,8 @@ public class TurretRotation : MonoBehaviour
     bool isRotating = false; // Flag to track if the turret is currently rotating
     float rotationThreshold = 1f; // Threshold angle to determine when the turret stops rotating
 
-    public float xRotation,zRotation,yRotation;
+    public float xRotation,zRotation;
+    public float yRotation;
     
 
     void Start()
@@ -21,10 +22,10 @@ public class TurretRotation : MonoBehaviour
 
     void Update()
     {
-        float yawCamera = (maincam.transform.rotation.eulerAngles.y)*yRotation;
+        float yawCamera = maincam.transform.rotation.eulerAngles.y;
 
         // Target rotation with fixed X (180) and Z (0)
-        Quaternion targetRotation = Quaternion.Euler(xRotation, yawCamera, zRotation);
+        Quaternion targetRotation = Quaternion.Euler(xRotation, yawCamera+yRotation, zRotation);
 
         // Check if the turret is rotating
         if (Quaternion.Angle(transform.rotation, targetRotation) > rotationThreshold)
