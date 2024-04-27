@@ -109,6 +109,8 @@ public class ProjectileLauncher : MonoBehaviour
                      LeanTween.moveLocalZ(turret, originalTurretPosition.z, recoilDuration)
                               .setEase(LeanTweenType.easeInQuad);
                  });
+
+        SquareMovement.Instance.ShootProjectile();
     }
 }
 

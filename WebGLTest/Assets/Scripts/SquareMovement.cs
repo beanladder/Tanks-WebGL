@@ -6,16 +6,19 @@ using Photon.Pun;
 
 public class SquareMovement : MonoBehaviour
 {
+    public static SquareMovement Instance;
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
     public float accelerationRotationAmount = 1f; // Rotation amount when accelerating
     public float brakingRotationAmount = -1f; // Rotation amount when braking
-    public AudioSource engineSound; // Reference to the AudioSource component for the tank engine sound
+    public AudioSource engineSound;
+    public float recoilForce = 1000f;// Reference to the AudioSource component for the tank engine sound
 
     private Quaternion initialRotation; // Initial rotation of the tank
 
     void Awake()
     {
+        Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         initialRotation = transform.rotation; // Store the initial rotation
@@ -82,6 +85,15 @@ public class SquareMovement : MonoBehaviour
                     }
                 }
             }
+    }
+
+    public void ShootProjectile()
+    {
+        // Create and shoot the projectile
+        // For demonstration purposes, I'm just applying a recoil force
+
+        // Apply recoil force in the opposite direction of the tank's forward vector
+        GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
     }
 }
 
