@@ -1628,11 +1628,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766890398791651012, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
       propertyPath: m_LocalRotation.w
+
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2766890398791651012, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
+
+
+      value: 0.83851564
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766890398791651012, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.06043441
+
+      value: 0.83851576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766890398791651012, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.06043442
+
+
       objectReference: {fileID: 0}
     - target: {fileID: 2766890398791651012, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1640,7 +1656,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766890398791651012, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
       propertyPath: m_LocalRotation.z
+
       value: -0
+
+
+      value: -0.038927723
+
+      value: -0.03892773
+
+
+
       objectReference: {fileID: 0}
     - target: {fileID: 3829553348401455636, guid: ce138539a9744f446812144b6d9adf9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2149,8 +2174,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2229704178658133141}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0012612742, y: 0.012854515, z: 0.011645196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0012612742, y: 0.012854515, z: 0.0099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2212,9 +2237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa884f2e8586254398ae9a923497894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  minRotation: 60
-  maxRotation: 100
+  rotationSpeed: 55
+  minRotation: -25
+  maxRotation: 50
+  MouseY: 1
 --- !u!33 &3067001054775022546
 MeshFilter:
   m_ObjectHideFlags: 0

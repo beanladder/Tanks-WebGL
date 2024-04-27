@@ -3,28 +3,34 @@ using UnityEngine;
 public class BarrelUpDown : MonoBehaviour
 {
     public float rotationSpeed = 5f;
-    public float minRotation = 60f;
-    public float maxRotation = 100f;
-
+    public float minRotation = -25f;
+    public float maxRotation = 50f;
+    private float currentRotationX = 0f; // Store the current rotation
+    public float MouseY;
     void Update()
     {
-        float mouseY = -Input.GetAxis("Mouse Y");
+        float mouseY = Input.GetAxis("Mouse Y") * MouseY;
 
         // Rotate around X-axis based on mouse input
         transform.Rotate(Vector3.right, mouseY * rotationSpeed * Time.deltaTime);
 
         // Get the current rotation around X-axis
-        float currentRotationX = transform.localEulerAngles.x;
+        currentRotationX = transform.localEulerAngles.x;
 
-        // Adjust rotation clamping based on mouse direction
+        // Convert rotation to a range of -180 to 180
+        if (currentRotationX > 180f)
+        {
+            currentRotationX -= 360f;
+        }
+
+        // Adjust rotation smoothly between -25 and 50 based on mouse input
         if (mouseY > 0) // Moving mouse up
         {
-            currentRotationX = Mathf.Clamp(currentRotationX, minRotation, maxRotation);
+            currentRotationX = Mathf.MoveTowards(currentRotationX, maxRotation, Mathf.Abs(mouseY) * rotationSpeed * Time.deltaTime);
         }
         else if (mouseY < 0) // Moving mouse down
         {
-            // Allow rotation down to minRotation but clamp it to maxRotation when it exceeds
-            currentRotationX = Mathf.Clamp(currentRotationX, minRotation, 360f - (360f - maxRotation));
+            currentRotationX = Mathf.MoveTowards(currentRotationX, minRotation, Mathf.Abs(mouseY) * rotationSpeed * Time.deltaTime);
         }
 
         // Apply the adjusted rotation
