@@ -32,6 +32,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --assembly-defines=Unity.VisualScripting.State;
 --assembly-defines=Cinemachine;
 --assembly-defines=websocket-sharp;
+--assembly-defines=UModelerCommon;
 --assembly-defines=Unity.VisualScripting.Antlr3.Runtime;
 --assembly-defines=Photon3Unity3D;
 --assembly-defines=Unity.Burst.Unsafe;
@@ -61,7 +62,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\Burst
 --debug=Full
---key-folder=D:/Programs/2022.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Programs/2022.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Library\Burst
 --output=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -101,6 +102,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --assembly-defines=Unity.VisualScripting.State;
 --assembly-defines=Cinemachine;
 --assembly-defines=websocket-sharp;
+--assembly-defines=UModelerCommon;
 --assembly-defines=Unity.VisualScripting.Antlr3.Runtime;
 --assembly-defines=Photon3Unity3D;
 --assembly-defines=Unity.Burst.Unsafe;
@@ -130,7 +132,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\Burst
 --debug=Full
---key-folder=D:/Programs/2022.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Programs/2022.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Library\Burst
 --output=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -168,6 +170,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --assembly-defines=Unity.VisualScripting.State;
 --assembly-defines=Cinemachine;
 --assembly-defines=websocket-sharp;
+--assembly-defines=UModelerCommon;
 --assembly-defines=Unity.VisualScripting.Antlr3.Runtime;
 --assembly-defines=Photon3Unity3D;
 --assembly-defines=Unity.Burst.Unsafe;
@@ -197,7 +200,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\Burst
 --debug=Full
---key-folder=D:/Programs/2022.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Programs/2022.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Library\Burst
 --output=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -241,6 +244,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --assembly-defines=Unity.VisualScripting.State;
 --assembly-defines=Cinemachine;
 --assembly-defines=websocket-sharp;
+--assembly-defines=UModelerCommon;
 --assembly-defines=Unity.VisualScripting.Antlr3.Runtime;
 --assembly-defines=Photon3Unity3D;
 --assembly-defines=Unity.Burst.Unsafe;
@@ -270,7 +274,7 @@ Library: D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugin
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\Burst
 --debug=Full
---key-folder=D:/Programs/2022.3.24f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Programs/2022.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Library\Burst
 --output=D:\Github Repo\tanks\Tanks-WebGL\WebGLTest\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/

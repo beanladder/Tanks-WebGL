@@ -49,9 +49,17 @@ public class NetworkProjectileLauncher : MonoBehaviour
                 {
                     audioSource.Play();
                 }
-
+                GetComponent<PhotonView>().RPC("PlayShootingAudio",RpcTarget.Others);
                 // Start the cooldown coroutine
                 cooldownCoroutine = StartCoroutine(Cooldown());
+            }
+        }
+    }
+    [PunRPC]
+    public void PlayShootingAudio(){
+        if(!view.IsMine){
+            if(audioSource != null){
+                audioSource.Play();
             }
         }
     }
