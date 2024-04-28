@@ -12,7 +12,11 @@ public class NetworkProjectile : MonoBehaviour
     public GameObject TankHit;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
     int DamageAmt;
+    PhotonView view;
 
+    void Start(){
+        view = GetComponent<PhotonView>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -37,7 +41,8 @@ public class NetworkProjectile : MonoBehaviour
             audioSrc.Play();
             Destroy(audioCont, 2f);
             DamageAmt = Random.Range(5, 14);
-            collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            collision.gameObject.GetComponent<PhotonView>().RPC("TakeDamage",RpcTarget.All,DamageAmt);
             Destroy(gameObject);
         }
     }
