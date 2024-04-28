@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NetworkTurretRotation : MonoBehaviour
@@ -25,7 +24,7 @@ public class NetworkTurretRotation : MonoBehaviour
 
     void Update()
     {
-        if(view.IsMine){
+            if(view.IsMine){
                 float yawCamera = maincam.transform.rotation.eulerAngles.y;
 
             // Target rotation with fixed X (180) and Z (0)

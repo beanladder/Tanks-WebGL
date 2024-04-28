@@ -4877,7 +4877,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771929040173436937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfa884f2e8586254398ae9a923497894, type: 3}
   m_Name: 
@@ -4885,6 +4885,7 @@ MonoBehaviour:
   rotationSpeed: 55
   minRotation: 60
   maxRotation: 100
+  MouseY: 0
 --- !u!1 &1817970213457321279
 GameObject:
   m_ObjectHideFlags: 0
@@ -12419,13 +12420,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3758539659159287278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 123cc148b4a102848abc0bbff641c891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 2
   audioSource: {fileID: 344352389290384895}
+  xRotation: 0
+  zRotation: 0
+  yRotation: 0
 --- !u!64 &9076626116671239881
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12899,7 +12903,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3858580683583844633}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27ba56096f56d6240a7ed0e18cc8bc0f, type: 3}
   m_Name: 
@@ -28217,7 +28221,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8509349882655782030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5e8d59417f09124199ab6f26ab107ab, type: 3}
   m_Name: 
@@ -28227,6 +28231,7 @@ MonoBehaviour:
   accelerationRotationAmount: -1
   brakingRotationAmount: 1
   engineSound: {fileID: 2176800927210883454}
+  recoilForce: 1000
 --- !u!65 &1696651598644393836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28260,9 +28265,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6673de9de27240e4a656bffcf075f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tank: {fileID: 8509349882655782030}
   maxHealth: 100
   currentHealth: 0
+  destroyPrefab: {fileID: 0}
+  healthText: {fileID: 0}
+  repairKey: 120
+  healthIndicator: {fileID: 0}
+  healthDeductUI: {fileID: 0}
+  healthAddUI: {fileID: 0}
+  repairCooldown: 0
+  repairAudio: {fileID: 0}
+  repairTime: 4
 --- !u!82 &2176800927210883454
 AudioSource:
   m_ObjectHideFlags: 0
