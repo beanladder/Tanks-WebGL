@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -11,7 +12,7 @@ public class NetworkProjectile : MonoBehaviour
     public AudioSource[] Ricochet;
     public GameObject TankHit;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
-    int DamageAmt;
+    float DamageAmt;
     PhotonView view;
 
     void Start(){
