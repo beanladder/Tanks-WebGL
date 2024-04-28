@@ -24,12 +24,10 @@ public class NetworkProjectileLauncher : MonoBehaviour
     private Vector3 originalTurretPosition; // Original position of the turret
     private bool canFire = true; // Flag to control firing cooldown
     private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
-    PhotonView view;
-
+    public PhotonView view;
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
-
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
         view = GetComponent<PhotonView>();
@@ -41,10 +39,11 @@ public class NetworkProjectileLauncher : MonoBehaviour
                 if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
             {
                 // Call FireProjectile method when left mouse button is pressed and firing is allowed
-                GetComponent<PhotonView>().RPC("FireProjectile", RpcTarget.All);
+                GetComponent<PhotonView>().RPC("FireProjectile",RpcTarget.All);
                 // Trigger recoil animation
-                GetComponent<PhotonView>().RPC("RecoilAnimation", RpcTarget.All);
-                // Play the audio
+                GetComponent<PhotonView>().RPC("RecoilAnimation",RpcTarget.All);
+
+                // Play the audio l
                 if (audioSource != null)
                 {
                     audioSource.Play();
@@ -55,10 +54,12 @@ public class NetworkProjectileLauncher : MonoBehaviour
             }
         }
     }
+
     [PunRPC]
     public void PlayShootingAudio(){
-        if(!view.IsMine){
-            if(audioSource != null){
+        if(view.IsMine){
+            if (audioSource != null)
+            {
                 audioSource.Play();
             }
         }
@@ -99,7 +100,8 @@ public class NetworkProjectileLauncher : MonoBehaviour
             projectileRigidbody.velocity = direction * speed;
 
             // Apply a damping effect to gradually reduce the velocity
-            projectileRigidbody.drag = 1.5f; // Adjust the value as needed
+            projectileRigidbody.angularDrag = 1f;
+            projectileRigidbody.drag = projectileRigidbody.angularDrag - 0.5f;// Adjust the value as needed
         }
 
         // Destroy the trail effect after a certain duration
@@ -122,6 +124,8 @@ public class NetworkProjectileLauncher : MonoBehaviour
                      LeanTween.moveLocalZ(turret, originalTurretPosition.z, recoilDuration)
                               .setEase(LeanTweenType.easeInQuad);
                  });
+
+        NetworkTankMovement.Instance.ShootProjectile();
     }
 }
 

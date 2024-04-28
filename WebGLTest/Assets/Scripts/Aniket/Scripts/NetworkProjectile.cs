@@ -9,13 +9,10 @@ public class NetworkProjectile : MonoBehaviour
 {
     public AudioSource Boom;
     public AudioSource[] Ricochet;
-    public AudioSource TankHit;
+    public GameObject TankHit;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
-    public int DamageAmt = 5;
-    PhotonView view;
-    void Start(){
-        view = GetComponent<PhotonView>();
-    }
+    int DamageAmt;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -35,9 +32,13 @@ public class NetworkProjectile : MonoBehaviour
             gameObject.GetComponent<Renderer>().enabled = false;
             GameObject explosion = Instantiate(boomPrefab, collision.contacts[0].point, Quaternion.identity);
             Destroy(explosion, 2f);
-            //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
-            collision.gameObject.GetComponent<PhotonView>().RPC("TakeDamage",RpcTarget.All,DamageAmt);
-            StartCoroutine(InitiateDamage());
+            GameObject audioCont = Instantiate(TankHit, collision.contacts[0].point, Quaternion.identity);
+            AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
+            audioSrc.Play();
+            Destroy(audioCont, 2f);
+            DamageAmt = Random.Range(5, 14);
+            collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            Destroy(gameObject);
         }
     }
 
@@ -46,7 +47,7 @@ public class NetworkProjectile : MonoBehaviour
         if (ID == "Boom")
         {
             Boom.Play();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             Destroy(gameObject);
         }
         else if (ID == "Ricochet")
@@ -56,10 +57,5 @@ public class NetworkProjectile : MonoBehaviour
         }
     }
 
-    public IEnumerator InitiateDamage()
-    {
-        TankHit.Play();
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
-    }
+   
 }
