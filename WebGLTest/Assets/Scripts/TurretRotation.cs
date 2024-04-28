@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class TurretRotation : MonoBehaviour
 {
     public float turnSpeed = 15f;
@@ -12,6 +11,10 @@ public class TurretRotation : MonoBehaviour
     bool isRotating = false; // Flag to track if the turret is currently rotating
     float rotationThreshold = 1f; // Threshold angle to determine when the turret stops rotating
 
+    public float xRotation,zRotation;
+    public float yRotation;
+    
+
     void Start()
     {
         maincam = Camera.main;
@@ -20,7 +23,9 @@ public class TurretRotation : MonoBehaviour
     void Update()
     {
         float yawCamera = maincam.transform.rotation.eulerAngles.y;
-        Quaternion targetRotation = Quaternion.Euler(0, yawCamera, 0);
+
+        // Target rotation with fixed X (180) and Z (0)
+        Quaternion targetRotation = Quaternion.Euler(xRotation, yawCamera+yRotation, zRotation);
 
         // Check if the turret is rotating
         if (Quaternion.Angle(transform.rotation, targetRotation) > rotationThreshold)
@@ -47,4 +52,3 @@ public class TurretRotation : MonoBehaviour
         }
     }
 }
-

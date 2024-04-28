@@ -4,7 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 
 
-public class NetworkTurretRotation : MonoBehaviour
+public class OldNetworkTurretRotation : MonoBehaviour
 {
     public float turnSpeed = 15f;
     public AudioSource audioSource; // Reference to the AudioSource component

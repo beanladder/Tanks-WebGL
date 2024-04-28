@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 
-public class TankMovement : MonoBehaviour
+public class OldTankMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
