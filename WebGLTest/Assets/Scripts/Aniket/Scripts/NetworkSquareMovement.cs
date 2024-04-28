@@ -24,8 +24,8 @@ public class NetworkSquareMovement : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
         initialRotation = transform.rotation; // Store the initial rotation
     }
 

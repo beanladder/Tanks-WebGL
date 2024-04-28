@@ -15,7 +15,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     public float fixedY;
     private GameObject player;
     public GameObject DeathScreen;
-    private bool isTankDead = false;
+    public bool isTankDead = false;
     private int deadTankID = -1; // Store the Photon ID of the killed tank
     PhotonView view;
 
@@ -61,6 +61,9 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 
     public void TankDeathCheck(int tankID)
     {
+        Debug.Log($"Local Player Actor Number: {PhotonNetwork.LocalPlayer.ActorNumber}");
+        Debug.Log($"Tank ID to Check: {tankID}");
+
         if (PhotonNetwork.LocalPlayer.ActorNumber == tankID)
         {
             Debug.Log("Tank should die");

@@ -51,8 +51,8 @@ public class NetworkTankInfo : MonoBehaviour
         {
             SpawnPlayer.instance.SetDeadTankID(view.OwnerActorNr); // Pass the Photon ID of the killed tank
             Destroy(Tank, 0.5f);
-            Cursor.lockState= CursorLockMode.Confined;
-            Cursor.visible = true;
+            // Cursor.lockState= CursorLockMode.Confined;
+            // Cursor.visible = true;
         }
         UpdateHealthText();
         // Check if the repair key is pressed
