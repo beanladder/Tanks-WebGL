@@ -4,21 +4,23 @@ using UnityEngine;
 using Photon.Pun;
 
 
-public class NetworkTankMovement : MonoBehaviour
+public class NetworkSquareMovement : MonoBehaviour
 {
-    public static NetworkTankMovement Instance;
+    public static NetworkSquareMovement Instance;
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
     public float accelerationRotationAmount = 1f; // Rotation amount when accelerating
     public float brakingRotationAmount = -1f; // Rotation amount when braking
     public AudioSource engineSound;
     public float recoilForce = 1000f;// Reference to the AudioSource component for the tank engine sound
-    public PhotonView view;
+
     private Quaternion initialRotation; // Initial rotation of the tank
+    public PhotonView view;
 
     void Start(){
         view = GetComponent<PhotonView>();
     }
+
     void Awake()
     {
         Instance = this;

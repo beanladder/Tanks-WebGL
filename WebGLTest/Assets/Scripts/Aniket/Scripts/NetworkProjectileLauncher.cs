@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Photon.Pun;
 
 public class NetworkProjectileLauncher : MonoBehaviour
 {
@@ -25,9 +24,12 @@ public class NetworkProjectileLauncher : MonoBehaviour
     private bool canFire = true; // Flag to control firing cooldown
     private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
     public PhotonView view;
+
+
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
+
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
         view = GetComponent<PhotonView>();
@@ -43,7 +45,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
                 // Trigger recoil animation
                 GetComponent<PhotonView>().RPC("RecoilAnimation",RpcTarget.All);
 
-                // Play the audio l
+                // Play the audio
                 if (audioSource != null)
                 {
                     audioSource.Play();
@@ -54,17 +56,15 @@ public class NetworkProjectileLauncher : MonoBehaviour
             }
         }
     }
-
     [PunRPC]
     public void PlayShootingAudio(){
-        if(view.IsMine){
+        if(!view.IsMine){
             if (audioSource != null)
-            {
-                audioSource.Play();
-            }
+                {
+                    audioSource.Play();
+                }
         }
     }
-
     IEnumerator Cooldown()
     {
         // Set the firing flag to false to prevent further firing during cooldown
@@ -76,7 +76,6 @@ public class NetworkProjectileLauncher : MonoBehaviour
         // Reset the firing flag to allow firing again
         canFire = true;
     }
-
     [PunRPC]
     public void FireProjectile()
     {
@@ -111,7 +110,6 @@ public class NetworkProjectileLauncher : MonoBehaviour
 
         Destroy(smoke, 2f);
     }
-
     [PunRPC]
     public void RecoilAnimation()
     {
@@ -125,7 +123,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
                               .setEase(LeanTweenType.easeInQuad);
                  });
 
-        NetworkTankMovement.Instance.ShootProjectile();
+        NetworkSquareMovement.Instance.ShootProjectile();
     }
 }
 
