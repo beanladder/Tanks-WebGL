@@ -13,9 +13,8 @@ public class NetworkSquareMovement : MonoBehaviour
     public float brakingRotationAmount = -1f; // Rotation amount when braking
     public AudioSource engineSound;
     public float recoilForce = 1000f;// Reference to the AudioSource component for the tank engine sound
-
+    PhotonView view;
     private Quaternion initialRotation; // Initial rotation of the tank
-    public PhotonView view;
 
     void Start(){
         view = GetComponent<PhotonView>();
@@ -24,15 +23,15 @@ public class NetworkSquareMovement : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
         initialRotation = transform.rotation; // Store the initial rotation
     }
 
     void Update()
     {
-        if(view.IsMine){
-            // Movement based on W and S keys
+            if(view.IsMine){
+                // Movement based on W and S keys
             float verticalInput = Input.GetAxis("Vertical");
             float moveAmount = verticalInput * moveSpeed * Time.deltaTime;
             transform.Translate(Vector3.forward * moveAmount);
@@ -49,45 +48,47 @@ public class NetworkSquareMovement : MonoBehaviour
                 transform.Rotate(Vector3.up, rotationAmount);
             }
 
-            // Adjust engine sound pitch based on movement
+        
+
+            float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
+
             if (engineSound != null)
             {
-                // Calculate the magnitude of movement (speed)
-                float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
-            if (movementMagnitude == 0)
-                {
-                    movementMagnitude = 0.1f;
-                }
-
-                // Adjust pitch based on movement magnitude
+                // Adjust pitch based on movement direction and magnitude
                 float minPitch = 0.7f; // Minimum pitch value
                 float maxPitch = 1.7f; // Maximum pitch value
-                float pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude);
+                float pitch = 0f;
+
+                if (movementMagnitude > 0)
+                {
+                    // Calculate pitch based on movement direction
+                    if (verticalInput > 0) // Moving forward
+                    {
+                        pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude);
+                    }
+                    else // Moving backward or strafing
+                    {
+                        pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude / 2f);
+                    }
+                }
+
+                // Set the engine sound pitch
                 engineSound.pitch = pitch;
-                
+
                 // Adjust volume based on movement magnitude (optional)
                 float minVolume = 0.7f; // Minimum volume value
                 float maxVolume = 1f; // Maximum volume value
                 float volume = Mathf.Lerp(minVolume, maxVolume, movementMagnitude);
                 engineSound.volume = volume;
-                
+
                 // Play or stop the engine sound based on movement
-                if (movementMagnitude > 0)
+                if (movementMagnitude > 0 && !engineSound.isPlaying)
                 {
-                    if (!engineSound.isPlaying)
-                    {
-                        engineSound.Play();
-                        
-                        float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
-                        transform.Rotate(Vector3.up, rotationAmount);
-                    }
+                    engineSound.Play();
                 }
-                else
+                else if (movementMagnitude == 0 && engineSound.isPlaying)
                 {
-                    if (engineSound.isPlaying)
-                    {
-                        engineSound.Stop();
-                    }
+                    engineSound.Stop();
                 }
             }
         }
@@ -103,8 +104,8 @@ public class NetworkSquareMovement : MonoBehaviour
     }
 }
 
-              
-    
+
+
 
 
 
