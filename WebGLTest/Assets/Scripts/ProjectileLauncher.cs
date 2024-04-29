@@ -113,7 +113,7 @@ public class ProjectileLauncher : MonoBehaviour
                               .setEase(LeanTweenType.easeInQuad);
                  });
 
-        SquareMovement.Instance.ShootProjectile(); 
+        //SquareMovement.Instance.ShootProjectile(); 
     }
 }
 

@@ -3651,7 +3651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.017182946, y: 0.97904444, z: -0.09337763, w: 0.18015954}
+  m_LocalRotation: {x: 0.07059849, y: 0.6718416, z: -0.06457685, w: 0.7344893}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6590,7 +6590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0062026517, y: 0.9829097, z: -0.03370735, w: 0.18086995}
+  m_LocalRotation: {x: 0.02543244, y: 0.6745373, z: -0.02326322, w: 0.7374358}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10834,8 +10834,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.011145128, y: 0.9450953, z: -0.03241061, w: 0.32499263}
-  m_LocalPosition: {x: -7.7686462, y: 3.5899963, z: 9.996185}
+  m_LocalRotation: {x: 0.028608385, y: 0.5574034, z: -0.01922352, w: 0.82952607}
+  m_LocalPosition: {x: -11.676758, y: 3.5899963, z: -4.8917236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13989,7 +13989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.01971746, y: 0.9776329, z: -0.107150875, w: 0.1799}
+  m_LocalRotation: {x: 0.080907665, y: 0.6708688, z: -0.0740068, w: 0.73342484}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19617,7 +19617,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: -7.7686462, y: 3.5899963, z: 9.996185}
+  m_LocalPosition: {x: -11.676758, y: 3.5899963, z: -4.8917236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20714,7 +20714,7 @@ MonoBehaviour:
   trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
-  target: {fileID: 8207396235333026693}
+  target: {fileID: 8276867083379645089}
   force: 12.5
   speed: 185
   recoilDistance: 0.1

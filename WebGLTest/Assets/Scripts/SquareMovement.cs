@@ -93,14 +93,14 @@ public class SquareMovement : MonoBehaviour
         }
     }
 
-    public void ShootProjectile()
-    {
-        // Create and shoot the projectile
-        // For demonstration purposes, I'm just applying a recoil force
+    //public void ShootProjectile()
+    //{
+    //    // Create and shoot the projectile
+    //    // For demonstration purposes, I'm just applying a recoil force
 
-        // Apply recoil force in the opposite direction of the tank's forward vector
-        GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
-    }
+    //    // Apply recoil force in the opposite direction of the tank's forward vector
+    //    GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
+    //}
 }
 
 
