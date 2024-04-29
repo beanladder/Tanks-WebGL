@@ -140,7 +140,7 @@ MonoBehaviour:
   - {fileID: 3622409656835449171}
   TankHitAudio: {fileID: 8638387795967581127}
   boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
-  hitwallPrefab: {fileID: 1123956220097721309, guid: 9f2b3e6f9ef508747889a8104795e5b7, type: 3}
+  hitwallPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
 --- !u!96 &8554177643414215197
 TrailRenderer:
   serializedVersion: 3
