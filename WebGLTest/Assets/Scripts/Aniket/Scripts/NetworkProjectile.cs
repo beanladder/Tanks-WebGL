@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -13,11 +12,7 @@ public class NetworkProjectile : MonoBehaviour
     public GameObject TankHit;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
     float DamageAmt;
-    PhotonView view;
 
-    void Start(){
-        view = GetComponent<PhotonView>();
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

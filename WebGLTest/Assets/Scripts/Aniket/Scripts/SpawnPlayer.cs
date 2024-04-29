@@ -9,12 +9,9 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 {
     public static SpawnPlayer instance;
     public GameObject playerPrefab;
-    public GameObject textPrefab;
-    public float minX;
-    public float maxX;
-    public float fixedY;
     private GameObject player;
     public GameObject DeathScreen;
+    public Transform[] spawnPoints;
     public bool isTankDead = false;
     private int deadTankID = -1; // Store the Photon ID of the killed tank
     PhotonView view;
@@ -26,16 +23,15 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), fixedY);
+        if (spawnPoints.Length == 0)
+        {
+            Debug.LogError("No spawn points assigned in SpawnPlayer script!");
+            return;
+        }
+        // Select a random spawn point from the array
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Vector3 randomPosition = spawnPoints[randomIndex].position;
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-
-        //if(player.GetComponent<PhotonView>().IsMine){
-            GameObject textObject = Instantiate(textPrefab, player.transform);
-            TextMeshProUGUI textMesh = textObject.GetComponent<TextMeshProUGUI>();
-            if(textMesh!=null){
-                textMesh.text = PhotonNetwork.NickName;
-            }
-        //}
         view = GetComponent<PhotonView>();
     }
 
@@ -55,7 +51,8 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     public void RespawnPlayer()
     {
         DeathScreen.SetActive(false);
-        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), fixedY);
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Vector3 randomPosition = spawnPoints[randomIndex].position;
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
     }
 
