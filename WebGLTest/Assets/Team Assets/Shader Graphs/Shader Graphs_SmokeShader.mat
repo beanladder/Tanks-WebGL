@@ -56,7 +56,7 @@ Material:
     - _SmoothStep: 0
     m_Colors:
     - _DarkColor: {r: 0.33962262, g: 0.32840866, b: 0.32840866, a: 0}
-    - _FireColor: {r: 31.396227, g: 6.9722958, b: 1.3328581, a: 1}
+    - _FireColor: {r: 2.2706027, g: 0.50424254, b: 0.096393466, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6088479009200994448
 MonoBehaviour:

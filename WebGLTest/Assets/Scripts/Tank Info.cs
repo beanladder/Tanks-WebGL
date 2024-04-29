@@ -104,6 +104,14 @@ public class TankInfo : MonoBehaviour
 
         
     }
+    public void mobileRepair()
+    {
+        if (currentHealth < maxHealth && repairCooldown)
+        {
+            // Start the repair process
+            StartRepair();
+        }
+    }
 
     public void StartRepair()
     {

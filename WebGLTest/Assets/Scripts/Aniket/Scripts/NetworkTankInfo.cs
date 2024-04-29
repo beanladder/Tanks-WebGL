@@ -24,8 +24,7 @@ public class NetworkTankInfo : MonoBehaviour
     private float healAmountMax = 15f; // Maximum amount of healing
     private SquareMovement squareMovementScript;
     private AudioSource moveAudio;
-    public GameObject Tank;
-    public PhotonView view;
+
 
     
 
@@ -42,18 +41,11 @@ public class NetworkTankInfo : MonoBehaviour
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
 
         // Update the health UI text
-        view = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        if (currentHealth < 1)
-        {
-            SpawnPlayer.instance.SetDeadTankID(view.OwnerActorNr); // Pass the Photon ID of the killed tank
-            Destroy(Tank, 0.5f);
-            // Cursor.lockState= CursorLockMode.Confined;
-            // Cursor.visible = true;
-        }
+        
         UpdateHealthText();
         // Check if the repair key is pressed
         if (Input.GetKeyDown(repairKey) && currentHealth<maxHealth && repairCooldown)

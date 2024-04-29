@@ -8,12 +8,11 @@ public class NetworkBarrelUpDown : MonoBehaviour
     public float maxRotation = 50f;
     private float currentRotationX = 0f; // Store the current rotation
     public float MouseY;
-    public PhotonView view;
+    PhotonView view;
 
     void Start(){
         view = GetComponent<PhotonView>();
     }
-
     void Update()
     {
         if(view.IsMine){

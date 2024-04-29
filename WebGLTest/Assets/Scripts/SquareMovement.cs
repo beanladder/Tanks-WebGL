@@ -24,12 +24,42 @@ public class SquareMovement : MonoBehaviour
         initialRotation = transform.rotation; // Store the initial rotation
     }
 
+    public void MoveForward()
+    {
+        float moveAmount = moveSpeed * Time.deltaTime;
+        transform.Translate(Vector3.forward * moveAmount);
+    }
+
+    public void MoveBackward()
+    {
+        float moveAmount = moveSpeed * Time.deltaTime * 0.5f;
+        transform.Translate(Vector3.back * moveAmount);
+    }
+
+    public void RotateLeft()
+    {
+        float rotationAmount = -rotationSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up, rotationAmount);
+    }
+
+    public void RotateRight()
+    {
+        float rotationAmount = rotationSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up, rotationAmount);
+    }
+
     void Update()
     {
-
         // Movement based on W and S keys
         float verticalInput = Input.GetAxis("Vertical");
         float moveAmount = verticalInput * moveSpeed * Time.deltaTime;
+
+        // If moving backward, reduce the moveAmount
+        if (verticalInput < 0f)
+        {
+            moveAmount *= 0.5f; // Reduce speed by half
+        }
+
         transform.Translate(Vector3.forward * moveAmount);
 
         // Rotation based on A and D keys
@@ -43,8 +73,6 @@ public class SquareMovement : MonoBehaviour
             float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
         }
-
-       
 
         float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
 
@@ -89,14 +117,14 @@ public class SquareMovement : MonoBehaviour
         }
     }
 
-    public void ShootProjectile()
-    {
-        // Create and shoot the projectile
-        // For demonstration purposes, I'm just applying a recoil force
+    //public void ShootProjectile()
+    //{
+    //    // Create and shoot the projectile
+    //    // For demonstration purposes, I'm just applying a recoil force
 
-        // Apply recoil force in the opposite direction of the tank's forward vector
-        GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
-    }
+    //    // Apply recoil force in the opposite direction of the tank's forward vector
+    //    GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
+    //}
 }
 
 
