@@ -24,6 +24,30 @@ public class SquareMovement : MonoBehaviour
         initialRotation = transform.rotation; // Store the initial rotation
     }
 
+    public void MoveForward()
+    {
+        float moveAmount = moveSpeed * Time.deltaTime;
+        transform.Translate(Vector3.forward * moveAmount);
+    }
+
+    public void MoveBackward()
+    {
+        float moveAmount = moveSpeed * Time.deltaTime * 0.5f;
+        transform.Translate(Vector3.back * moveAmount);
+    }
+
+    public void RotateLeft()
+    {
+        float rotationAmount = -rotationSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up, rotationAmount);
+    }
+
+    public void RotateRight()
+    {
+        float rotationAmount = rotationSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up, rotationAmount);
+    }
+
     void Update()
     {
         // Movement based on W and S keys
