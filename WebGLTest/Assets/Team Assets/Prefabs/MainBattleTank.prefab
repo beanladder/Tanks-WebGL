@@ -3651,7 +3651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07897001, y: 0.5662468, z: -0.05462402, w: 0.8186235}
+  m_LocalRotation: {x: 0.017182946, y: 0.97904444, z: -0.09337763, w: 0.18015954}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6590,7 +6590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.028421288, y: 0.56853604, z: -0.019659199, w: 0.8219322}
+  m_LocalRotation: {x: 0.0062026517, y: 0.9829097, z: -0.03370735, w: 0.18086995}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10834,8 +10834,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.032164708, y: 0.36914292, z: -0.012784554, w: 0.9287279}
-  m_LocalPosition: {x: -8.596306, y: 3.5900002, z: -9.294033}
+  m_LocalRotation: {x: 0.011145128, y: 0.9450953, z: -0.03241061, w: 0.32499263}
+  m_LocalPosition: {x: -7.7686462, y: 3.5899963, z: 9.996185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13989,7 +13989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.090447664, y: 0.5654244, z: -0.06256315, w: 0.81743515}
+  m_LocalRotation: {x: 0.01971746, y: 0.9776329, z: -0.107150875, w: 0.1799}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19617,7 +19617,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: -9.930649, y: 3.5900002, z: -7.852253}
+  m_LocalPosition: {x: -7.7686462, y: 3.5899963, z: 9.996185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20710,6 +20710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 928893599305615142, guid: eaea518216cbf7b419340b6078f22453, type: 3}
   BarrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
+  BarrelFlashPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
   trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
@@ -26954,6 +26955,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+    - target: {fileID: 1056745045121639457, guid: c7f77d1e0a076b04ab4a341c539568d0, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4571465591978761719, guid: c7f77d1e0a076b04ab4a341c539568d0, type: 3}
       propertyPath: m_Name
       value: Health

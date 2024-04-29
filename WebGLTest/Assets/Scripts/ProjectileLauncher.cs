@@ -8,6 +8,8 @@ public class ProjectileLauncher : MonoBehaviour
 {
     public GameObject projectilePrefab;// Reference to the projectile prefab
     public GameObject BarrelSmokePrefab;
+    public GameObject BarrelFlashPrefab;
+
     public GameObject trailPrefab; // Reference to the Trail prefab
     public Transform firePoint; // Reference to the point where the projectile will be instantiated
     public GameObject turret; // Reference to the turret GameObject
@@ -94,7 +96,8 @@ public class ProjectileLauncher : MonoBehaviour
         Destroy(trailEffect, trailDuration);
 
         GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
-
+        GameObject flash = Instantiate(BarrelFlashPrefab, firePoint.position, firePoint.rotation);
+        Destroy(flash, 2f);
         Destroy(smoke, 2f);
     }
 
@@ -110,7 +113,7 @@ public class ProjectileLauncher : MonoBehaviour
                               .setEase(LeanTweenType.easeInQuad);
                  });
 
-        SquareMovement.Instance.ShootProjectile();
+        SquareMovement.Instance.ShootProjectile(); 
     }
 }
 
