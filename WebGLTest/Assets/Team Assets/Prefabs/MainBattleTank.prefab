@@ -3784,7 +3784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07059872, y: 0.67184097, z: -0.064576946, w: 0.7344899}
+  m_LocalRotation: {x: 0.083143935, y: 0.5010835, z: -0.048442412, w: 0.8600325}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3852,7 +3852,7 @@ GameObject:
   - component: {fileID: 7963035148965281489}
   - component: {fileID: 2554187982060805917}
   - component: {fileID: 475864366409865751}
-  - component: {fileID: 4002785890240963725}
+  - component: {fileID: 6295625071342549711}
   m_Layer: 6
   m_Name: MainBattleTank
   m_TagString: Tank
@@ -4068,7 +4068,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.1479874, y: 1.5737982, z: 5.332389}
   m_Center: {x: -0.04590416, y: -0.2868991, z: 0.30083418}
---- !u!114 &4002785890240963725
+--- !u!114 &6295625071342549711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6737,7 +6737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.025432546, y: 0.6745373, z: -0.023263315, w: 0.7374358}
+  m_LocalRotation: {x: 0.029906634, y: 0.5031167, z: -0.017424542, w: 0.8635251}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11113,8 +11113,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.028608385, y: 0.5574034, z: -0.01922352, w: 0.82952607}
-  m_LocalPosition: {x: 304.4791, y: 227.2, z: 140.80536}
+  m_LocalRotation: {x: 0.032164708, y: 0.36914292, z: -0.012784554, w: 0.9287279}
+  m_LocalPosition: {x: -8.596306, y: 3.5900002, z: -9.294033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14267,7 +14267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08090761, y: 0.6708689, z: -0.07400677, w: 0.73342484}
+  m_LocalRotation: {x: 0.09519441, y: 0.5003541, z: -0.055463295, w: 0.8587827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20064,7 +20064,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: -11.676758, y: 3.5900002, z: -4.8917217}
+  m_LocalPosition: {x: -8.596306, y: 3.5900002, z: -9.294033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27697,18 +27697,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7823491243279945163}
     m_Modifications:
-    - target: {fileID: 1056745045121639457, guid: c7f77d1e0a076b04ab4a341c539568d0, type: 3}
-      propertyPath: m_fontSize
-      value: 24.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056745045121639457, guid: c7f77d1e0a076b04ab4a341c539568d0, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-    - target: {fileID: 1056745045121639457, guid: c7f77d1e0a076b04ab4a341c539568d0, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4571465591978761719, guid: c7f77d1e0a076b04ab4a341c539568d0, type: 3}
       propertyPath: m_Name
       value: Health
