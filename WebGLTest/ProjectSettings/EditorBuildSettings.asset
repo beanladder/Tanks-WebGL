@@ -11,10 +11,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scripts/Aniket/Scenes/Lobby.unity
     guid: 6455422f6affa3241b38dcd3665e1e9c
+
   - enabled: 0
     path: Assets/Scripts/Aniket/Scenes/AniketTankTest.unity
     guid: c3f47fc75a7f52e408b31baacfce5f3d
   - enabled: 1
     path: Assets/Scenes/Testing Lighting.unity
     guid: 440cb610a9660874fbeb0c51d3c7d601
+
+  - enabled: 1
+    path: Assets/Scenes/Testing Lighting.unity
+    guid: 440cb610a9660874fbeb0c51d3c7d601
+  - enabled: 0
+    path: Assets/Scenes/TankTest.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+
   m_configObjects: {}
