@@ -9,8 +9,9 @@ public class Projectile : MonoBehaviour
 {
     public AudioSource Boom;
     public AudioSource[] Ricochet;
-    public GameObject TankHit;
+    public GameObject TankHitAudio;
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
+    public GameObject hitwallPrefab; // Prefab to instantiate when hitting a wall/ prop
     int DamageAmt;
 
     private void OnCollisionEnter(Collision collision)
@@ -32,12 +33,26 @@ public class Projectile : MonoBehaviour
             gameObject.GetComponent<Renderer>().enabled = false;
             GameObject explosion = Instantiate(boomPrefab, collision.contacts[0].point, Quaternion.identity);
             Destroy(explosion, 2f);
-            GameObject audioCont = Instantiate(TankHit, collision.contacts[0].point, Quaternion.identity);
+            GameObject audioCont = Instantiate(TankHitAudio, collision.contacts[0].point, Quaternion.identity);
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
             DamageAmt = Random.Range(5, 14);
             collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            gameObject.GetComponent<TrailRenderer>().enabled = false;
+            gameObject.GetComponent<Renderer>().enabled = false;
+            GameObject explosion = Instantiate(hitwallPrefab, collision.contacts[0].point, Quaternion.identity);
+            Destroy(explosion, 2f);
+            GameObject audioCont = Instantiate(TankHitAudio, collision.contacts[0].point, Quaternion.identity);
+            AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
+            audioSrc.Play();
+            Destroy(audioCont, 2f);
+            
+            
             Destroy(gameObject);
         }
     }

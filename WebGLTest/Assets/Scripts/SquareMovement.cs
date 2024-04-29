@@ -26,10 +26,16 @@ public class SquareMovement : MonoBehaviour
 
     void Update()
     {
-
         // Movement based on W and S keys
         float verticalInput = Input.GetAxis("Vertical");
         float moveAmount = verticalInput * moveSpeed * Time.deltaTime;
+
+        // If moving backward, reduce the moveAmount
+        if (verticalInput < 0f)
+        {
+            moveAmount *= 0.5f; // Reduce speed by half
+        }
+
         transform.Translate(Vector3.forward * moveAmount);
 
         // Rotation based on A and D keys
@@ -43,8 +49,6 @@ public class SquareMovement : MonoBehaviour
             float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
         }
-
-       
 
         float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
 
