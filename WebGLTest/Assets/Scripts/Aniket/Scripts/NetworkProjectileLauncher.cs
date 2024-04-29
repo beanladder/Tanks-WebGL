@@ -23,9 +23,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
     private Vector3 originalTurretPosition; // Original position of the turret
     private bool canFire = true; // Flag to control firing cooldown
     private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
-    public PhotonView view;
-
-
+    PhotonView view;
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
