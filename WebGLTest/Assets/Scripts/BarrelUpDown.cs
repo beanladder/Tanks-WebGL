@@ -1,39 +1,25 @@
 using UnityEngine;
 
-public class BarrelUpDown : MonoBehaviour
+public class RotateObject : MonoBehaviour
 {
-    public float rotationSpeed = 5f;
-    public float minRotation = -25f;
-    public float maxRotation = 50f;
-    private float currentRotationX = 0f; // Store the current rotation
-    public float MouseY;
+    public float rotationSpeed = 1.0f;
+    public float minRotation = 60.0f;
+    public float maxRotation = 100.0f;
+
     void Update()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * MouseY;
+        // Get the mouseY movement
+        float mouseY = -Input.GetAxis("Mouse Y");
 
-        // Rotate around X-axis based on mouse input
-        transform.Rotate(Vector3.right, mouseY * rotationSpeed * Time.deltaTime);
+        // Calculate the rotation amount based on mouseY movement
+        float rotationAmount = mouseY * rotationSpeed * Time.deltaTime;
 
-        // Get the current rotation around X-axis
-        currentRotationX = transform.localEulerAngles.x;
+        // Apply rotation along the x-axis
+        transform.Rotate(Vector3.right, rotationAmount);
 
-        // Convert rotation to a range of -180 to 180
-        if (currentRotationX > 180f)
-        {
-            currentRotationX -= 360f;
-        }
-
-        // Adjust rotation smoothly between -25 and 50 based on mouse input
-        if (mouseY > 0) // Moving mouse up
-        {
-            currentRotationX = Mathf.MoveTowards(currentRotationX, maxRotation, Mathf.Abs(mouseY) * rotationSpeed * Time.deltaTime);
-        }
-        else if (mouseY < 0) // Moving mouse down
-        {
-            currentRotationX = Mathf.MoveTowards(currentRotationX, minRotation, Mathf.Abs(mouseY) * rotationSpeed * Time.deltaTime);
-        }
-
-        // Apply the adjusted rotation
-        transform.localEulerAngles = new Vector3(currentRotationX, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        // Clamp the rotation between minRotation and maxRotation
+        Vector3 currentRotation = transform.localRotation.eulerAngles;
+        currentRotation.x = Mathf.Clamp(currentRotation.x, minRotation, maxRotation);
+        transform.localRotation = Quaternion.Euler(currentRotation);
     }
 }
