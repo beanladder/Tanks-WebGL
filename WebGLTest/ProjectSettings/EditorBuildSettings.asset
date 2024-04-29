@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scripts/Aniket/Scenes/AniketTest.unity
     guid: 81aee86eb9b82dd4580ba17cdea6aabf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TankTest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
