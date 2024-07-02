@@ -81,7 +81,7 @@ public class Projectile : MonoBehaviour
 
         // Destroy the smoke grenade after playing the audio
         Destroy(gameObject);
-        Destroy(smokeParticle, 12f);
+        Destroy(smokeParticle, 17f);
     }
 
     public IEnumerator PlayAudio(string ID)

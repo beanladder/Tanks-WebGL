@@ -141,7 +141,7 @@ MonoBehaviour:
   TankHitAudio: {fileID: 8501579764895434895}
   boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
   hitwallPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
-  smokeParticlePrefab: {fileID: 1290887803809596815, guid: 7029f118615e04c4c9d1ea794a417df4, type: 3}
+  smokeParticlePrefab: {fileID: 7916193538494920737, guid: a22ca074e5493804f94ec608b6e6b649, type: 3}
   isSmokeGrenade: 0
 --- !u!64 &7005528360984571161
 MeshCollider:
