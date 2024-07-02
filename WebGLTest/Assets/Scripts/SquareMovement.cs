@@ -7,71 +7,71 @@ using Photon.Pun;
 public class SquareMovement : MonoBehaviour
 {
     public static SquareMovement Instance;
-    public float moveSpeed = 5f;
+    [Range(2f,8f)]public float acceleration;
     public float rotationSpeed = 100f;
-    public float accelerationRotationAmount = 1f; // Rotation amount when accelerating
-    public float brakingRotationAmount = -1f; // Rotation amount when braking
     public AudioSource engineSound;
-    public float recoilForce = 1000f;// Reference to the AudioSource component for the tank engine sound
+    public float recoilForce = 1000f; // Reference to the AudioSource component for the tank engine sound
+    public float maxSpeed = 10f; // Maximum forward/backward speed
 
-    private Quaternion initialRotation; // Initial rotation of the tank
+    private Rigidbody rb; // Reference to the Rigidbody component
 
     void Awake()
     {
         Instance = this;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        initialRotation = transform.rotation; // Store the initial rotation
+        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
+
+        // Ensure the Rigidbody settings are appropriate
+        rb.isKinematic = false;
+        rb.drag = 1f;
+        rb.angularDrag = 0.5f; // Lowered angular drag
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous; // Set collision detection mode to Continuous
     }
 
-    public void MoveForward()
-    {
-        float moveAmount = moveSpeed * Time.deltaTime;
-        transform.Translate(Vector3.forward * moveAmount);
-    }
-
-    public void MoveBackward()
-    {
-        float moveAmount = moveSpeed * Time.deltaTime * 0.5f;
-        transform.Translate(Vector3.back * moveAmount);
-    }
-
-    public void RotateLeft()
-    {
-        float rotationAmount = -rotationSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.up, rotationAmount);
-    }
-
-    public void RotateRight()
-    {
-        float rotationAmount = rotationSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.up, rotationAmount);
-    }
-
-    void Update()
+    void FixedUpdate()
     {
         // Movement based on W and S keys
         float verticalInput = Input.GetAxis("Vertical");
-        float moveAmount = verticalInput * moveSpeed * Time.deltaTime;
 
-        // If moving backward, reduce the moveAmount
+        Debug.Log("Vertical Input: " + verticalInput);
+
+        // Calculate force for forward/backward movement
+        Vector3 moveForce = transform.forward * verticalInput * acceleration * 10f; // Adjusted force multiplier
+
+        // If moving backward, reduce the force
         if (verticalInput < 0f)
         {
-            moveAmount *= 0.5f; // Reduce speed by half
+            moveForce *= 0.75f; // Reduce speed by a quarter
         }
 
-        transform.Translate(Vector3.forward * moveAmount);
+        // Limit the speed
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+            rb.AddForce(moveForce, ForceMode.Acceleration); // Use Acceleration force mode for continuous movement
+        }
+        Debug.Log("Move Force: " + moveForce);
 
         // Rotation based on A and D keys
         float horizontalInput = Input.GetAxis("Horizontal");
-        if (verticalInput < 0f) // If moving backward
-        {
-            horizontalInput *= -1f; // Reverse horizontal input
-        }
+        Debug.Log("Horizontal Input: " + horizontalInput);
+
         if (horizontalInput != 0f)
         {
-            float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
+            // Adjust rotation speed based on whether the tank is moving
+            float currentRotationSpeed = rotationSpeed;
+            if (rb.velocity.magnitude > 0.1f)
+            {
+                currentRotationSpeed *= 1f; // Slow down rotation when moving
+            }
+            else
+            {
+                currentRotationSpeed *= 0.5f; // Speed up rotation when stationary
+            }
+
+            float rotationAmount = horizontalInput * currentRotationSpeed * Time.fixedDeltaTime;
             transform.Rotate(Vector3.up, rotationAmount);
+            Debug.Log("Rotation Amount: " + rotationAmount);
         }
 
         float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
@@ -116,15 +116,6 @@ public class SquareMovement : MonoBehaviour
             }
         }
     }
-
-    //public void ShootProjectile()
-    //{
-    //    // Create and shoot the projectile
-    //    // For demonstration purposes, I'm just applying a recoil force
-
-    //    // Apply recoil force in the opposite direction of the tank's forward vector
-    //    GetComponent<Rigidbody>().AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
-    //}
 }
 
 
