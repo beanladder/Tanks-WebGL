@@ -21154,9 +21154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ba56096f56d6240a7ed0e18cc8bc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 928893599305615142, guid: eaea518216cbf7b419340b6078f22453, type: 3}
+  projectilePrefab: {fileID: 4794418601730149315, guid: 3957b06bc45c57c468ea842f3176b250, type: 3}
   BarrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
   BarrelFlashPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
+  SmokeGrenedePrefab: {fileID: 589028992470324655, guid: e909867f93eb368498f139677de143e6, type: 3}
   trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
@@ -21167,6 +21168,7 @@ MonoBehaviour:
   recoilDuration: 0.1
   trailDuration: 2
   cooldownTime: 2.5
+  isSmoke: 0
 --- !u!82 &212924047754472705
 AudioSource:
   m_ObjectHideFlags: 0
