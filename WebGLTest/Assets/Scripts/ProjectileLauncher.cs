@@ -9,7 +9,7 @@ public class ProjectileLauncher : MonoBehaviour
     public GameObject projectilePrefab;// Reference to the projectile prefab
     public GameObject BarrelSmokePrefab;
     public GameObject BarrelFlashPrefab;
-
+    public GameObject SmokeGrenedePrefab;
     public GameObject trailPrefab; // Reference to the Trail prefab
     public Transform firePoint; // Reference to the point where the projectile will be instantiated
     public GameObject turret; // Reference to the turret GameObject
@@ -25,7 +25,12 @@ public class ProjectileLauncher : MonoBehaviour
     private Vector3 originalTurretPosition; // Original position of the turret
     private bool canFire = true; // Flag to control firing cooldown
     private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
-
+    public bool isSmoke = false;
+    public static ProjectileLauncher instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
@@ -40,6 +45,22 @@ public class ProjectileLauncher : MonoBehaviour
         {
             // Call FireProjectile method when left mouse button is pressed and firing is allowed
             FireProjectile();
+            // Trigger recoil animation
+            RecoilAnimation();
+
+            // Play the audio
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
+
+            // Start the cooldown coroutine
+            cooldownCoroutine = StartCoroutine(Cooldown());
+        }
+        else if (Input.GetMouseButtonDown(1) && canFire) // Change to 1 for right mouse button
+        {
+            // Call FireSmokeGrenade method when right mouse button is pressed and firing is allowed
+            FireSmokeGrenade();
             // Trigger recoil animation
             RecoilAnimation();
 
@@ -68,6 +89,7 @@ public class ProjectileLauncher : MonoBehaviour
 
     public void FireProjectile()
     {
+        isSmoke = false;
         // Instantiate projectile at the fire point
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
@@ -114,6 +136,28 @@ public class ProjectileLauncher : MonoBehaviour
                  });
 
         //SquareMovement.Instance.ShootProjectile(); 
+    }
+    public void FireSmokeGrenade()
+    {
+        isSmoke = true;
+        GameObject smokeGrenade = Instantiate(SmokeGrenedePrefab, firePoint.position, firePoint.rotation);
+
+        // Calculate direction to the target
+        Vector3 direction = (target.transform.position - firePoint.position).normalized;
+
+        // Apply force to the rigidbody of the smoke grenade
+        Rigidbody grenadeRigidbody = smokeGrenade.GetComponent<Rigidbody>();
+        if (grenadeRigidbody != null)
+        {
+            // Apply initial force with adjusted magnitude to control speed and distance
+            grenadeRigidbody.velocity = direction * speed;
+
+            // Apply a damping effect to gradually reduce the velocity
+            grenadeRigidbody.angularDrag = 1f;
+            grenadeRigidbody.drag = grenadeRigidbody.angularDrag - 0.5f; // Adjust the value as needed
+        }
+
+        
     }
 }
 
