@@ -135,9 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Boom: {fileID: 9112838187983418017}
   Ricochet:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2574020624180599155}
+  - {fileID: 8320023745649781934}
+  - {fileID: 6327136786088005859}
   TankHitAudio: {fileID: 8501579764895434895}
   boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
   hitwallPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
