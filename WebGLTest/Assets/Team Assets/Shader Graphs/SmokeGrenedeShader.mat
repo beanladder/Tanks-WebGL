@@ -49,14 +49,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveSlider1: 0.329
-    - _DissolveSlider2: 0.308
+    - _DissolveSlider1: 0
+    - _DissolveSlider2: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SmoothStep: 0
     m_Colors:
-    - _DarkColor: {r: 0.16981131, g: 0.16420433, b: 0.16420433, a: 0.53333336}
-    - _FireColor: {r: 0.5147715, g: 0.46817207, b: 0.45746678, a: 0.49803922}
+    - _DarkColor: {r: 0.36399853, g: 0.3519797, b: 0.3519797, a: 0}
+    - _FireColor: {r: 0.6792451, g: 0.6177568, b: 0.6036311, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6088479009200994448
 MonoBehaviour:

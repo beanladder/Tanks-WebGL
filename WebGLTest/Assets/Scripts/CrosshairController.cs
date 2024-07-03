@@ -5,6 +5,9 @@ public class CrosshairController : MonoBehaviour
 {
     public GameObject tankBarrel; // Reference to the tank barrel GameObject
 
+    
+    public float smoothSpeed = 0.125f; // Smoothing speed with a range slider in the Inspector
+
     void Update()
     {
         // Ensure tankBarrel reference is not null
@@ -16,8 +19,8 @@ public class CrosshairController : MonoBehaviour
             // Convert world space position to screen space
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetPosition);
 
-            // Set the crosshair position to the converted screen position
-            transform.position = screenPosition;
+            // Smoothly interpolate the crosshair position towards the target screen position
+            transform.position = Vector3.Lerp(transform.position, screenPosition, smoothSpeed);
         }
     }
 }

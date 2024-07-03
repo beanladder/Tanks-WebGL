@@ -3782,7 +3782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.03059835, y: 0.9423599, z: -0.08986939, w: 0.32085067}
+  m_LocalRotation: {x: 0.030598342, y: 0.9423599, z: -0.089869395, w: 0.3208506}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11710,7 +11710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa884f2e8586254398ae9a923497894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 55
+  rotationSpeed: 100
   minRotation: 60
   maxRotation: 100
 --- !u!1 &4201688211983678858
@@ -14264,7 +14264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.035112187, y: 0.9410014, z: -0.103126906, w: 0.32038796}
+  m_LocalRotation: {x: 0.035112176, y: 0.94100136, z: -0.1031269, w: 0.3203879}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20093,7 +20093,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7108857234790471058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
   m_Name: 
@@ -27261,6 +27261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankBarrel: {fileID: 8276867083379645089}
+  smoothSpeed: 1
 --- !u!1 &9202481895447882053
 GameObject:
   m_ObjectHideFlags: 0
