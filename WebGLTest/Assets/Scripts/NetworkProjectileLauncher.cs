@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class NetworkProjectileLauncher : MonoBehaviour
+public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
 {
     public GameObject projectilePrefab;// Reference to the projectile prefab
     public GameObject BarrelSmokePrefab;
@@ -26,6 +27,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
     private bool canFire = true; // Flag to control firing cooldown
     private Coroutine cooldownCoroutine; // Reference to the cooldown coroutine
     public bool isSmoke = false;
+    PhotonView view;
     public static NetworkProjectileLauncher instance;
     private void Awake()
     {
@@ -34,44 +36,47 @@ public class NetworkProjectileLauncher : MonoBehaviour
     void Start()
     {
         originalTurretPosition = turret.transform.localPosition; // Store the original position of the turret
-
+        view = GetComponent<PhotonView>();
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
-        {
-            // Call FireProjectile method when left mouse button is pressed and firing is allowed
-            FireProjectile();
-            // Trigger recoil animation
-            RecoilAnimation();
-
-            // Play the audio
-            if (audioSource != null)
+        if(view.IsMine){
+                if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
             {
-                audioSource.Play();
+                // Call FireProjectile method when left mouse button is pressed and firing is allowed
+                //FireProjectile();
+                view.RPC("FireProjectile",RpcTarget.All);    
+                // Trigger recoil animation
+                //RecoilAnimation();
+                view.RPC("RecoilAnimation",RpcTarget.All);
+                // Play the audio
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+
+                // Start the cooldown coroutine
+                cooldownCoroutine = StartCoroutine(Cooldown());
             }
-
-            // Start the cooldown coroutine
-            cooldownCoroutine = StartCoroutine(Cooldown());
-        }
-        else if (Input.GetMouseButtonDown(1) && canFire) // Change to 1 for right mouse button
-        {
-            // Call FireSmokeGrenade method when right mouse button is pressed and firing is allowed
-            FireSmokeGrenade();
-            // Trigger recoil animation
-            RecoilAnimation();
-
-            // Play the audio
-            if (audioSource != null)
+            else if (Input.GetMouseButtonDown(1) && canFire) // Change to 1 for right mouse button
             {
-                audioSource.Play();
-            }
+                // Call FireSmokeGrenade method when right mouse button is pressed and firing is allowed
+                FireSmokeGrenade();
+                // Trigger recoil animation
+                RecoilAnimation();
 
-            // Start the cooldown coroutine
-            cooldownCoroutine = StartCoroutine(Cooldown());
+                // Play the audio
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+
+                // Start the cooldown coroutine
+                cooldownCoroutine = StartCoroutine(Cooldown());
+            }
         }
     }
 
@@ -86,7 +91,7 @@ public class NetworkProjectileLauncher : MonoBehaviour
         // Reset the firing flag to allow firing again
         canFire = true;
     }
-
+    [PunRPC]
     public void FireProjectile()
     {
         isSmoke = false;
