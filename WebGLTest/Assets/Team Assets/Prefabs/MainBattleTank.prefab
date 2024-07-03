@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 6057771799000930431}
   m_Layer: 6
   m_Name: EngineGrid (3)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 330736541978445386}
   m_Layer: 6
   m_Name: BackPanel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -981,6 +981,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8361095560129482352}
+  - {fileID: 7169946195620009441}
   m_Father: {fileID: 6261063753204744251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1230,7 +1231,7 @@ GameObject:
   - component: {fileID: 2620352324986973328}
   m_Layer: 6
   m_Name: TailLight
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2855,7 +2856,7 @@ GameObject:
   - component: {fileID: 899659858601323699}
   m_Layer: 6
   m_Name: BackPanel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4125,11 +4126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-
-  m_LocalRotation: {x: 0.030598514, y: 0.9423595, z: -0.08986961, w: 0.32085153}
-
-  m_LocalRotation: {x: 0.03059835, y: 0.9423599, z: -0.08986939, w: 0.32085067}
-
+  m_LocalRotation: {x: 0.028687174, y: 0.9489465, z: -0.09049697, w: 0.30081224}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5185,7 +5182,7 @@ GameObject:
   - component: {fileID: 6417772428741097084}
   m_Layer: 6
   m_Name: Headlight
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5516,7 +5513,7 @@ GameObject:
   - component: {fileID: 5730599207805708569}
   m_Layer: 6
   m_Name: RightArmorPanel (1)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6043,7 +6040,7 @@ GameObject:
   - component: {fileID: 6747827965634022652}
   m_Layer: 6
   m_Name: EngineGrid (1)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6903,7 +6900,7 @@ GameObject:
   - component: {fileID: 4805031360625721187}
   m_Layer: 6
   m_Name: Engine1
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7081,7 +7078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.011045705, y: 0.9460792, z: -0.032441933, w: 0.32211736}
+  m_LocalRotation: {x: 0.010355714, y: 0.9526891, z: -0.0326672, w: 0.30200857}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8093,7 +8090,7 @@ GameObject:
   - component: {fileID: 4446334928411795203}
   m_Layer: 6
   m_Name: FrontArmor
-  m_TagString: Cylinder
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10335,7 +10332,7 @@ GameObject:
   - component: {fileID: 6307219608744776074}
   m_Layer: 6
   m_Name: EngineGrid
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11238,9 +11235,9 @@ GameObject:
   - component: {fileID: 7392053177066129429}
   - component: {fileID: 4886281024615059366}
   - component: {fileID: 7965466462774253842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11457,8 +11454,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.01574615, y: 0.8876748, z: -0.030439133, w: 0.4591938}
-  m_LocalPosition: {x: 239.30255, y: 221.86, z: 207.88516}
+  m_LocalRotation: {x: 0.025269797, y: 0.6776196, z: -0.02330943, w: 0.7346086}
+  m_LocalPosition: {x: 237.8305, y: 228.16, z: 62.89962}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14897,11 +14894,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-
-  m_LocalRotation: {x: 0.035112184, y: 0.94100124, z: -0.10312675, w: 0.3203883}
-
-  m_LocalRotation: {x: 0.035112172, y: 0.94100136, z: -0.10312688, w: 0.3203879}
-
+  m_LocalRotation: {x: 0.032925475, y: 0.94755703, z: -0.103841, w: 0.30044752}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15900,9 +15893,9 @@ GameObject:
   - component: {fileID: 1966487170448661400}
   - component: {fileID: 4472085624992439339}
   - component: {fileID: 5103779246774523228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16224,7 +16217,7 @@ GameObject:
   - component: {fileID: 4375993555519619773}
   m_Layer: 6
   m_Name: Engine2
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16305,7 +16298,7 @@ GameObject:
   - component: {fileID: 4659141154963496715}
   m_Layer: 6
   m_Name: RightArmorPanel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20894,7 +20887,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: -10.341915, y: 3.5900002, z: 7.302081}
+  m_LocalPosition: {x: -10.020071, y: 3.5900002, z: 7.7378144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21600,7 +21593,7 @@ GameObject:
   - component: {fileID: 9179231027339903311}
   m_Layer: 6
   m_Name: EngineGrid (2)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22307,8 +22300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankBarrel: {fileID: 8276867083379645089}
-
-
+  smoothSpeed: 0.125
 --- !u!1 &7427537700684242079
 GameObject:
   m_ObjectHideFlags: 0
@@ -24108,7 +24100,7 @@ GameObject:
   - component: {fileID: 6748009236229288845}
   m_Layer: 6
   m_Name: Headlight
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26847,7 +26839,7 @@ GameObject:
   - component: {fileID: 5640065832563918859}
   m_Layer: 6
   m_Name: TailLight (1)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
