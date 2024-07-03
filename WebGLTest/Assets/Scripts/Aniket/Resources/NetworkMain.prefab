@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 6057771799000930431}
   m_Layer: 6
   m_Name: EngineGrid (3)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 330736541978445386}
   m_Layer: 6
   m_Name: BackPanel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1152,7 +1152,7 @@ GameObject:
   - component: {fileID: 2620352324986973328}
   m_Layer: 6
   m_Name: TailLight
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2740,7 +2740,7 @@ GameObject:
   - component: {fileID: 899659858601323699}
   m_Layer: 6
   m_Name: BackPanel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3851,6 +3851,7 @@ GameObject:
   - component: {fileID: 2554187982060805917}
   - component: {fileID: 475864366409865751}
   - component: {fileID: 6295625071342549711}
+  - component: {fileID: 2526607923429415247}
   m_Layer: 6
   m_Name: NetworkMain
   m_TagString: Tank
@@ -4076,6 +4077,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobileControls: {fileID: 5498773696696423322}
+--- !u!114 &2526607923429415247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324328266891732362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1354106883447623182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,7 +4859,7 @@ GameObject:
   - component: {fileID: 6417772428741097084}
   m_Layer: 6
   m_Name: Headlight
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5167,7 +5190,7 @@ GameObject:
   - component: {fileID: 5730599207805708569}
   m_Layer: 6
   m_Name: RightArmorPanel (1)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5694,7 +5717,7 @@ GameObject:
   - component: {fileID: 6747827965634022652}
   m_Layer: 6
   m_Name: EngineGrid (1)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6554,7 +6577,7 @@ GameObject:
   - component: {fileID: 4805031360625721187}
   m_Layer: 6
   m_Name: Engine1
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7744,7 +7767,7 @@ GameObject:
   - component: {fileID: 4446334928411795203}
   m_Layer: 6
   m_Name: FrontArmor
-  m_TagString: Cylinder
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9986,7 +10009,7 @@ GameObject:
   - component: {fileID: 6307219608744776074}
   m_Layer: 6
   m_Name: EngineGrid
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10889,9 +10912,9 @@ GameObject:
   - component: {fileID: 7392053177066129429}
   - component: {fileID: 4886281024615059366}
   - component: {fileID: 7965466462774253842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12716,6 +12739,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4272113677472134614}
+  - component: {fileID: 28325709567308354}
+  - component: {fileID: 1756898786602062122}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -12741,6 +12766,40 @@ Transform:
   - {fileID: 1250085337300652170}
   m_Father: {fileID: 6261063753204744251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &28325709567308354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497624504063694932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1756898786602062122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497624504063694932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7e61d7862b1814f9e0a93c3a957272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4498268416384440739
 GameObject:
   m_ObjectHideFlags: 0
@@ -14364,6 +14423,7 @@ GameObject:
   - component: {fileID: 4717219151182582729}
   - component: {fileID: 4992562704267134783}
   - component: {fileID: 6235936474123812615}
+  - component: {fileID: 6441848783345955987}
   m_Layer: 6
   m_Name: Turret
   m_TagString: Untagged
@@ -14574,6 +14634,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6441848783345955987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025615143559630807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5058709698746434107
 GameObject:
   m_ObjectHideFlags: 0
@@ -15295,9 +15377,9 @@ GameObject:
   - component: {fileID: 1966487170448661400}
   - component: {fileID: 4472085624992439339}
   - component: {fileID: 5103779246774523228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15619,7 +15701,7 @@ GameObject:
   - component: {fileID: 4375993555519619773}
   m_Layer: 6
   m_Name: Engine2
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15700,7 +15782,7 @@ GameObject:
   - component: {fileID: 4659141154963496715}
   m_Layer: 6
   m_Name: RightArmorPanel
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20740,7 +20822,7 @@ GameObject:
   - component: {fileID: 9179231027339903311}
   m_Layer: 6
   m_Name: EngineGrid (2)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22889,7 +22971,7 @@ GameObject:
   - component: {fileID: 6748009236229288845}
   m_Layer: 6
   m_Name: Headlight
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25553,7 +25635,7 @@ GameObject:
   - component: {fileID: 5640065832563918859}
   m_Layer: 6
   m_Name: TailLight (1)
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

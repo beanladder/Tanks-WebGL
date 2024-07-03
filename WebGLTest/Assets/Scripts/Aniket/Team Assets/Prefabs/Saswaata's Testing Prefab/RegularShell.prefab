@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2955782506029609719}
   - component: {fileID: 3635751318878374895}
   - component: {fileID: 4361465694671300189}
-  - component: {fileID: 7083028342050717482}
+  - component: {fileID: 4664429513286537592}
   - component: {fileID: 7005528360984571161}
   - component: {fileID: 8156246086621246972}
   m_Layer: 0
@@ -121,7 +121,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &7083028342050717482
+--- !u!114 &4664429513286537592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,14 +130,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4794418601730149315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e85712b5d07f6448b38a6c1ab2a52c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a3a447835786244db5ca0c8f0d73e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Boom: {fileID: 9112838187983418017}
   Ricochet:
-  - {fileID: 2574020624180599155}
-  - {fileID: 8320023745649781934}
-  - {fileID: 6327136786088005859}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   TankHitAudio: {fileID: 8501579764895434895}
   boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
   hitwallPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
