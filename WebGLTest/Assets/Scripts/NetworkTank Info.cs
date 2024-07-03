@@ -67,7 +67,7 @@ public class NetworkTankInfo : MonoBehaviour
             }
         }
     }
-    [PunRPC]
+
     public void TakeDamage(float damage)
     {
         int hitResistor = 1;
@@ -103,6 +103,14 @@ public class NetworkTankInfo : MonoBehaviour
         maxHealth=maxHealth-hitResistor;
 
         
+    }
+    public void mobileRepair()
+    {
+        if (currentHealth < maxHealth && repairCooldown)
+        {
+            // Start the repair process
+            StartRepair();
+        }
     }
 
     public void StartRepair()
