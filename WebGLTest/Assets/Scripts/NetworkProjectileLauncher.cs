@@ -47,8 +47,8 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
                 if (Input.GetMouseButtonDown(0) && canFire) // Change to 0 for left mouse button, 1 for right mouse button
             {
                 // Call FireProjectile method when left mouse button is pressed and firing is allowed
-                //FireProjectile();
-                view.RPC("FireProjectile",RpcTarget.All);    
+                FireProjectile();
+                //view.RPC("FireProjectile",RpcTarget.All);    
                 // Trigger recoil animation
                 //RecoilAnimation();
                 view.RPC("RecoilAnimation",RpcTarget.All);
