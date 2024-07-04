@@ -21272,6 +21272,7 @@ GameObject:
   - component: {fileID: 212924047754472705}
   - component: {fileID: 6291231491840637314}
   - component: {fileID: 4941650498814693205}
+  - component: {fileID: 3253262876043559819}
   m_Layer: 6
   m_Name: BarrelEND
   m_TagString: Untagged
@@ -21309,7 +21310,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4794418601730149315, guid: 3957b06bc45c57c468ea842f3176b250, type: 3}
   BarrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
   BarrelFlashPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
-  SmokeGrenedePrefab: {fileID: 589028992470324655, guid: e909867f93eb368498f139677de143e6, type: 3}
+  SmokeGrenadePrefab: {fileID: 7916193538494920737, guid: a22ca074e5493804f94ec608b6e6b649, type: 3}
   trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
@@ -21453,10 +21454,44 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 3253262876043559819}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &3253262876043559819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370908410342672547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &7427537700684242079
 GameObject:
   m_ObjectHideFlags: 0
