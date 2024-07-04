@@ -25,7 +25,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     private Vector3 originalTurretPosition;
     private bool canFire = true;
     private Coroutine cooldownCoroutine;
-    public bool isSmoke = false;
     PhotonView view;
     public static NetworkProjectileLauncher instance;
 
@@ -78,7 +77,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     [PunRPC]
     public void FireProjectile()
     {
-        isSmoke = false;
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
         trailEffect.transform.parent = projectile.transform;
@@ -115,7 +113,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     [PunRPC]
     public void FireSmokeGrenade()
     {
-        isSmoke = true;
         GameObject smokeGrenade = Instantiate(SmokeGrenadePrefab, firePoint.position, firePoint.rotation);
         Vector3 direction = (target.transform.position - firePoint.position).normalized;
 
