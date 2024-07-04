@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1494199825698569478}
   - component: {fileID: 8817651345375774232}
   - component: {fileID: 3829091500476792641}
-  - component: {fileID: 3874967727883793524}
   - component: {fileID: 4327324778616116930}
   - component: {fileID: 8795197924285969197}
+  - component: {fileID: -5860220671391529907}
   m_Layer: 0
   m_Name: SmokeProjectile
   m_TagString: Untagged
@@ -121,28 +121,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3874967727883793524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589028992470324655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3a447835786244db5ca0c8f0d73e36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Boom: {fileID: 7309277284627922203}
-  Ricochet:
-  - {fileID: 6001406600927778655}
-  - {fileID: 8160698368631974380}
-  - {fileID: 5697786864339254442}
-  TankHitAudio: {fileID: 7550239578428544478}
-  boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
-  hitwallPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
-  smokeParticlePrefab: {fileID: 7916193538494920737, guid: a22ca074e5493804f94ec608b6e6b649, type: 3}
-  isSmokeGrenade: 0
 --- !u!64 &4327324778616116930
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -188,6 +166,20 @@ CapsuleCollider:
   m_Height: 2.0000005
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5860220671391529907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589028992470324655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa640202c00c34c6a9169f8d6369cd9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boom: {fileID: 7309277284627922203}
+  smokeParticlePrefab: {fileID: 7916193538494920737, guid: a22ca074e5493804f94ec608b6e6b649, type: 3}
 --- !u!1 &664551551476840392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,7 +5547,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 29bd73d5ca9f54849b268c4000bbfd84, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6cf1eeda18d7b4608ac125aa2609df44, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -3782,7 +3782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.030598525, y: 0.94235957, z: -0.08986963, w: 0.32085162}
+  m_LocalRotation: {x: 0.030598514, y: 0.9423595, z: -0.08986961, w: 0.32085153}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6790,7 +6790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.011045705, y: 0.9460792, z: -0.03244194, w: 0.32211736}
+  m_LocalRotation: {x: 0.011045705, y: 0.9460792, z: -0.032441933, w: 0.32211736}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21310,7 +21310,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4794418601730149315, guid: 3957b06bc45c57c468ea842f3176b250, type: 3}
   BarrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
   BarrelFlashPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
-  SmokeGrenadePrefab: {fileID: 7916193538494920737, guid: a22ca074e5493804f94ec608b6e6b649, type: 3}
+  SmokeGrenadePrefab: {fileID: 589028992470324655, guid: e909867f93eb368498f139677de143e6, type: 3}
   trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
@@ -21321,7 +21321,6 @@ MonoBehaviour:
   recoilDuration: 0.1
   trailDuration: 2
   cooldownTime: 2.5
-  isSmoke: 0
 --- !u!82 &212924047754472705
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27562,6 +27561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankBarrel: {fileID: 8276867083379645089}
   smoothSpeed: 1
+  minThreshold: 5
 --- !u!1 &9202481895447882053
 GameObject:
   m_ObjectHideFlags: 0
