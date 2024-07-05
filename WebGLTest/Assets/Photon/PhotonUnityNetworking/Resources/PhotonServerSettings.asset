@@ -47,6 +47,11 @@ MonoBehaviour:
   - TakeDamage
   - PlayShootingAudio
   - FireSmokeGrenade
+  - RPC_HandleCylinderCollision
+  - RPC_HandleGroundCollision
+  - RPC_HandleSmokeGrenadeCollision
+  - RPC_HandleTankCollision
+  - RPC_HandleWallCollision
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
