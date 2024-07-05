@@ -20,13 +20,13 @@ public class NetworkProjectile : MonoBehaviour
 
     private void HandleProjectileCollision(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            gameObject.GetComponent<Renderer>().enabled = false;
-            gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
-            StartCoroutine(PlayAudio("Boom"));
-        }
-        else if (collision.gameObject.CompareTag("Cylinder"))
+        // if (collision.gameObject.CompareTag("Ground"))
+        // {
+        //     gameObject.GetComponent<Renderer>().enabled = false;
+        //     gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
+        //     StartCoroutine(PlayAudio("Boom"));
+        // }
+        if (collision.gameObject.CompareTag("Cylinder"))
         {
             gameObject.GetComponent<Renderer>().enabled = true;
             StartCoroutine(PlayAudio("Ricochet"));
@@ -45,7 +45,7 @@ public class NetworkProjectile : MonoBehaviour
             collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Wall") ||  collision.gameObject.CompareTag("Ground"))
         {
             gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
             gameObject.GetComponent<Renderer>().enabled = false;

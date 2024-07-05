@@ -3782,7 +3782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.030598514, y: 0.9423595, z: -0.08986961, w: 0.32085153}
+  m_LocalRotation: {x: 0.030598525, y: 0.94235957, z: -0.08986963, w: 0.32085162}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3898,6 +3898,8 @@ MonoBehaviour:
   engineSound: {fileID: 7963035148965281489}
   recoilForce: 1000
   maxSpeed: 10
+  leftTrack: {fileID: 4886281024615059366}
+  rightTrack: {fileID: 4472085624992439339}
 --- !u!114 &7921040678538297728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10949,7 +10951,7 @@ GameObject:
   - component: {fileID: 7965466462774253842}
   m_Layer: 6
   m_Name: Left
-  m_TagString: Tank
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15507,7 +15509,7 @@ GameObject:
   - component: {fileID: 5103779246774523228}
   m_Layer: 6
   m_Name: Right
-  m_TagString: Tank
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
