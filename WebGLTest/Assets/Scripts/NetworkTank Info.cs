@@ -22,17 +22,16 @@ public class NetworkTankInfo : MonoBehaviour
     public float repairTime = 4f; // Time in seconds for repair
     private float healAmountMin = 5f; // Minimum amount of healing
     private float healAmountMax = 15f; // Maximum amount of healing
-    private SquareMovement squareMovementScript;
+    private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
 
-
+    PhotonView view;
     
-
     void Start()
     {
         repairCooldown = true;
-
-        squareMovementScript = GetComponent<SquareMovement>();
+        view = GetComponent<PhotonView>();
+        networkSquareMovementScript = GetComponent<NetworkSquareMovement>();
         moveAudio = GetComponent<AudioSource>();
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
@@ -41,34 +40,40 @@ public class NetworkTankInfo : MonoBehaviour
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
 
         // Update the health UI text
+        UpdateHealthText();
     }
 
     void Update()
     {
-        
-        UpdateHealthText();
-        // Check if the repair key is pressed
-        if (Input.GetKeyDown(repairKey) && currentHealth<maxHealth && repairCooldown)
+        if(view.IsMine)
         {
-            // Start the repair process
-            StartRepair();
-        }
-
-        // If currently repairing, decrease repair time
-        if (isRepairing)
-        {
-            repairTime -= Time.deltaTime;
-
-            // Check if repair time is over
-            if (repairTime <= 0f)
+            UpdateHealthText();
+            // Check if the repair key is pressed
+            if (Input.GetKeyDown(repairKey) && currentHealth < maxHealth && repairCooldown)
             {
-                // End repair process
-                EndRepair();
+                // Start the repair process
+                //StartRepair();
+                view.RPC("StartRepair",RpcTarget.All);
+            }
+
+            // If currently repairing, decrease repair time
+            if (isRepairing)
+            {
+                repairTime -= Time.deltaTime;
+
+                // Check if repair time is over
+                if (repairTime <= 0f)
+                {
+                    // End repair process
+                    //EndRepair();
+                    view.RPC("EndRepair",RpcTarget.All);
+                }
             }
         }
     }
 
-    public void TakeDamage(float damage)
+    [PunRPC]
+    public void TakeDamage(int damage, PhotonMessageInfo info)
     {
         int hitResistor = 1;
         currentHealth -= damage;
@@ -99,11 +104,9 @@ public class NetworkTankInfo : MonoBehaviour
             hitResistor++;
         }
         
-        
         maxHealth=maxHealth-hitResistor;
-
-        
     }
+
     public void mobileRepair()
     {
         if (currentHealth < maxHealth && repairCooldown)
@@ -112,40 +115,55 @@ public class NetworkTankInfo : MonoBehaviour
             StartRepair();
         }
     }
-
+    [PunRPC]
     public void StartRepair()
     {
         repairCooldown = false;
         isRepairing = true;
         Debug.Log("Starting repair...");
-        HealthUIAnimation.instance.StartRepairAnimation();
-        squareMovementScript.enabled = false;
-        moveAudio.enabled = false;
-        repairAudio.Play();
-        
+        if (view.IsMine)
+        {
+            HealthUIAnimation.instance.StartRepairAnimation();
+        }
+        view.RPC("DisableMovementAndPlayRepairAudio", RpcTarget.All);
     }
 
-    public void EndRepair()
+[PunRPC]
+public void EndRepair()
+{
+    isRepairing = false;
+
+    // Generate random healing amount
+    float healAmount = Random.Range(healAmountMin, healAmountMax);
+
+    // Clamp heal amount so it doesn't exceed maxHealth
+    StartCoroutine(HealthAddition(healAmount));
+
+    // Update the health UI text
+    Debug.Log("Repair complete. Healed " + healAmount + " health.");
+    repairTime = 4f;
+    if (view.IsMine)
     {
-
-        isRepairing = false;
-
-        // Generate random healing amount
-        float healAmount = Random.Range(healAmountMin, healAmountMax);
-
-        // Clamp heal amount so it doesn't exceed maxHealth
-
-        StartCoroutine(HealthAddition(healAmount));
-
-        // Update the health UI text
-
-        Debug.Log("Repair complete. Healed " + healAmount + " health.");
-        repairTime = 4f;
         HealthUIAnimation.instance.StopRepairAnimation();
-        squareMovementScript.enabled = true;
+    }
+    view.RPC("EnableMovementAndStopRepairAudio", RpcTarget.All);
+    repairCooldown = true;
+}
+
+    [PunRPC]
+    public void DisableMovementAndPlayRepairAudio()
+    {
+        networkSquareMovementScript.enabled = false;
+        moveAudio.enabled = false;
+        repairAudio.Play();
+    }
+
+    [PunRPC]
+    public void EnableMovementAndStopRepairAudio()
+    {
+        networkSquareMovementScript.enabled = true;
         repairAudio.Stop();
         moveAudio.enabled = true;
-        repairCooldown = true;
     }
 
     public void DestructionPhase()
@@ -174,7 +192,6 @@ public class NetworkTankInfo : MonoBehaviour
         damagetext.text = damage.ToString("0");
         yield return new WaitForSeconds(1f);
         healthDeductUI.SetActive(false);
-        
     }
 
     private void UpdateHealthText()
@@ -196,8 +213,4 @@ public class NetworkTankInfo : MonoBehaviour
             healthIndicator.SetActive(false);
         }
     }
-
-
-
-
 }
