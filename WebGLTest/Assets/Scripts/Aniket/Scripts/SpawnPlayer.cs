@@ -88,6 +88,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     public GameObject playerPrefab;
     private GameObject player;
     public GameObject DeathScreen;
+    public GameObject SpawnScreen;
     public Transform[] spawnPoints;
     public bool isTankDead = false;
     public float sphereRadius=10f;
@@ -107,7 +108,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             Debug.LogError("No spawn points assigned in SpawnPlayer script!");
             return;
         }
-        SpawnPlayerAtAvailablePoint();
     }
     void Update()
     {
@@ -134,7 +134,10 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     {
         DeathScreen.SetActive(true);
     }
-
+    public void Spawn(){
+        SpawnScreen.SetActive(false);
+        SpawnPlayerAtAvailablePoint();
+    }
     public void RespawnPlayer()
     {
         DeathScreen.SetActive(false);
