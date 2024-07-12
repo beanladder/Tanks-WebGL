@@ -28,7 +28,7 @@ public class NetworkSquareMovement : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
 
