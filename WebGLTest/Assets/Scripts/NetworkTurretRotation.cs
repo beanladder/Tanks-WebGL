@@ -12,7 +12,7 @@ public class NetworkTurretRotation : MonoBehaviour
     bool isRotating = false; // Flag to track if the turret is currently rotating
     float rotationThreshold = 1f; // Threshold angle to determine when the turret stops rotating
 
-    public float xRotation,zRotation;
+    public float xRotation, zRotation;
     public float yRotation;
     PhotonView view;
 
@@ -24,16 +24,19 @@ public class NetworkTurretRotation : MonoBehaviour
 
     void Update()
     {
-        if(view.IsMine){
-                float yawCamera = maincam.transform.rotation.eulerAngles.y;
+        if (view.IsMine)
+        {
+            // Calculate the camera's yaw rotation
+            float yawCamera = maincam.transform.rotation.eulerAngles.y;
 
-            // Target rotation with fixed X (180) and Z (0)
-            Quaternion targetRotation = Quaternion.Euler(xRotation, yawCamera+yRotation, zRotation);
+            // Calculate the target rotation based on camera yaw
+            Quaternion targetRotation = Quaternion.Euler(xRotation, yawCamera + yRotation, zRotation);
 
             // Check if the turret is rotating
             if (Quaternion.Angle(transform.rotation, targetRotation) > rotationThreshold)
             {
                 isRotating = true;
+                // Rotate turret towards target rotation
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
             }
             else
@@ -41,7 +44,7 @@ public class NetworkTurretRotation : MonoBehaviour
                 isRotating = false;
             }
 
-            // Play or stop the audio based on whether the turret is rotating
+            // Update audio source based on rotation status
             if (audioSource != null)
             {
                 if (isRotating && !audioSource.isPlaying)
@@ -52,6 +55,14 @@ public class NetworkTurretRotation : MonoBehaviour
                 {
                     audioSource.Stop();
                 }
+            }
+
+            // Ensure turret's rotation does not get affected by the rotation of the parent objects
+            // Reset turret's local rotation relative to its parent (TurretPivot)
+            Transform turretPivot = transform.parent;
+            if (turretPivot != null)
+            {
+                transform.localRotation = Quaternion.Euler(0, transform.localRotation.eulerAngles.y, 0);
             }
         }
     }

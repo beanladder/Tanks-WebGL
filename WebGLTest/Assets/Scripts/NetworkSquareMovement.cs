@@ -28,8 +28,7 @@ public class NetworkSquareMovement : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component
 
         // Ensure the Rigidbody settings are appropriate
@@ -51,7 +50,7 @@ public class NetworkSquareMovement : MonoBehaviour
                 // Movement based on W and S keys
                 float verticalInput = Input.GetAxis("Vertical");
 
-                Debug.Log("Vertical Input: " + verticalInput);
+               // Debug.Log("Vertical Input: " + verticalInput);
 
                 // Calculate force for forward/backward movement
                 Vector3 moveForce = transform.forward * verticalInput * acceleration * 10f; // Adjusted force multiplier
@@ -67,7 +66,7 @@ public class NetworkSquareMovement : MonoBehaviour
                 {
                     rb.AddForce(moveForce, ForceMode.Acceleration); // Use Acceleration force mode for continuous movement
                 }
-                Debug.Log("Move Force: " + moveForce);
+                //Debug.Log("Move Force: " + moveForce);
 
                 // Rotation based on A and D keys
                 float horizontalInput = Input.GetAxis("Horizontal");
@@ -77,7 +76,7 @@ public class NetworkSquareMovement : MonoBehaviour
                     horizontalInput *= -1f;
                 }
 
-                Debug.Log("Horizontal Input: " + horizontalInput);
+                //Debug.Log("Horizontal Input: " + horizontalInput);
 
                 if (horizontalInput != 0f)
                 {
@@ -94,7 +93,7 @@ public class NetworkSquareMovement : MonoBehaviour
 
                     float rotationAmount = horizontalInput * currentRotationSpeed * Time.fixedDeltaTime;
                     transform.Rotate(Vector3.up, rotationAmount);
-                    Debug.Log("Rotation Amount: " + rotationAmount);
+                    //Debug.Log("Rotation Amount: " + rotationAmount);
                 }
 
                 float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
