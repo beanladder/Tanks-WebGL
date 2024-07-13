@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -258,18 +258,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bfaa1b1b17a1e74c9a661aa0d815ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1324328266891732362, guid: 13a3e875b1be8bc419ab4be027299137, type: 3}
-  textPrefab: {fileID: 2933439702819729926, guid: 6920aa1fef9ced24d8a27b05a1cf5c63, type: 3}
-  minX: 0
-  maxX: 0
-  fixedY: 0
+  playerPrefab: {fileID: 1324328266891732362, guid: de4e4fc65e6c33441bd602db7c174b56, type: 3}
   DeathScreen: {fileID: 993756904}
+  SpawnScreen: {fileID: 0}
   spawnPoints:
   - {fileID: 1652181064}
   - {fileID: 1682097680}
   - {fileID: 87930394}
   - {fileID: 1414501147}
   isTankDead: 0
+  sphereRadius: 10
 --- !u!4 &372253294
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,12 +1009,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1682097679
 GameObject:
   m_ObjectHideFlags: 0
