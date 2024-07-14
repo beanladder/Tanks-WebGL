@@ -4363,7 +4363,6 @@ MonoBehaviour:
   repairAudio: {fileID: 2180740599534114749}
   playerName: 
   repairTime: 4
-  mapCamera: {fileID: 0}
 --- !u!82 &7963035148965281489
 AudioSource:
   m_ObjectHideFlags: 0
