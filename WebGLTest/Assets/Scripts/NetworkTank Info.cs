@@ -4,6 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 
 public class NetworkTankInfo : MonoBehaviour
 {
@@ -24,11 +25,16 @@ public class NetworkTankInfo : MonoBehaviour
     private float healAmountMax = 15f; // Maximum amount of healing
     private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
-
+    [SerializeField]private CinemachineFreeLook mapCamera;
     PhotonView view;
     
     void Start()
     {
+        GameObject mapCameraObject = GameObject.Find("MapCamera");
+        if (mapCameraObject != null)
+        {
+            mapCamera = mapCameraObject.GetComponent<CinemachineFreeLook>();
+        }
         repairCooldown = true;
         view = GetComponent<PhotonView>();
         networkSquareMovementScript = GetComponent<NetworkSquareMovement>();
@@ -36,6 +42,10 @@ public class NetworkTankInfo : MonoBehaviour
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
 
+        if (view.IsMine)
+        {
+            CameraManager.instance.SetCurrentTankCamera(GetComponentInChildren<CinemachineFreeLook>());
+        }
         // Find the TextMeshPro component in the scene and assign it to the healthText field
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
 
@@ -84,9 +94,11 @@ public class NetworkTankInfo : MonoBehaviour
         // Update the health UI text
         if (currentHealth <= 0)
         {
-            // Perform actions when tank's health reaches zero
-            if(view.IsMine){
+            if (view.IsMine)
+            {
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
+                // Blend to the map camera when the tank dies
+                CameraManager.instance.BlendToMapCamera();
             }
             DestructionPhase();
             Destroy(gameObject);
