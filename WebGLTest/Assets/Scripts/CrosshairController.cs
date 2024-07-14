@@ -2,36 +2,24 @@ using UnityEngine;
 
 public class CrosshairController : MonoBehaviour
 {
-    public GameObject tankBarrel; // Reference to the tank barrel GameObject
-    public float smoothSpeed = 0.125f; // Smoothing speed with a range slider in the Inspector
-    public float minThreshold = 5.0f; // Minimum distance threshold for moving the crosshair
-    private Vector3 previousScreenPosition;
+    public GameObject targetObject; // Reference to the target object placed at the raycast hit point
+    public float smoothTime = 0.2f; // Smoothing time for the crosshair movement
 
-    void Start()
-    {
-        previousScreenPosition = transform.position;
-    }
+    private Vector3 velocity = Vector3.zero;
 
     void LateUpdate()
     {
-        // Ensure tankBarrel reference is not null
-        if (tankBarrel != null)
+        // Ensure targetObject reference is not null
+        if (targetObject != null)
         {
-            // Get the position of the tank barrel in world space
-            Vector3 targetPosition = tankBarrel.transform.position;
+            // Get the position of the target object in world space
+            Vector3 targetPosition = targetObject.transform.position;
 
             // Convert world space position to screen space
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetPosition);
 
-            // Calculate the distance from the previous screen position
-            float distance = Vector3.Distance(previousScreenPosition, screenPosition);
-
-            // Move the crosshair if the distance exceeds the minimum threshold
-            if (distance > minThreshold)
-            {
-                transform.position = Vector3.Lerp(transform.position, screenPosition, smoothSpeed);
-                previousScreenPosition = screenPosition;
-            }
+            // Smoothly move the crosshair to the screen position
+            transform.position = Vector3.SmoothDamp(transform.position, screenPosition, ref velocity, smoothTime);
         }
     }
 }
