@@ -4220,7 +4220,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
+
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+
+  m_LocalRotation: {x: 0.07400049, y: 0.6331589, z: -0.06100335, w: 0.7680575}
+
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4363,6 +4367,7 @@ MonoBehaviour:
   repairAudio: {fileID: 2180740599534114749}
   playerName: 
   repairTime: 4
+  mapCamera: {fileID: 0}
 --- !u!82 &7963035148965281489
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7497,7 +7502,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
+
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+
+  m_LocalRotation: {x: 0.026641456, y: 0.635711, z: -0.021962222, w: 0.7711545}
+
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16901,8 +16910,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
+
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+
+  m_LocalRotation: {x: 0.029610453, y: 0.513996, z: -0.017757205, w: 0.85709745}
+  m_LocalPosition: {x: -10.851501, y: -3.020001, z: -3.2715702}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20393,8 +20407,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08477312, y: 0.6322392, z: -0.069883704, w: 0.7669442}
-  m_LocalPosition: {x: -0.0000018230305, y: 0, z: 0.0000005608375}
+  m_LocalRotation: {x: 0.08477315, y: 0.63223946, z: -0.06988377, w: 0.766944}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26426,7 +26440,7 @@ Transform:
   m_GameObject: {fileID: 7108857234790471058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.14867246, z: -0, w: 0.98888654}
-  m_LocalPosition: {x: -10.851501, y: -3.020001, z: -3.2715712}
+  m_LocalPosition: {x: -10.851501, y: -3.020001, z: -3.2715702}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33905,7 +33919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.39607844, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
