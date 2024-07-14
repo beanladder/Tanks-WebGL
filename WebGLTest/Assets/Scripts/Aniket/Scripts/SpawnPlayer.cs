@@ -16,6 +16,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     public float sphereRadius=10f;
     private int deadTankId = -1;
     private bool isTankDead = false;
+    private PhotonView view;
 
      void Awake()
      {
@@ -24,6 +25,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        view = GetComponent<PhotonView>();
         if (spawnPoints.Length == 0)
         {
             Debug.LogError("No spawn points assigned in SpawnPlayer script!");

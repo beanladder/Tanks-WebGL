@@ -4,20 +4,26 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using JetBrains.Annotations;
+using Photon.Pun.Demo.Cockpit;
+using Unity.VisualScripting;
+using Photon.Pun.Demo.PunBasics;
 
-public class NetworkTankInfo : MonoBehaviour
+public class NetworkTankInfo : MonoBehaviourPunCallbacks
 {
+    public static NetworkTankInfo instance;
     public float maxHealth = 100f; // Maximum health of the tank
     public float currentHealth; // Current health of the tank
     public GameObject destroyPrefab;
     public TMP_Text healthText; // Reference to the TextMeshPro component for displaying health
+    public TMP_Text tankNameText;
     public KeyCode repairKey = KeyCode.X; // Key to trigger repair
     public GameObject healthIndicator; // Reference to the game object to enable/disable
     public GameObject healthDeductUI;
     public GameObject healthAddUI;
     public bool repairCooldown;
     public AudioSource repairAudio;
-
+    public string playerName;
     private bool isRepairing = false; // Flag to indicate if the tank is currently in repair mode
     public float repairTime = 4f; // Time in seconds for repair
     private float healAmountMin = 5f; // Minimum amount of healing
@@ -26,7 +32,9 @@ public class NetworkTankInfo : MonoBehaviour
     private AudioSource moveAudio;
 
     PhotonView view;
-    
+    void Awake(){
+        instance = this;
+    }
     void Start()
     {
         repairCooldown = true;
@@ -69,6 +77,12 @@ public class NetworkTankInfo : MonoBehaviour
                     view.RPC("EndRepair",RpcTarget.All);
                 }
             }
+        }
+    }
+    public void SetTankName(){
+        if(view.IsMine && PhotonNetwork.LocalPlayer != null){
+            playerName = PhotonNetwork.LocalPlayer.NickName;
+            Debug.Log("Player name : "+playerName);
         }
     }
 
