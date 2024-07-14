@@ -14,6 +14,7 @@ using Cinemachine;
 
 
 using ExitGames.Client.Photon.StructWrapping;
+using Photon.Realtime;
 
 
 
@@ -24,7 +25,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     public float currentHealth; // Current health of the tank
     public GameObject destroyPrefab;
     public TMP_Text healthText; // Reference to the TextMeshPro component for displaying health
-    public TMP_Text tankNameText;
+    [SerializeField] private TMP_Text tankNameText;
     public string playerName;
     public KeyCode repairKey = KeyCode.X; // Key to trigger repair
     public GameObject healthIndicator; // Reference to the game object to enable/disable
@@ -45,7 +46,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        tankNameText = GameObject.Find("PlayerName").GetComponent<TMP_Text>();
         repairCooldown = true;
         view = GetComponent<PhotonView>();
         networkSquareMovementScript = GetComponent<NetworkSquareMovement>();
@@ -56,14 +56,16 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
         // Update the health UI text
         UpdateHealthText();
-        if(view.IsMine && PhotonNetwork.LocalPlayer!=null){
-            playerName = PhotonNetwork.LocalPlayer.NickName;
-            Debug.Log("Player name : "+playerName);
-        }
+        // if(view.IsMine && PhotonNetwork.LocalPlayer!=null){
+        //     playerName = PhotonNetwork.LocalPlayer.NickName;
+        //     Debug.Log("Player name : "+playerName);
+        // }
         
-        if(tankNameText!=null){
-            tankNameText.text = playerName;
-        }
+        // if(tankNameText!=null){
+        //     tankNameText.text = playerName;
+        // }
+        SetPlayerName();
+        UpdateNamesForAllPlayers();
     }
 
     void Update()
@@ -92,6 +94,13 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                     view.RPC("EndRepair",RpcTarget.All);
                 }
             }
+        }
+        if (!view.IsMine && tankNameText != null)
+        {
+            if(Camera.main!=null){
+                tankNameText.transform.LookAt(Camera.main.transform);
+            }                                                                        
+            tankNameText.transform.Rotate(Vector3.up, 180f);
         }
     }
 
@@ -237,6 +246,35 @@ public void EndRepair()
         {
             // Disable the health indicator game object
             healthIndicator.SetActive(false);
+        }
+    }
+    public void SetPlayerName(){
+        if(view.IsMine && PhotonNetwork.LocalPlayer != null){
+            playerName = PhotonNetwork.LocalPlayer.NickName;
+        }
+        else if(!view.IsMine && view.Owner != null){
+            playerName = view.Owner.NickName;
+        }
+        if(tankNameText != null){
+            if(view.IsMine){
+                tankNameText.gameObject.SetActive(false);
+            }
+            else{
+                tankNameText.text = playerName;
+                tankNameText.gameObject.SetActive(true);
+            }
+            
+        }
+    }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        UpdateNamesForAllPlayers();
+    }
+    public void UpdateNamesForAllPlayers(){
+        NetworkTankInfo [] tanks = FindObjectsOfType<NetworkTankInfo>();
+        foreach(NetworkTankInfo tank in tanks){
+            tank.SetPlayerName();
         }
     }
 }

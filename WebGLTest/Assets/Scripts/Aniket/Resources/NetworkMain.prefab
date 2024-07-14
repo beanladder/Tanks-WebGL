@@ -3668,13 +3668,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980701972744775873}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6261063753204744251}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.12, y: 3.82}
@@ -4354,7 +4354,7 @@ MonoBehaviour:
   currentHealth: 0
   destroyPrefab: {fileID: 7723033018868520480, guid: 8acef261b1ab34c29a34718f2033085b, type: 3}
   healthText: {fileID: 5555579954946067835}
-  tankNameText: {fileID: 0}
+  tankNameText: {fileID: 5705466286288464175}
   playerName: 
   repairKey: 120
   healthIndicator: {fileID: 2845749205841371500}
