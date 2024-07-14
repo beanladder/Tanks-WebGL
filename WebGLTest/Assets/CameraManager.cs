@@ -6,8 +6,8 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
     public CinemachineFreeLook mapCamera;
     private CinemachineFreeLook currentTankCamera;
-
-    private CinemachineBrain cinemachineBrain;
+    
+    public CinemachineBrain cinemachineBrain;
 
     void Awake()
     {
@@ -20,8 +20,7 @@ public class CameraManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Find the CinemachineBrain component in the scene
-        cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        
     }
 
     public void SetCurrentTankCamera(CinemachineFreeLook tankCamera)

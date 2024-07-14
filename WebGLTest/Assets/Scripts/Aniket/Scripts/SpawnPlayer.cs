@@ -17,7 +17,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     private int deadTankId = -1;
     private bool isTankDead = false;
     private PhotonView view;
-
+    //
      void Awake()
      {
          instance = this;
