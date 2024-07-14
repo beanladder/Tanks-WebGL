@@ -85,6 +85,9 @@ public class NetworkTankInfo : MonoBehaviour
         if (currentHealth <= 0)
         {
             // Perform actions when tank's health reaches zero
+            if(view.IsMine){
+                SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
+            }
             DestructionPhase();
             Destroy(gameObject);
         }
