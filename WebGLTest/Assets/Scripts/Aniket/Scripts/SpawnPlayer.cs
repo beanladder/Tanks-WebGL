@@ -31,7 +31,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             Debug.LogError("No spawn points assigned in SpawnPlayer script!");
             return;
         }
-        CameraManager.instance.BlendToMapCamera();
+        // CameraManager.instance.BlendToMapCamera();
     }
     void Update()
     {
@@ -65,7 +65,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         SpawnScreen.SetActive(false);
         Vector3 randomPosition = spawnPoints[randomIndex].position;
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        CameraManager.instance.BlendToTankCamera();
+        // CameraManager.instance.BlendToTankCamera();
     }
 
     public void Spawn(){
