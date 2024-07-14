@@ -49,6 +49,15 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
         // Update the health UI text
         UpdateHealthText();
+
+        if(view.IsMine && PhotonNetwork.LocalPlayer!=null){
+            playerName = PhotonNetwork.LocalPlayer.NickName;
+            Debug.Log("Player name : "+playerName);
+        }
+
+        if(tankNameText!=null){
+            tankNameText.text = playerName;
+        }
     }
 
     void Update()
@@ -77,12 +86,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                     view.RPC("EndRepair",RpcTarget.All);
                 }
             }
-        }
-    }
-    public void SetTankName(){
-        if(view.IsMine && PhotonNetwork.LocalPlayer != null){
-            playerName = PhotonNetwork.LocalPlayer.NickName;
-            Debug.Log("Player name : "+playerName);
         }
     }
 
