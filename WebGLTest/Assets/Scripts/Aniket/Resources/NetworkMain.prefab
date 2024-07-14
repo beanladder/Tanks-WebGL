@@ -4220,7 +4220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.07400049, y: 0.6331589, z: -0.06100335, w: 0.7680575}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4355,13 +4355,13 @@ MonoBehaviour:
   destroyPrefab: {fileID: 7723033018868520480, guid: 8acef261b1ab34c29a34718f2033085b, type: 3}
   healthText: {fileID: 5555579954946067835}
   tankNameText: {fileID: 0}
+  playerName: 
   repairKey: 120
   healthIndicator: {fileID: 2845749205841371500}
   healthDeductUI: {fileID: 7205091970814373431}
   healthAddUI: {fileID: 7723161188075156633}
   repairCooldown: 0
   repairAudio: {fileID: 2180740599534114749}
-  playerName: 
   repairTime: 4
 --- !u!82 &7963035148965281489
 AudioSource:
@@ -7497,7 +7497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.026641456, y: 0.635711, z: -0.021962222, w: 0.7711545}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16901,8 +16901,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959290215654008086}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.029610453, y: 0.513996, z: -0.017757205, w: 0.85709745}
+  m_LocalPosition: {x: -10.851501, y: -3.020001, z: -3.2715702}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

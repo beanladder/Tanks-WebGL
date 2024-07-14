@@ -13,11 +13,12 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     public GameObject SpawnScreen;
     public GameObject RespawnScreen;
     public Transform[] spawnPoints;
+    public string playerName;
     public float sphereRadius=10f;
     private int deadTankId = -1;
     private bool isTankDead = false;
     private PhotonView view;
-    //
+    
      void Awake()
      {
          instance = this;
@@ -31,7 +32,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             Debug.LogError("No spawn points assigned in SpawnPlayer script!");
             return;
         }
-        // CameraManager.instance.BlendToMapCamera();
     }
     void Update()
     {
@@ -65,7 +65,6 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         SpawnScreen.SetActive(false);
         Vector3 randomPosition = spawnPoints[randomIndex].position;
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-        // CameraManager.instance.BlendToTankCamera();
     }
 
     public void Spawn(){

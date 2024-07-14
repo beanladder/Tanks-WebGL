@@ -25,13 +25,13 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     public GameObject destroyPrefab;
     public TMP_Text healthText; // Reference to the TextMeshPro component for displaying health
     public TMP_Text tankNameText;
+    public string playerName;
     public KeyCode repairKey = KeyCode.X; // Key to trigger repair
     public GameObject healthIndicator; // Reference to the game object to enable/disable
     public GameObject healthDeductUI;
     public GameObject healthAddUI;
     public bool repairCooldown;
     public AudioSource repairAudio;
-    public string playerName;
     private bool isRepairing = false; // Flag to indicate if the tank is currently in repair mode
     public float repairTime = 4f; // Time in seconds for repair
     private float healAmountMin = 5f; // Minimum amount of healing
@@ -45,11 +45,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        // GameObject mapCameraObject = GameObject.Find("MapCamera");
-        // if (mapCameraObject != null)
-        // {
-        //     mapCamera = mapCameraObject.GetComponent<CinemachineFreeLook>();
-        // }
         tankNameText = GameObject.Find("PlayerName").GetComponent<TMP_Text>();
         repairCooldown = true;
         view = GetComponent<PhotonView>();
@@ -57,22 +52,15 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         moveAudio = GetComponent<AudioSource>();
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
-
-        // if (view.IsMine)
-        // {
-        //     CameraManager.instance.SetCurrentTankCamera(GetComponentInChildren<CinemachineFreeLook>());
-        // }
-        // Find the TextMeshPro component in the scene and assign it to the healthText field
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
 
         // Update the health UI text
         UpdateHealthText();
-
         if(view.IsMine && PhotonNetwork.LocalPlayer!=null){
             playerName = PhotonNetwork.LocalPlayer.NickName;
             Debug.Log("Player name : "+playerName);
         }
-
+        
         if(tankNameText!=null){
             tankNameText.text = playerName;
         }
@@ -122,8 +110,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             if (view.IsMine)
             {
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
-                // Blend to the map camera when the tank dies
-                // CameraManager.instance.BlendToMapCamera();s
             }
             DestructionPhase();
             Destroy(gameObject);
@@ -254,3 +240,5 @@ public void EndRepair()
         }
     }
 }
+
+
