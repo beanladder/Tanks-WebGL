@@ -4220,7 +4220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07400049, y: 0.6331589, z: -0.06100335, w: 0.7680575}
+  m_LocalRotation: {x: 0.07400044, y: 0.6331589, z: -0.061003298, w: 0.7680575}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4363,6 +4363,7 @@ MonoBehaviour:
   repairCooldown: 0
   repairAudio: {fileID: 2180740599534114749}
   repairTime: 4
+  tankCamera: {fileID: 3123428190563532760}
 --- !u!82 &7963035148965281489
 AudioSource:
   m_ObjectHideFlags: 0

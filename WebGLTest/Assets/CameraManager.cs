@@ -6,11 +6,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
     public CinemachineFreeLook mapCamera;
     private CinemachineFreeLook currentTankCamera;
-
-
-
     public CinemachineBrain cinemachineBrain;
-
     void Awake()
     {
         if (instance == null)
@@ -21,10 +17,6 @@ public class CameraManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
-        
-
     }
 
     public void SetCurrentTankCamera(CinemachineFreeLook tankCamera)

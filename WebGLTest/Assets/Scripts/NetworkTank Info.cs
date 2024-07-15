@@ -39,7 +39,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     private float healAmountMax = 15f; // Maximum amount of healing
     private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
-    // [SerializeField]private CinemachineFreeLook mapCamera;
+    [SerializeField]private CinemachineFreeLook tankCamera;
     PhotonView view;
     void Awake(){
         instance = this;
@@ -121,7 +121,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
             DestructionPhase();
-            Destroy(gameObject);
+            DestroyTank();
         }
         else if(currentHealth <=25)
         {
@@ -276,6 +276,15 @@ public void EndRepair()
         foreach(NetworkTankInfo tank in tanks){
             tank.SetPlayerName();
         }
+    }
+    void DestroyTank()
+    {
+        if (tankCamera != null)
+        {
+            tankCamera.gameObject.SetActive(false);
+        }
+        gameObject.SetActive(false);
+        Destroy(gameObject,2f);
     }
 }
 
