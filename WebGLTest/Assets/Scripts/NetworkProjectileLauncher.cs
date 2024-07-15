@@ -21,6 +21,8 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     public float trailDuration = 2f;
     public float cooldownTime = 1f;
 
+    public GameObject reloadSoundObject; // Reference to the empty GameObject with the reload sound AudioSource
+
     private AudioSource audioSource;
     private Vector3 originalTurretPosition;
     private bool canFire = true;
@@ -69,6 +71,14 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
 
     IEnumerator Cooldown()
     {
+        if (reloadSoundObject != null)
+        {
+            AudioSource reloadAudioSource = reloadSoundObject.GetComponent<AudioSource>();
+            if (reloadAudioSource != null)
+            {
+                reloadAudioSource.Play();
+            }
+        }
         canFire = false;
         yield return new WaitForSeconds(cooldownTime);
         canFire = true;
