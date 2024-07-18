@@ -186,6 +186,13 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
     private Quaternion networkRotation;
     private Vector3 velocity = Vector3.zero;
     private float smoothTime = 0.1f; // Adjust this value for smoother transitions
+    private float rotationSmoothTime = 0.1f; // Adjust this value for smoother rotation transitions
+
+    private float positionThreshold = 0.01f; // Threshold for position changes
+    private float rotationThreshold = 0.1f;  // Threshold for rotation changes
+
+    private float lastNetworkUpdateTime = 0f;
+    private float interpolationTime = 0.1f; // Buffer time for interpolation
 
     void Start()
     {
@@ -211,6 +218,7 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
         {
             // Check if the tank is grounded
             isGrounded = CheckIfGrounded();
+
             if (isGrounded)
             {
                 // Movement based on W and S keys
@@ -263,18 +271,18 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
                     // Adjust pitch based on movement direction and magnitude
                     float minPitch = 0.7f; // Minimum pitch value
                     float maxPitch = 1.7f; // Maximum pitch value
-                    float pitch = minPitch; // Default to min pitch
+                    float pitch = 0f;
 
                     if (movementMagnitude > 0)
                     {
                         // Calculate pitch based on movement direction
                         if (verticalInput > 0) // Moving forward
                         {
-                            pitch = Mathf.Lerp(minPitch, maxPitch, verticalInput);
+                            pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude);
                         }
-                        else if (verticalInput < 0) // Moving backward
+                        else // Moving backward or strafing
                         {
-                            pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(verticalInput) / 2f);
+                            pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude / 2f);
                         }
                     }
 
@@ -302,11 +310,17 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
         else
         {
             // Smooth movement for other players
-            transform.position = Vector3.SmoothDamp(transform.position, networkPosition, ref velocity, smoothTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, networkRotation, Time.fixedDeltaTime * 5f);
+            if (Vector3.Distance(transform.position, networkPosition) > positionThreshold)
+            {
+                transform.position = Vector3.Lerp(transform.position, networkPosition, Time.fixedDeltaTime / interpolationTime);
+            }
+
+            if (Quaternion.Angle(transform.rotation, networkRotation) > rotationThreshold)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, networkRotation, Time.fixedDeltaTime / interpolationTime);
+            }
         }
     }
-
 
     private bool CheckIfGrounded()
     {
@@ -341,14 +355,9 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
             // Receive position and rotation data from other players
             networkPosition = (Vector3)stream.ReceiveNext();
             networkRotation = (Quaternion)stream.ReceiveNext();
+            lastNetworkUpdateTime = Time.time;
         }
     }
 }
-
-
-
-
-
-
 
 
