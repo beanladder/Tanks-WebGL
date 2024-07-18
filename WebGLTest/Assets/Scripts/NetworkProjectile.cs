@@ -116,7 +116,7 @@ public class NetworkProjectile : MonoBehaviour
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
-            damageAmt = Random.Range(2, 5);
+            damageAmt = Random.Range(4, 9);
 
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
             if (targetView != null)
