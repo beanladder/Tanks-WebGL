@@ -211,13 +211,10 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
         {
             // Check if the tank is grounded
             isGrounded = CheckIfGrounded();
-
             if (isGrounded)
             {
                 // Movement based on W and S keys
                 float verticalInput = Input.GetAxis("Vertical");
-
-               // Debug.Log("Vertical Input: " + verticalInput);
 
                 // Calculate force for forward/backward movement
                 Vector3 moveForce = transform.forward * verticalInput * acceleration * 10f; // Adjusted force multiplier
@@ -233,7 +230,6 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
                 {
                     rb.AddForce(moveForce, ForceMode.Acceleration); // Use Acceleration force mode for continuous movement
                 }
-                //Debug.Log("Move Force: " + moveForce);
 
                 // Rotation based on A and D keys
                 float horizontalInput = Input.GetAxis("Horizontal");
@@ -242,8 +238,6 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
                 {
                     horizontalInput *= -1f;
                 }
-
-                //Debug.Log("Horizontal Input: " + horizontalInput);
 
                 if (horizontalInput != 0f)
                 {
@@ -260,7 +254,6 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
 
                     float rotationAmount = horizontalInput * currentRotationSpeed * Time.fixedDeltaTime;
                     transform.Rotate(Vector3.up, rotationAmount);
-                    //Debug.Log("Rotation Amount: " + rotationAmount);
                 }
 
                 float movementMagnitude = Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput);
@@ -270,18 +263,18 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
                     // Adjust pitch based on movement direction and magnitude
                     float minPitch = 0.7f; // Minimum pitch value
                     float maxPitch = 1.7f; // Maximum pitch value
-                    float pitch = 0f;
+                    float pitch = minPitch; // Default to min pitch
 
                     if (movementMagnitude > 0)
                     {
                         // Calculate pitch based on movement direction
                         if (verticalInput > 0) // Moving forward
                         {
-                            pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude);
+                            pitch = Mathf.Lerp(minPitch, maxPitch, verticalInput);
                         }
-                        else // Moving backward or strafing
+                        else if (verticalInput < 0) // Moving backward
                         {
-                            pitch = Mathf.Lerp(minPitch, maxPitch, movementMagnitude / 2f);
+                            pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(verticalInput) / 2f);
                         }
                     }
 
@@ -313,6 +306,7 @@ public class NetworkSquareMovement : MonoBehaviourPun, IPunObservable
             transform.rotation = Quaternion.Slerp(transform.rotation, networkRotation, Time.fixedDeltaTime * 5f);
         }
     }
+
 
     private bool CheckIfGrounded()
     {
