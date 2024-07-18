@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 550046196}
   - component: {fileID: 550046198}
   - component: {fileID: 550046199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5923,7 +5923,7 @@ GameObject:
   - component: {fileID: 1106613872}
   - component: {fileID: 1106613874}
   - component: {fileID: 1106613875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5989,7 +5989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1316981366}
   - component: {fileID: 1316981365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6016,6 +6016,7 @@ MonoBehaviour:
   - {fileID: 1106613872}
   playerName: 
   sphereRadius: 10
+  localPlayerLayerName: Tank
 --- !u!4 &1316981366
 Transform:
   m_ObjectHideFlags: 0
