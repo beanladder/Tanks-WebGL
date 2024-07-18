@@ -118,7 +118,7 @@ public class TankInfo : MonoBehaviour
         repairCooldown = false;
         isRepairing = true;
         Debug.Log("Starting repair...");
-        HealthUIAnimation.instance.StartRepairAnimation();
+        //HealthUIAnimation.instance.StartRepairAnimation();
         squareMovementScript.enabled = false;
         moveAudio.enabled = false;
         repairAudio.Play();
@@ -141,7 +141,7 @@ public class TankInfo : MonoBehaviour
 
         Debug.Log("Repair complete. Healed " + healAmount + " health.");
         repairTime = 4f;
-        HealthUIAnimation.instance.StopRepairAnimation();
+        //HealthUIAnimation.instance.StopRepairAnimation();
         squareMovementScript.enabled = true;
         repairAudio.Stop();
         moveAudio.enabled = true;

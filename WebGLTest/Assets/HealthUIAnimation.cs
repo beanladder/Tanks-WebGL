@@ -66,10 +66,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class HealthUIAnimation : MonoBehaviour
 {
-    public static HealthUIAnimation instance;
     public Transform gearImage; // Reference to the gear image transform
     public float rotationSpeed = 180f; // Speed of rotation
 
@@ -77,19 +77,7 @@ public class HealthUIAnimation : MonoBehaviour
     private bool isRepairing = false; // Flag to indicate if the tank is currently in repair mode
     private Coroutine repairCoroutine; // Reference to the repair coroutine
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void Start()
+    private void Start()
     {
         if (gearImage == null)
         {

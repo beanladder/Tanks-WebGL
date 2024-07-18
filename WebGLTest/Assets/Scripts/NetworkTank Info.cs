@@ -37,6 +37,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     public float repairTime = 4f; // Time in seconds for repair
     private float healAmountMin = 5f; // Minimum amount of healing
     private float healAmountMax = 15f; // Maximum amount of healing
+    private HealthUIAnimation healthUIAnimation;
     private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
     [SerializeField]private CinemachineFreeLook tankCamera;
@@ -53,6 +54,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         // Initialize current health to max health at the start
         currentHealth = maxHealth;
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
+        healthUIAnimation = GetComponent<HealthUIAnimation>();
 
         // Update the health UI text
         UpdateHealthText();
@@ -158,7 +160,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         Debug.Log("Starting repair...");
         if (view.IsMine)
         {
-            HealthUIAnimation.instance.StartRepairAnimation();
+            healthUIAnimation.StartRepairAnimation();
         }
         view.RPC("DisableMovementAndPlayRepairAudio", RpcTarget.All);
     }
@@ -179,7 +181,7 @@ public void EndRepair()
     repairTime = 4f;
     if (view.IsMine)
     {
-        HealthUIAnimation.instance.StopRepairAnimation();
+            healthUIAnimation.StopRepairAnimation();
     }
     view.RPC("EnableMovementAndStopRepairAudio", RpcTarget.All);
     repairCooldown = true;
