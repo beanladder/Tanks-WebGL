@@ -4540,6 +4540,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 4718037483269194102}
   - {fileID: 7806898109913982735}
   sceneViewId: 0
   InstantiationId: 0
@@ -4560,17 +4561,17 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
-    InterpolateMoveTowardsSpeed: 1
+    InterpolateOption: 1
+    InterpolateMoveTowardsSpeed: 15
     InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
+    ExtrapolateOption: 3
+    ExtrapolateSpeed: 15
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
   m_RotationModel:
     SynchronizeEnabled: 1
     InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
+    InterpolateRotateTowardsSpeed: 360
     InterpolateLerpSpeed: 5
   m_ScaleModel:
     SynchronizeEnabled: 0
@@ -7498,7 +7499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.026926469, y: 0.62580657, z: -0.021625353, w: 0.7792133}
+  m_LocalRotation: {x: 0.026926473, y: 0.62580657, z: -0.021625353, w: 0.7792134}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
