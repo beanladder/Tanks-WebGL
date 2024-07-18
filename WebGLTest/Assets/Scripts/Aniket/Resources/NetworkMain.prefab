@@ -4291,6 +4291,7 @@ GameObject:
   - component: {fileID: 6295625071342549711}
   - component: {fileID: 2526607923429415247}
   - component: {fileID: 7806898109913982735}
+  - component: {fileID: 3623411678378108817}
   m_Layer: 0
   m_Name: NetworkMain
   m_TagString: Tank
@@ -4562,7 +4563,7 @@ MonoBehaviour:
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 1
-    InterpolateMoveTowardsSpeed: 15
+    InterpolateMoveTowardsSpeed: 10
     InterpolateLerpSpeed: 1
     ExtrapolateOption: 3
     ExtrapolateSpeed: 15
@@ -4578,6 +4579,20 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &3623411678378108817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324328266891732362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ca089a0ef8a1d43969b34b091cf87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gearImage: {fileID: 6401432302044135857}
+  rotationSpeed: 180
 --- !u!1 &1354106883447623182
 GameObject:
   m_ObjectHideFlags: 0
@@ -22476,7 +22491,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5801668124936511553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7ca089a0ef8a1d43969b34b091cf87f, type: 3}
   m_Name: 
