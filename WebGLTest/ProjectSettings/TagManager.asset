@@ -9,6 +9,7 @@ TagManager:
   - Tank
   - Cylinder
   - Wall
+  - Track
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Tank
   - Exclude
-  - 
-  - 
+  - Wall
+  - Cylinder
   - 
   - 
   - 
