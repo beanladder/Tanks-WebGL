@@ -27,6 +27,8 @@ public class RaycastController : MonoBehaviour
             // If the raycast hits an object within maxDistance
             // Place the target object at the hit point
             targetObject.transform.position = hit.point;
+            Debug.Log($"Hit object: {hit.collider.gameObject.name}, Transform: {hit.collider.transform.position}");
+
         }
         else
         {
