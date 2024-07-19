@@ -286,7 +286,7 @@ public void EndRepair()
             tankCamera.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
-        Destroy(gameObject,2f);
+        PhotonNetwork.Destroy(gameObject);
     }
 }
 
