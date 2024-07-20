@@ -136,14 +136,15 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             }
 
             // Get the PhotonView of the shooter
-            if (photonView.Owner != null && photonView.Owner.TagObject is PhotonView shooterView)
+            if (photonView.Owner != null && photonView.Owner.TagObject is GameObject shooter)
             {
-                HUDManager hudManager = shooterView.GetComponent<HUDManager>();
+                HUDManager hudManager = shooter.GetComponent<HUDManager>();
                 if (hudManager != null)
                 {
                     hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
                 }
             }
+
 
             Destroy(gameObject);
         }
