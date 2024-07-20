@@ -140,6 +140,7 @@ MonoBehaviour:
   TankHitAudio: {fileID: 8501579764895434895}
   boomPrefab: {fileID: 7450942800769748867, guid: 6e019b6b817a87b4d8c142754b87c66a, type: 3}
   hitwallPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
+  maxLifetime: 5
 --- !u!64 &7005528360984571161
 MeshCollider:
   m_ObjectHideFlags: 0

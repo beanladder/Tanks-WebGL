@@ -58,6 +58,9 @@ MonoBehaviour:
   - StartRepair
   - SetTankName
   - PlayRicochetSound
+  - ReturnToPool
+  - RPCReturnToPool
+  - SyncProjectile
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

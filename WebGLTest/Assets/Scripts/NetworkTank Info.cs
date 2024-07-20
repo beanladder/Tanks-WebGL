@@ -42,6 +42,10 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     private AudioSource moveAudio;
     [SerializeField]private CinemachineFreeLook tankCamera;
     PhotonView view;
+
+
+    private HUDManager hudManager;
+
     void Awake(){
         instance = this;
     }
@@ -55,6 +59,11 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         currentHealth = maxHealth;
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
         healthUIAnimation = GetComponent<HealthUIAnimation>();
+
+        if (photonView.IsMine)
+        {
+            hudManager = FindObjectOfType<HUDManager>();
+        }
 
         // Update the health UI text
         UpdateHealthText();
@@ -107,41 +116,46 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void TakeDamage(int damage, PhotonMessageInfo info)
+    public void TakeDamage(int damage, int shooterViewID)
     {
-        int hitResistor = 1;
         currentHealth -= damage;
         StartCoroutine(HealthDeduction(damage));
-        
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
-        // Update the health UI text
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        PhotonView shooterView = PhotonView.Find(shooterViewID);
+        if (shooterView != null && shooterView.IsMine)
+        {
+            hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
+        }
+
         if (currentHealth <= 0)
         {
-            if (view.IsMine)
+            if (shooterView != null && shooterView.IsMine)
+            {
+                hudManager.photonView.RPC("ShowKillmarker", RpcTarget.All);
+            }
+            if (photonView.IsMine)
             {
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
             DestructionPhase();
             DestroyTank();
         }
-        else if(currentHealth <=25)
+        else if (currentHealth <= 25)
         {
             maxHealth = 75;
-            hitResistor=hitResistor+3;
         }
-        else if(currentHealth <=45)
+        else if (currentHealth <= 45)
         {
             maxHealth = 82;
-            hitResistor=hitResistor+2;
         }
-        else if(currentHealth <= 60)
+        else if (currentHealth <= 60)
         {
             maxHealth = 93;
-            hitResistor++;
         }
-        
-        maxHealth=maxHealth-hitResistor;
+
+        UpdateHealthText();
     }
 
     public void mobileRepair()
