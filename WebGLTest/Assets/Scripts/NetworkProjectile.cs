@@ -85,7 +85,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class NetworkProjectile : MonoBehaviour
+public class NetworkProjectile : MonoBehaviourPunCallbacks
 {
     public AudioSource Boom;
     public AudioSource[] Ricochet;
@@ -136,8 +136,7 @@ public class NetworkProjectile : MonoBehaviour
             }
 
             // Get the PhotonView of the shooter
-            PhotonView shooterView = projectilePhotonView.Owner.TagObject as PhotonView;
-            if (shooterView != null)
+            if (photonView.Owner != null && photonView.Owner.TagObject is PhotonView shooterView)
             {
                 HUDManager hudManager = shooterView.GetComponent<HUDManager>();
                 if (hudManager != null)
