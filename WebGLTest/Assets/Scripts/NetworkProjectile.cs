@@ -141,7 +141,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
                 HUDManager hudManager = shooter.GetComponent<HUDManager>();
                 if (hudManager != null)
                 {
-                    hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
+                    hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
                 }
             }
 
