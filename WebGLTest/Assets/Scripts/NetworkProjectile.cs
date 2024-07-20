@@ -90,8 +90,8 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
     public AudioSource Boom;
     public AudioSource[] Ricochet;
     public GameObject TankHitAudio;
-    public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
-    public GameObject hitwallPrefab; // Prefab to instantiate when hitting a wall/prop
+    public GameObject boomPrefab;
+    public GameObject hitwallPrefab;
     private int damageAmt;
 
     private PhotonView projectilePhotonView;
@@ -125,7 +125,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             Destroy(audioCont, 2f);
             damageAmt = Random.Range(4, 9);
             Vector3 impactPosition = collision.contacts[0].point;
-            float impulseForce = damageAmt / 5f; // Adjust as needed
+            float impulseForce = damageAmt / 5f;
             Vector3 impulseDirection = (impactPosition - transform.position).normalized;
 
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
@@ -144,7 +144,6 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
                     hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
                 }
             }
-
 
             Destroy(gameObject);
         }
@@ -177,3 +176,4 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
         }
     }
 }
+
