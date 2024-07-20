@@ -144,6 +144,20 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         maxHealth=maxHealth-hitResistor;
     }
 
+    [PunRPC]
+    public void ShakeCamera(Vector3 impactPosition, Vector3 impulseDirection, float impulseForce)
+    {
+        if (view.IsMine && tankCamera != null)
+        {
+            CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
+            if (impulseSource != null)
+            {
+                Vector3 force = impulseDirection * impulseForce;
+                impulseSource.GenerateImpulseAt(impactPosition, force);
+            }
+        }
+    }
+
     public void mobileRepair()
     {
         if (currentHealth < maxHealth && repairCooldown)
