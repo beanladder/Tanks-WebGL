@@ -28717,18 +28717,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4794418601730149315, guid: 3957b06bc45c57c468ea842f3176b250, type: 3}
-  barrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
-  barrelFlashPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
-  smokeGrenadePrefab: {fileID: 589028992470324655, guid: e909867f93eb368498f139677de143e6, type: 3}
+  BarrelSmokePrefab: {fileID: 18047338104297236, guid: b15cacca664c32e4089c382774a867b5, type: 3}
+  BarrelFlashPrefab: {fileID: 5607255460258089918, guid: 803114e6cd754c5409a51190f9022f90, type: 3}
+  SmokeGrenadePrefab: {fileID: 589028992470324655, guid: e909867f93eb368498f139677de143e6, type: 3}
+  trailPrefab: {fileID: 8239218304392185808, guid: ea4e87b6c8b9cbb4b93e474ba94f8ddb, type: 3}
   firePoint: {fileID: 6879408442032917287}
   turret: {fileID: 4121236635223676754}
   target: {fileID: 8207396235333026693}
+  force: 10
   speed: 185
   recoilDistance: 0.1
   recoilDuration: 0.1
+  trailDuration: 2
   cooldownTime: 3
-  fireSound: {fileID: 8300000, guid: e1c2729d800734e1c9beaa90b3b868f3, type: 3}
-  reloadSound: {fileID: 8300000, guid: aabd051a075381844909700625331875, type: 3}
+  reloadSoundObject: {fileID: 3329745289782572716}
 --- !u!82 &212924047754472705
 AudioSource:
   m_ObjectHideFlags: 0
