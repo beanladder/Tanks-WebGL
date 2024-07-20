@@ -40,13 +40,10 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     private HealthUIAnimation healthUIAnimation;
     private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
-    [SerializeField]private CinemachineFreeLook tankCamera;
+    [SerializeField] private CinemachineFreeLook tankCamera;
     PhotonView view;
-
-
-    private HUDManager hudManager;
-
-    void Awake(){
+    void Awake()
+    {
         instance = this;
     }
     void Start()
@@ -60,18 +57,13 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         healthText = GameObject.Find("Health").GetComponent<TMP_Text>();
         healthUIAnimation = GetComponent<HealthUIAnimation>();
 
-        if (photonView.IsMine)
-        {
-            hudManager = FindObjectOfType<HUDManager>();
-        }
-
         // Update the health UI text
         UpdateHealthText();
         // if(view.IsMine && PhotonNetwork.LocalPlayer!=null){
         //     playerName = PhotonNetwork.LocalPlayer.NickName;
         //     Debug.Log("Player name : "+playerName);
         // }
-        
+
         // if(tankNameText!=null){
         //     tankNameText.text = playerName;
         // }
@@ -81,7 +73,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if(view.IsMine)
+        if (view.IsMine)
         {
             UpdateHealthText();
             // Check if the repair key is pressed
@@ -89,7 +81,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             {
                 // Start the repair process
                 //StartRepair();
-                view.RPC("StartRepair",RpcTarget.All);
+                view.RPC("StartRepair", RpcTarget.All);
             }
 
             // If currently repairing, decrease repair time
@@ -102,40 +94,33 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                 {
                     // End repair process
                     //EndRepair();
-                    view.RPC("EndRepair",RpcTarget.All);
+                    view.RPC("EndRepair", RpcTarget.All);
                 }
             }
         }
         if (!view.IsMine && tankNameText != null)
         {
-            if(Camera.main!=null){
+            if (Camera.main != null)
+            {
                 tankNameText.transform.LookAt(Camera.main.transform);
-            }                                                                        
+            }
             tankNameText.transform.Rotate(Vector3.up, 180f);
         }
     }
 
     [PunRPC]
-    public void TakeDamage(int damage, int shooterViewID)
+    public void TakeDamage(int damage, PhotonMessageInfo info)
     {
+        int hitResistor = 1;
         currentHealth -= damage;
         StartCoroutine(HealthDeduction(damage));
 
-        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
-        PhotonView shooterView = PhotonView.Find(shooterViewID);
-        if (shooterView != null && shooterView.IsMine)
-        {
-            hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
-        }
-
+        // Update the health UI text
         if (currentHealth <= 0)
         {
-            if (shooterView != null && shooterView.IsMine)
-            {
-                hudManager.photonView.RPC("ShowKillmarker", RpcTarget.All);
-            }
-            if (photonView.IsMine)
+            if (view.IsMine)
             {
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
@@ -145,17 +130,20 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         else if (currentHealth <= 25)
         {
             maxHealth = 75;
+            hitResistor = hitResistor + 3;
         }
         else if (currentHealth <= 45)
         {
             maxHealth = 82;
+            hitResistor = hitResistor + 2;
         }
         else if (currentHealth <= 60)
         {
             maxHealth = 93;
+            hitResistor++;
         }
 
-        UpdateHealthText();
+        maxHealth = maxHealth - hitResistor;
     }
 
     [PunRPC]
@@ -193,27 +181,27 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         view.RPC("DisableMovementAndPlayRepairAudio", RpcTarget.All);
     }
 
-[PunRPC]
-public void EndRepair()
-{
-    isRepairing = false;
-
-    // Generate random healing amount
-    float healAmount = Random.Range(healAmountMin, healAmountMax);
-
-    // Clamp heal amount so it doesn't exceed maxHealth
-    StartCoroutine(HealthAddition(healAmount));
-
-    // Update the health UI text
-    Debug.Log("Repair complete. Healed " + healAmount + " health.");
-    repairTime = 4f;
-    if (view.IsMine)
+    [PunRPC]
+    public void EndRepair()
     {
+        isRepairing = false;
+
+        // Generate random healing amount
+        float healAmount = Random.Range(healAmountMin, healAmountMax);
+
+        // Clamp heal amount so it doesn't exceed maxHealth
+        StartCoroutine(HealthAddition(healAmount));
+
+        // Update the health UI text
+        Debug.Log("Repair complete. Healed " + healAmount + " health.");
+        repairTime = 4f;
+        if (view.IsMine)
+        {
             healthUIAnimation.StopRepairAnimation();
+        }
+        view.RPC("EnableMovementAndStopRepairAudio", RpcTarget.All);
+        repairCooldown = true;
     }
-    view.RPC("EnableMovementAndStopRepairAudio", RpcTarget.All);
-    repairCooldown = true;
-}
 
     [PunRPC]
     public void DisableMovementAndPlayRepairAudio()
@@ -278,22 +266,28 @@ public void EndRepair()
             healthIndicator.SetActive(false);
         }
     }
-    public void SetPlayerName(){
-        if(view.IsMine && PhotonNetwork.LocalPlayer != null){
+    public void SetPlayerName()
+    {
+        if (view.IsMine && PhotonNetwork.LocalPlayer != null)
+        {
             playerName = PhotonNetwork.LocalPlayer.NickName;
         }
-        else if(!view.IsMine && view.Owner != null){
+        else if (!view.IsMine && view.Owner != null)
+        {
             playerName = view.Owner.NickName;
         }
-        if(tankNameText != null){
-            if(view.IsMine){
+        if (tankNameText != null)
+        {
+            if (view.IsMine)
+            {
                 tankNameText.gameObject.SetActive(false);
             }
-            else{
+            else
+            {
                 tankNameText.text = playerName;
                 tankNameText.gameObject.SetActive(true);
             }
-            
+
         }
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -301,9 +295,11 @@ public void EndRepair()
         base.OnPlayerEnteredRoom(newPlayer);
         UpdateNamesForAllPlayers();
     }
-    public void UpdateNamesForAllPlayers(){
-        NetworkTankInfo [] tanks = FindObjectsOfType<NetworkTankInfo>();
-        foreach(NetworkTankInfo tank in tanks){
+    public void UpdateNamesForAllPlayers()
+    {
+        NetworkTankInfo[] tanks = FindObjectsOfType<NetworkTankInfo>();
+        foreach (NetworkTankInfo tank in tanks)
+        {
             tank.SetPlayerName();
         }
     }
@@ -317,5 +313,6 @@ public void EndRepair()
         PhotonNetwork.Destroy(gameObject);
     }
 }
+
 
 
