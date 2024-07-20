@@ -310,7 +310,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             tankCamera.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
-        PhotonNetwork.Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject, 2f);
     }
 }
 
