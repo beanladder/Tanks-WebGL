@@ -158,6 +158,20 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         UpdateHealthText();
     }
 
+    [PunRPC]
+    public void ShakeCamera(Vector3 impactPosition, Vector3 impulseDirection, float impulseForce)
+    {
+        if (view.IsMine && tankCamera != null)
+        {
+            CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
+            if (impulseSource != null)
+            {
+                Vector3 force = impulseDirection * impulseForce;
+                impulseSource.GenerateImpulseAt(impactPosition, force);
+            }
+        }
+    }
+
     public void mobileRepair()
     {
         if (currentHealth < maxHealth && repairCooldown)
@@ -300,7 +314,7 @@ public void EndRepair()
             tankCamera.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
-        Destroy(gameObject,2f);
+        PhotonNetwork.Destroy(gameObject);
     }
 }
 

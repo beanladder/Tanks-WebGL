@@ -139,6 +139,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
                  collision.gameObject.CompareTag("Wall") ||
                  collision.gameObject.CompareTag("Ground"))
         {
+
             hasHitFinalTarget = true;
             DisableProjectile(); // Immediately disable the projectile
             HandleFinalCollision(collision);
@@ -163,6 +164,29 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
         if (collision.gameObject.CompareTag("Tank"))
         {
             HandleTankCollision(collision);
+
+            gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
+            gameObject.GetComponent<Renderer>().enabled = false;
+            GameObject explosion = Instantiate(boomPrefab, collision.contacts[0].point, Quaternion.identity);
+            Destroy(explosion, 2f);
+            GameObject audioCont = Instantiate(TankHitAudio, collision.contacts[0].point, Quaternion.identity);
+            AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
+            audioSrc.Play();
+            Destroy(audioCont, 2f);
+            damageAmt = Random.Range(4, 9);
+            Vector3 impactPosition = collision.contacts[0].point;
+            float impulseForce = damageAmt / 5f; // Adjust as needed
+            Vector3 impulseDirection = (impactPosition - transform.position).normalized;
+
+            PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
+            if (targetView != null)
+            {
+                targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
+                targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
+            }
+            //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+            Destroy(gameObject);
+
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
