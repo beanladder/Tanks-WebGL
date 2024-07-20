@@ -61,6 +61,10 @@ MonoBehaviour:
   - ReturnToPool
   - RPCReturnToPool
   - SyncProjectile
+  - ShowHitmarker
+  - ShowKillmarker
+  - ShakeCamera
+  - ShowMarker
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
