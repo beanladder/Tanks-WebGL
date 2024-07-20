@@ -94,6 +94,13 @@ public class NetworkProjectile : MonoBehaviour
     public GameObject hitwallPrefab; // Prefab to instantiate when hitting a wall/prop
     private int damageAmt;
 
+    private PhotonView projectilePhotonView;
+
+    private void Start()
+    {
+        projectilePhotonView = GetComponent<PhotonView>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         HandleProjectileCollision(collision);
@@ -127,7 +134,18 @@ public class NetworkProjectile : MonoBehaviour
                 targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
                 targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
             }
-            //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
+
+            // Get the PhotonView of the shooter
+            PhotonView shooterView = projectilePhotonView.Owner.TagObject as PhotonView;
+            if (shooterView != null)
+            {
+                HUDManager hudManager = shooterView.GetComponent<HUDManager>();
+                if (hudManager != null)
+                {
+                    hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
+                }
+            }
+
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))

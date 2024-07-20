@@ -8,16 +8,11 @@ public class HUDManager : MonoBehaviourPunCallbacks
 {
     public GameObject hitmarker;
     public GameObject killmarker;
-    //public Text killCountText;
     public GameObject hudCanvas;
-
-    private int killCount = 0;
-    private PhotonView photonViewID;
 
     void Start()
     {
-        photonViewID = GetComponent<PhotonView>();
-        if (!photonViewID.IsMine)
+        if (!photonView.IsMine)
         {
             hudCanvas.SetActive(false);
         }
@@ -26,20 +21,18 @@ public class HUDManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ShowHitmarker()
     {
-        if (photonViewID.IsMine)
+        if (photonView.IsMine)
         {
-            StartCoroutine(ShowMarker(hitmarker, 1.7f));
+            StartCoroutine(ShowMarker(hitmarker, 0.5f));
         }
     }
 
     [PunRPC]
     public void ShowKillmarker()
     {
-        if (photonViewID.IsMine)
+        if (photonView.IsMine)
         {
-            StartCoroutine(ShowMarker(killmarker, 2f));
-            killCount++;
-            //UpdateKillCount();
+            StartCoroutine(ShowMarker(killmarker, 1f));
         }
     }
 
@@ -49,9 +42,4 @@ public class HUDManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(duration);
         marker.SetActive(false);
     }
-
-    /*private void UpdateKillCount()
-    {
-        killCountText.text = "Kills: " + killCount;
-    }*/
 }
