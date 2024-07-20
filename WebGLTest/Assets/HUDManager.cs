@@ -23,7 +23,7 @@ public class HUDManager : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            StartCoroutine(ShowMarker(hitmarker, 0.5f));
+            StartCoroutine(ShowMarker(hitmarker, 1.75f));
         }
     }
 
@@ -32,7 +32,7 @@ public class HUDManager : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            StartCoroutine(ShowMarker(killmarker, 1f));
+            StartCoroutine(ShowMarker(killmarker, 2f));
         }
     }
 
