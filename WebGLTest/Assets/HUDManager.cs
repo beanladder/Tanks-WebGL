@@ -36,6 +36,7 @@ public class HUDManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
     private IEnumerator ShowMarker(GameObject marker, float duration)
     {
         marker.SetActive(true);
