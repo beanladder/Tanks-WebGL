@@ -124,7 +124,7 @@ public class NetworkProjectile : MonoBehaviour
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
             if (targetView != null)
             {
-                targetView.RPC("TakeDamage", RpcTarget.All, damageAmt, PhotonNetwork.LocalPlayer.ActorNumber); // Pass the shooter's ID
+                targetView.RPC("TakeDamage", RpcTarget.All, damageAmt, GetComponent<PhotonView>().ViewID);
                 targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
             }
             Destroy(gameObject);

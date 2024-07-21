@@ -4519,7 +4519,6 @@ MonoBehaviour:
   repairAudio: {fileID: 2180740599534114749}
   repairTime: 4
   tankCamera: {fileID: 3123428190563532760}
-  hudManager: {fileID: 3376433752242023840}
 --- !u!82 &7963035148965281489
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4813,9 +4812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f298853e8ef7dd141ba19d9dcda625ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitmarker: {fileID: 8970080271623255057}
-  killmarker: {fileID: 6891440198034544575}
-  hudCanvas: {fileID: 219127403042168676}
+  hitMarker: {fileID: 8970080271623255057}
+  killMarker: {fileID: 6891440198034544575}
 --- !u!1 &1354106883447623182
 GameObject:
   m_ObjectHideFlags: 0

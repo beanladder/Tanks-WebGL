@@ -41,7 +41,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
     [SerializeField] private CinemachineFreeLook tankCamera;
-    public HUDManager hudManager; // Reference to the HUDManager
     PhotonView view;
 
     void Awake()
@@ -74,7 +73,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             // Check if the repair key is pressed
             if (Input.GetKeyDown(repairKey) && currentHealth < maxHealth && repairCooldown)
             {
-                // Start the repair process
                 view.RPC("StartRepair", RpcTarget.All);
             }
 
@@ -86,7 +84,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                 // Check if repair time is over
                 if (repairTime <= 0f)
                 {
-                    // End repair process
                     view.RPC("EndRepair", RpcTarget.All);
                 }
             }
@@ -110,10 +107,15 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
-        // Show hit marker
-        if (view.IsMine && hudManager != null)
+        // Notify the shooter to show the hit marker
+        PhotonView shooterView = PhotonView.Find(shooterId);
+        if (shooterView != null && shooterView.IsMine)
         {
-            hudManager.ShowHitmarker();
+            HUDManager shooterHUDManager = FindObjectOfType<HUDManager>();
+            if (shooterHUDManager != null)
+            {
+                shooterHUDManager.ShowHitmarker();
+            }
         }
 
         if (currentHealth <= 0)
@@ -123,7 +125,11 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                 // Show kill marker if destroyed by the current player
                 if (PhotonNetwork.LocalPlayer.ActorNumber == shooterId)
                 {
-                    hudManager.ShowKillmarker();
+                    HUDManager localHUDManager = FindObjectOfType<HUDManager>();
+                    if (localHUDManager != null)
+                    {
+                        localHUDManager.ShowKillmarker();
+                    }
                 }
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
@@ -171,6 +177,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             StartRepair();
         }
     }
+
     [PunRPC]
     public void StartRepair()
     {
@@ -210,109 +217,82 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     public void DisableMovementAndPlayRepairAudio()
     {
         networkSquareMovementScript.enabled = false;
-        moveAudio.enabled = false;
-        repairAudio.Play();
+        if (moveAudio != null && moveAudio.isPlaying)
+        {
+            moveAudio.Stop();
+        }
+        if (repairAudio != null)
+        {
+            repairAudio.Play();
+        }
     }
 
     [PunRPC]
     public void EnableMovementAndStopRepairAudio()
     {
         networkSquareMovementScript.enabled = true;
-        repairAudio.Stop();
-        moveAudio.enabled = true;
+        if (repairAudio != null)
+        {
+            repairAudio.Stop();
+        }
     }
 
-    public void DestructionPhase()
+    public IEnumerator HealthDeduction(float deduction)
     {
-        GameObject newDestroy = Instantiate(destroyPrefab, transform.position, transform.rotation);
-        Destroy(newDestroy, 2.5f);
-    }
-
-    public IEnumerator HealthAddition(float heal)
-    {
-        Debug.Log("Repair Animation should start");
-        healthAddUI.SetActive(true);
-        TMP_Text healText = healthAddUI.GetComponent<TMP_Text>();
-        healText.text = heal.ToString("0");
-        yield return new WaitForSeconds(1f);
-        healthAddUI.SetActive(false);
-        float potentialHealth = currentHealth + heal;
-        currentHealth = Mathf.Clamp(potentialHealth, 0f, maxHealth);
-    }
-
-    public IEnumerator HealthDeduction(float damage)
-    {
-        Debug.Log("Tank should take damage");
         healthDeductUI.SetActive(true);
-        TMP_Text damagetext = healthDeductUI.GetComponent<TMP_Text>();
-        damagetext.text = damage.ToString("0");
-        yield return new WaitForSeconds(1f);
+        healthDeductUI.GetComponent<TextMeshProUGUI>().text = "-" + deduction;
+        yield return new WaitForSeconds(1.5f);
         healthDeductUI.SetActive(false);
+    }
+
+    public IEnumerator HealthAddition(float addition)
+    {
+        currentHealth += addition;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Ensure currentHealth doesn't exceed maxHealth
+        UpdateHealthText();
+        healthAddUI.SetActive(true);
+        healthAddUI.GetComponent<TextMeshProUGUI>().text = "+" + addition;
+        yield return new WaitForSeconds(1.5f);
+        healthAddUI.SetActive(false);
     }
 
     private void UpdateHealthText()
     {
-        if (healthText != null)
-        {
-            healthText.text = currentHealth.ToString("0");
-        }
+        healthText.text = "Health: " + currentHealth.ToString();
+    }
 
-        // Check if health is below 60
-        if (currentHealth < 60f)
+    private void SetPlayerName()
+    {
+        if (view.IsMine)
         {
-            // Enable the health indicator game object
-            healthIndicator.SetActive(true);
-        }
-        else
-        {
-            // Disable the health indicator game object
-            healthIndicator.SetActive(false);
+            playerName = PhotonNetwork.NickName;
+            view.RPC("UpdateTankName", RpcTarget.AllBuffered, playerName);
         }
     }
-    public void SetPlayerName()
-    {
-        if (view.IsMine && PhotonNetwork.LocalPlayer != null)
-        {
-            playerName = PhotonNetwork.LocalPlayer.NickName;
-        }
-        else if (!view.IsMine && view.Owner != null)
-        {
-            playerName = view.Owner.NickName;
-        }
-        if (tankNameText != null)
-        {
-            if (view.IsMine)
-            {
-                tankNameText.gameObject.SetActive(false);
-            }
-            else
-            {
-                tankNameText.text = playerName;
-                tankNameText.gameObject.SetActive(true);
-            }
 
-        }
-    }
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    [PunRPC]
+    private void UpdateTankName(string name)
     {
-        base.OnPlayerEnteredRoom(newPlayer);
-        UpdateNamesForAllPlayers();
+        tankNameText.text = name;
     }
-    public void UpdateNamesForAllPlayers()
+
+    private void UpdateNamesForAllPlayers()
     {
-        NetworkTankInfo[] tanks = FindObjectsOfType<NetworkTankInfo>();
-        foreach (NetworkTankInfo tank in tanks)
+        NetworkTankInfo[] allPlayers = FindObjectsOfType<NetworkTankInfo>();
+        foreach (NetworkTankInfo player in allPlayers)
         {
-            tank.SetPlayerName();
+            player.SetPlayerName();
         }
     }
-    IEnumerator DestroyTank()
+
+    private void DestructionPhase()
     {
-        if (tankCamera != null)
-        {
-            tankCamera.gameObject.SetActive(false);
-        }
-        gameObject.SetActive(false);
+        GameObject explosion = Instantiate(destroyPrefab, transform.position, transform.rotation);
+        Destroy(explosion, 2f);
+    }
+
+    private IEnumerator DestroyTank()
+    {
         yield return new WaitForSeconds(2f);
         PhotonNetwork.Destroy(gameObject);
     }
