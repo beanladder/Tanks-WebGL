@@ -131,6 +131,11 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
             if (targetView != null)
             {
+                projectilePhotonView = gameObject.GetComponent<PhotonView>();
+                if (projectilePhotonView != null)
+                {
+                    projectilePhotonView.RPC("ShowHitmarker", RpcTarget.All);
+                }
                 targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
                 targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
             }
@@ -141,7 +146,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
                 HUDManager hudManager = shooter.GetComponent<HUDManager>();
                 if (hudManager != null)
                 {
-                    hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
+                    hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
                 }
             }
 

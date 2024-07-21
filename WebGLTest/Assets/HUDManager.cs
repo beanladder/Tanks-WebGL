@@ -19,7 +19,7 @@ public class HUDManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void ShowHitmarker(Vector3 impactPosition, Vector3 impulseDirection, float impulseForce)
+    public void ShowHitmarker()
     {
         if (photonView.IsMine)
         {
@@ -36,7 +36,6 @@ public class HUDManager : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
     private IEnumerator ShowMarker(GameObject marker, float duration)
     {
         marker.SetActive(true);
