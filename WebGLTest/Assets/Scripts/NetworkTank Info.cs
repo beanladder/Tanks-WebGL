@@ -41,11 +41,14 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     private NetworkSquareMovement networkSquareMovementScript;
     private AudioSource moveAudio;
     [SerializeField] private CinemachineFreeLook tankCamera;
+    public HUDManager hudManager; // Reference to the HUDManager
     PhotonView view;
+
     void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
         repairCooldown = true;
@@ -59,14 +62,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
         // Update the health UI text
         UpdateHealthText();
-        // if(view.IsMine && PhotonNetwork.LocalPlayer!=null){
-        //     playerName = PhotonNetwork.LocalPlayer.NickName;
-        //     Debug.Log("Player name : "+playerName);
-        // }
-
-        // if(tankNameText!=null){
-        //     tankNameText.text = playerName;
-        // }
         SetPlayerName();
         UpdateNamesForAllPlayers();
     }
@@ -80,7 +75,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             if (Input.GetKeyDown(repairKey) && currentHealth < maxHealth && repairCooldown)
             {
                 // Start the repair process
-                //StartRepair();
                 view.RPC("StartRepair", RpcTarget.All);
             }
 
@@ -93,7 +87,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                 if (repairTime <= 0f)
                 {
                     // End repair process
-                    //EndRepair();
                     view.RPC("EndRepair", RpcTarget.All);
                 }
             }
@@ -109,7 +102,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void TakeDamage(int damage, PhotonMessageInfo info)
+    public void TakeDamage(int damage, int shooterId)
     {
         int hitResistor = 1;
         currentHealth -= damage;
@@ -117,15 +110,25 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
-        // Update the health UI text
+        // Show hit marker
+        if (view.IsMine && hudManager != null)
+        {
+            hudManager.ShowHitmarker();
+        }
+
         if (currentHealth <= 0)
         {
             if (view.IsMine)
             {
+                // Show kill marker if destroyed by the current player
+                if (PhotonNetwork.LocalPlayer.ActorNumber == shooterId)
+                {
+                    hudManager.ShowKillmarker();
+                }
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
             DestructionPhase();
-            DestroyTank();
+            StartCoroutine(DestroyTank());
         }
         else if (currentHealth <= 25)
         {
@@ -303,13 +306,14 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             tank.SetPlayerName();
         }
     }
-    void DestroyTank()
+    IEnumerator DestroyTank()
     {
         if (tankCamera != null)
         {
             tankCamera.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
         PhotonNetwork.Destroy(gameObject);
     }
 }
