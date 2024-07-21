@@ -8,23 +8,21 @@ public class HUDManager : MonoBehaviour
 {
     public GameObject hitMarker;
     public GameObject killMarker;
-    private float hitMarkerDisplayTime = 2f; // Duration for displaying hit marker
-    private float killMarkerDisplayTime = 3f; // Duration for displaying kill marker
 
     public void ShowHitmarker()
     {
-        StartCoroutine(ShowMarker(hitMarker, hitMarkerDisplayTime));
+        StartCoroutine(ShowMarker(hitMarker));
     }
 
     public void ShowKillmarker()
     {
-        StartCoroutine(ShowMarker(killMarker, killMarkerDisplayTime));
+        StartCoroutine(ShowMarker(killMarker));
     }
 
-    private IEnumerator ShowMarker(GameObject marker, float displayTime)
+    private IEnumerator ShowMarker(GameObject marker)
     {
         marker.SetActive(true);
-        yield return new WaitForSeconds(displayTime);
+        yield return new WaitForSeconds(0.5f); // Display marker for 0.5 seconds
         marker.SetActive(false);
     }
 }

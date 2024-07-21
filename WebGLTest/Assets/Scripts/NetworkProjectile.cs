@@ -93,6 +93,12 @@ public class NetworkProjectile : MonoBehaviour
     public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
     public GameObject hitwallPrefab; // Prefab to instantiate when hitting a wall/prop
     private int damageAmt;
+    private int ownerId;
+
+    public void SetOwnerId(int id)
+    {
+        ownerId = id;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -124,8 +130,15 @@ public class NetworkProjectile : MonoBehaviour
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
             if (targetView != null)
             {
-                targetView.RPC("TakeDamage", RpcTarget.All, damageAmt, GetComponent<PhotonView>().ViewID);
+                targetView.RPC("TakeDamage", RpcTarget.All, damageAmt, ownerId);
                 targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
+
+                // Trigger hit marker for the owner of the projectile
+                NetworkTankInfo ownerTank = PhotonView.Find(ownerId).GetComponent<NetworkTankInfo>();
+                if (ownerTank != null)
+                {
+                    ownerTank.ShowHitMarker();
+                }
             }
             Destroy(gameObject);
         }

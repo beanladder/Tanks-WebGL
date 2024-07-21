@@ -4519,6 +4519,7 @@ MonoBehaviour:
   repairAudio: {fileID: 2180740599534114749}
   repairTime: 4
   tankCamera: {fileID: 3123428190563532760}
+  hudManager: {fileID: 3376433752242023840}
 --- !u!82 &7963035148965281489
 AudioSource:
   m_ObjectHideFlags: 0
