@@ -885,7 +885,6 @@ GameObject:
   - component: {fileID: 4246965251926374036}
   - component: {fileID: 1626436229599038049}
   - component: {fileID: 4301538554697876831}
-  - component: {fileID: 3759563448135351003}
   m_Layer: 0
   m_Name: CrosshairCanvas
   m_TagString: Untagged
@@ -1011,21 +1010,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &3759563448135351003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219127403042168676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f298853e8ef7dd141ba19d9dcda625ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitmarker: {fileID: 8970080271623255057}
-  killmarker: {fileID: 6891440198034544575}
-  hudCanvas: {fileID: 219127403042168676}
 --- !u!1 &230339219613953920
 GameObject:
   m_ObjectHideFlags: 0
@@ -4388,7 +4372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.044795636, y: 0.88056356, z: -0.08499566, w: -0.46408725}
+  m_LocalRotation: {x: -0.044795595, y: 0.8805636, z: -0.084995605, w: -0.4640872}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4461,6 +4445,7 @@ GameObject:
   - component: {fileID: 7806898109913982735}
   - component: {fileID: 3623411678378108817}
   - component: {fileID: 6972573228104651928}
+  - component: {fileID: 3376433752242023840}
   m_Layer: 0
   m_Name: NetworkMain
   m_TagString: Tank
@@ -4815,6 +4800,21 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &3376433752242023840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324328266891732362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f298853e8ef7dd141ba19d9dcda625ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitmarker: {fileID: 8970080271623255057}
+  killmarker: {fileID: 6891440198034544575}
+  hudCanvas: {fileID: 219127403042168676}
 --- !u!1 &1354106883447623182
 GameObject:
   m_ObjectHideFlags: 0
@@ -8129,7 +8129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375383177561788297}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.016119352, y: 0.88412976, z: -0.03058542, w: -0.46596053}
+  m_LocalRotation: {x: -0.016119394, y: 0.8841275, z: -0.030585133, w: -0.46596503}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21421,7 +21421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002625635987237189}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.05129896, y: 0.8792998, z: -0.097343, w: -0.4633838}
+  m_LocalRotation: {x: -0.0513012, y: 0.8792848, z: -0.09733951, w: -0.4634127}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -85,21 +85,14 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class NetworkProjectile : MonoBehaviourPunCallbacks
+public class NetworkProjectile : MonoBehaviour
 {
     public AudioSource Boom;
     public AudioSource[] Ricochet;
     public GameObject TankHitAudio;
-    public GameObject boomPrefab;
-    public GameObject hitwallPrefab;
+    public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
+    public GameObject hitwallPrefab; // Prefab to instantiate when hitting a wall/prop
     private int damageAmt;
-
-    private PhotonView projectilePhotonView;
-
-    private void Start()
-    {
-        projectilePhotonView = GetComponent<PhotonView>();
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -125,31 +118,16 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             Destroy(audioCont, 2f);
             damageAmt = Random.Range(4, 9);
             Vector3 impactPosition = collision.contacts[0].point;
-            float impulseForce = damageAmt / 5f;
+            float impulseForce = damageAmt / 5f; // Adjust as needed
             Vector3 impulseDirection = (impactPosition - transform.position).normalized;
 
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
             if (targetView != null)
             {
-                projectilePhotonView = gameObject.GetComponent<PhotonView>();
-                if (projectilePhotonView != null)
-                {
-                    projectilePhotonView.RPC("ShowHitmarker", RpcTarget.All);
-                }
                 targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
                 targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
             }
-
-            // Get the PhotonView of the shooter
-            if (photonView.Owner != null && photonView.Owner.TagObject is GameObject shooter)
-            {
-                HUDManager hudManager = shooter.GetComponent<HUDManager>();
-                if (hudManager != null)
-                {
-                    hudManager.photonView.RPC("ShowHitmarker", RpcTarget.All);
-                }
-            }
-
+            //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))

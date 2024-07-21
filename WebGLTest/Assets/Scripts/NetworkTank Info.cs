@@ -120,22 +120,12 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         // Update the health UI text
         if (currentHealth <= 0)
         {
-
-            PhotonView killerView = info.Sender.TagObject as PhotonView;
-            if (killerView != null)
-            {
-                HUDManager hudManager = killerView.GetComponent<HUDManager>();
-                if (hudManager != null)
-                {
-                    hudManager.photonView.RPC("ShowKillmarker", RpcTarget.All);
-                }
-            }
             if (view.IsMine)
             {
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
             DestructionPhase();
-            StartCoroutine(DestroyTank());
+            DestroyTank();
         }
         else if (currentHealth <= 25)
         {
@@ -313,17 +303,17 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             tank.SetPlayerName();
         }
     }
-    IEnumerator DestroyTank()
+    void DestroyTank()
     {
         if (tankCamera != null)
         {
             tankCamera.gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
         PhotonNetwork.Destroy(gameObject);
     }
 }
+
 
 
 

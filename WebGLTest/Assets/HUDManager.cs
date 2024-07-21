@@ -18,21 +18,19 @@ public class HUDManager : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
     public void ShowHitmarker()
     {
         if (photonView.IsMine)
         {
-            StartCoroutine(ShowMarker(hitmarker, 2f));
+            StartCoroutine(ShowMarker(hitmarker, 0.5f));
         }
     }
 
-    [PunRPC]
     public void ShowKillmarker()
     {
         if (photonView.IsMine)
         {
-            StartCoroutine(ShowMarker(killmarker, 3f));
+            StartCoroutine(ShowMarker(killmarker, 1f));
         }
     }
 
