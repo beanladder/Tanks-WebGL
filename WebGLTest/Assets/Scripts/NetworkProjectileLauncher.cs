@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -50,6 +51,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
             {
                 view.RPC("FireProjectile", RpcTarget.All);
                 view.RPC("RecoilAnimation", RpcTarget.All);
+                PlayerDetails(PhotonNetwork.LocalPlayer.ActorNumber,PhotonNetwork.LocalPlayer.NickName);
                 if (audioSource != null)
                 {
                     audioSource.Play();
@@ -88,11 +90,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     public void FireProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        NetworkProjectile networkProjectile = projectile.GetComponent<NetworkProjectile>();
-        if (networkProjectile != null)
-        {
-            networkProjectile.SetOwnerId(view.Owner.ActorNumber);
-        }
         GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
         trailEffect.transform.parent = projectile.transform;
 
@@ -138,5 +135,9 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
             grenadeRigidbody.angularDrag = 1f;
             grenadeRigidbody.drag = grenadeRigidbody.angularDrag - 0.5f;
         }
+    }
+    public void PlayerDetails(int id, string name){
+        int shooterID = id;
+        string shooterName = name;
     }
 }

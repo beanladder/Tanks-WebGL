@@ -1,22 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-using JetBrains.Annotations;
-using Photon.Pun.Demo.Cockpit;
-using Unity.VisualScripting;
-using Photon.Pun.Demo.PunBasics;
-
 using Cinemachine;
-
-
-using ExitGames.Client.Photon.StructWrapping;
 using Photon.Realtime;
-
-
 
 public class NetworkTankInfo : MonoBehaviourPunCallbacks
 {
@@ -24,6 +12,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     public float maxHealth = 100f; // Maximum health of the tank
     public float currentHealth; // Current health of the tank
     public GameObject destroyPrefab;
+    public GameObject test;
     public TMP_Text healthText; // Reference to the TextMeshPro component for displaying health
     [SerializeField] private TMP_Text tankNameText;
     public string playerName;
@@ -102,7 +91,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void TakeDamage(int damage, int shooterId)
+    public void TakeDamage(int damage, PhotonMessageInfo info)
     {
         int hitResistor = 1;
         currentHealth -= damage;
@@ -110,28 +99,15 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
 
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Clamp health between 0 and maxHealth
 
-        // Show hit marker
-        if (view.IsMine && hudManager != null)
-        {
-            if (shooterId == view.OwnerActorNr && hudManager != null)
-            {
-                ShowHitMarker();
-            }
-        }
-
+        Debug.LogWarning($"TakeDamage called. Current Health: {currentHealth}, Damage: {damage}, Sender: {info.Sender.ActorNumber}");
         if (currentHealth <= 0)
         {
             if (view.IsMine)
             {
-                // Show kill marker if destroyed by the current player
-                if (PhotonNetwork.LocalPlayer.ActorNumber == shooterId)
-                {
-                    hudManager.ShowKillmarker();
-                }
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
             DestructionPhase();
-            StartCoroutine(DestroyTank());
+            DestroyTank();
         }
         else if (currentHealth <= 25)
         {
@@ -174,6 +150,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             StartRepair();
         }
     }
+
     [PunRPC]
     public void StartRepair()
     {
@@ -272,6 +249,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             healthIndicator.SetActive(false);
         }
     }
+
     public void SetPlayerName()
     {
         if (view.IsMine && PhotonNetwork.LocalPlayer != null)
@@ -290,45 +268,30 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             }
             else
             {
-                tankNameText.text = playerName;
                 tankNameText.gameObject.SetActive(true);
+                tankNameText.text = playerName;
             }
-
         }
     }
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-        UpdateNamesForAllPlayers();
-    }
+
     public void UpdateNamesForAllPlayers()
     {
-        NetworkTankInfo[] tanks = FindObjectsOfType<NetworkTankInfo>();
-        foreach (NetworkTankInfo tank in tanks)
+        if (PhotonNetwork.InRoom)
         {
-            tank.SetPlayerName();
+            NetworkTankInfo[] tanks = FindObjectsOfType<NetworkTankInfo>();
+
+            foreach (NetworkTankInfo tank in tanks)
+            {
+                tank.SetPlayerName();
+            }
         }
     }
-    IEnumerator DestroyTank()
+
+    private void DestroyTank()
     {
-        if (tankCamera != null)
+        if (view.IsMine)
         {
-            tankCamera.gameObject.SetActive(false);
-        }
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        PhotonNetwork.Destroy(gameObject);
-    }
-    [PunRPC]
-    public void ShowHitMarker()
-    {
-        if (view.IsMine && hudManager != null)
-        {
-            hudManager.ShowHitmarker();
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }
-
-
-
-
