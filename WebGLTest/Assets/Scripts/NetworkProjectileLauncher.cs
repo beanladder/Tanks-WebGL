@@ -49,9 +49,9 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         {
             if (Input.GetMouseButtonDown(0) && canFire)
             {
-                view.RPC("FireProjectile", RpcTarget.All);
+                int shooterID = PhotonNetwork.LocalPlayer.ActorNumber;
+                view.RPC("FireProjectile", RpcTarget.All,shooterID);
                 view.RPC("RecoilAnimation", RpcTarget.All);
-                PlayerDetails(PhotonNetwork.LocalPlayer.ActorNumber,PhotonNetwork.LocalPlayer.NickName);
                 if (audioSource != null)
                 {
                     audioSource.Play();
@@ -87,7 +87,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void FireProjectile()
+    public void FireProjectile(int id)
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
@@ -135,9 +135,5 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
             grenadeRigidbody.angularDrag = 1f;
             grenadeRigidbody.drag = grenadeRigidbody.angularDrag - 0.5f;
         }
-    }
-    public void PlayerDetails(int id, string name){
-        int shooterID = id;
-        string shooterName = name;
     }
 }
