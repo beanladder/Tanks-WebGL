@@ -151,7 +151,7 @@ public class NetworkProjectile : MonoBehaviour
             targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
         }
             //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
