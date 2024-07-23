@@ -87,28 +87,34 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void FireProjectile(int id)
+public void FireProjectile(int shooterID)
+{
+    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    PhotonView projectileView = projectile.GetComponent<PhotonView>();
+    if (projectileView != null)
     {
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
-        trailEffect.transform.parent = projectile.transform;
-
-        Vector3 direction = (target.transform.position - firePoint.position).normalized;
-
-        Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-        if (projectileRigidbody != null)
-        {
-            projectileRigidbody.velocity = direction * speed;
-            projectileRigidbody.angularDrag = 1f;
-            projectileRigidbody.drag = projectileRigidbody.angularDrag - 0.5f;
-        }
-
-        Destroy(trailEffect, trailDuration);
-        GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
-        GameObject flash = Instantiate(BarrelFlashPrefab, firePoint.position, firePoint.rotation);
-        Destroy(flash, 2f);
-        Destroy(smoke, 2f);
+        projectileView.ViewID = shooterID;
     }
+
+    GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
+    trailEffect.transform.parent = projectile.transform;
+
+    Vector3 direction = (target.transform.position - firePoint.position).normalized;
+
+    Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+    if (projectileRigidbody != null)
+    {
+        projectileRigidbody.velocity = direction * speed;
+        projectileRigidbody.angularDrag = 1f;
+        projectileRigidbody.drag = projectileRigidbody.angularDrag - 0.5f;
+    }
+
+    Destroy(trailEffect, trailDuration);
+    GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
+    GameObject flash = Instantiate(BarrelFlashPrefab, firePoint.position, firePoint.rotation);
+    Destroy(flash, 2f);
+    Destroy(smoke, 2f);
+}
 
     [PunRPC]
     public void RecoilAnimation()
