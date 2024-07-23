@@ -22,7 +22,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     public float trailDuration = 2f;
     public float cooldownTime = 1f;
 
-    public GameObject reloadSoundObject; // Reference to the empty GameObject with the reload sound AudioSource
+    public GameObject reloadSoundObject;
 
     private AudioSource audioSource;
     private Vector3 originalTurretPosition;
@@ -50,7 +50,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
             if (Input.GetMouseButtonDown(0) && canFire)
             {
                 int shooterID = PhotonNetwork.LocalPlayer.ActorNumber;
-                view.RPC("FireProjectile", RpcTarget.All,shooterID);
+                view.RPC("FireProjectile", RpcTarget.All, shooterID);
                 view.RPC("RecoilAnimation", RpcTarget.All);
                 if (audioSource != null)
                 {
@@ -87,34 +87,34 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-public void FireProjectile(int shooterID)
-{
-    GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-    PhotonView projectileView = projectile.GetComponent<PhotonView>();
-    if (projectileView != null)
+    public void FireProjectile(int shooterID)
     {
-        projectileView.ViewID = shooterID;
+        GameObject projectile = PhotonNetwork.Instantiate(projectilePrefab.name, firePoint.position, firePoint.rotation);
+        NetworkProjectile networkProjectile = projectile.GetComponent<NetworkProjectile>();
+        if (networkProjectile != null)
+        {
+            networkProjectile.photonView.RPC("SetShooterID", RpcTarget.All, shooterID);
+        }
+
+        GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
+        trailEffect.transform.parent = projectile.transform;
+
+        Vector3 direction = (target.transform.position - firePoint.position).normalized;
+
+        Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+        if (projectileRigidbody != null)
+        {
+            projectileRigidbody.velocity = direction * speed;
+            projectileRigidbody.angularDrag = 1f;
+            projectileRigidbody.drag = projectileRigidbody.angularDrag - 0.5f;
+        }
+
+        Destroy(trailEffect, trailDuration);
+        GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
+        GameObject flash = Instantiate(BarrelFlashPrefab, firePoint.position, firePoint.rotation);
+        Destroy(flash, 2f);
+        Destroy(smoke, 2f);
     }
-
-    GameObject trailEffect = Instantiate(trailPrefab, firePoint.position, firePoint.rotation);
-    trailEffect.transform.parent = projectile.transform;
-
-    Vector3 direction = (target.transform.position - firePoint.position).normalized;
-
-    Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-    if (projectileRigidbody != null)
-    {
-        projectileRigidbody.velocity = direction * speed;
-        projectileRigidbody.angularDrag = 1f;
-        projectileRigidbody.drag = projectileRigidbody.angularDrag - 0.5f;
-    }
-
-    Destroy(trailEffect, trailDuration);
-    GameObject smoke = Instantiate(BarrelSmokePrefab, firePoint.position, firePoint.rotation);
-    GameObject flash = Instantiate(BarrelFlashPrefab, firePoint.position, firePoint.rotation);
-    Destroy(flash, 2f);
-    Destroy(smoke, 2f);
-}
 
     [PunRPC]
     public void RecoilAnimation()

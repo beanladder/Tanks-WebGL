@@ -82,34 +82,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class NetworkProjectile : MonoBehaviour
+public class NetworkProjectile : MonoBehaviourPunCallbacks
 {
     public AudioSource Boom;
     public AudioSource[] Ricochet;
     public GameObject TankHitAudio;
-    public GameObject boomPrefab; // Prefab to instantiate when hitting a tank
-    public GameObject hitwallPrefab; // Prefab to instantiate when hitting a wall/prop
+    public GameObject boomPrefab;
+    public GameObject hitwallPrefab;
     public GameObject test;
-    PhotonView view;
-    private int damageAmt;
     
+    private int shooterID;
+    private int damageAmt;
 
-    void Start(){
-        view = GetComponent<PhotonView>();
-        
+    void Start()
+    {
+        // Any start logic you need
     }
+
+    [PunRPC]
+    public void SetShooterID(int id)
+    {
+        shooterID = id;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         HandleProjectileCollision(collision);
-    }
-
-    public void GetOwnerID(int ID)
-    {
-        view.ViewID = ID;
     }
 
     private void HandleProjectileCollision(Collision collision)
@@ -131,27 +134,21 @@ public class NetworkProjectile : MonoBehaviour
             Destroy(audioCont, 2f);
             damageAmt = Random.Range(4, 9);
             Vector3 impactPosition = collision.contacts[0].point;
-            float impulseForce = damageAmt / 5f; // Adjust as needed
+            float impulseForce = damageAmt / 5f;
             Vector3 impulseDirection = (impactPosition - transform.position).normalized;
+            
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
-        
-        if (targetView != null)
-        {
-            // Get the owner name of the projectile
-            string shooterName = view.Owner.NickName;
+            if (targetView != null)
+            {
+                Player shooter = PhotonNetwork.CurrentRoom.GetPlayer(shooterID);
+                string shooterName = shooter != null ? shooter.NickName : "Unknown";
+                string hitTankName = targetView.Owner.NickName;
 
-            // Get the name of the hit tank
-            string hitTankName = targetView.Owner.NickName;
+                Debug.Log($"Projectile owned by {shooterName} hit tank owned by {hitTankName}");
 
-            // Log the collision information
-            Debug.LogWarning($"Projectile owned by {shooterName} hit tank owned by {hitTankName}");
-
-            // Existing code for damage and camera shake...
-            targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
-            targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
-        }
-            //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
-            //Destroy(gameObject);
+                targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
+                targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
+            }
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
@@ -163,7 +160,6 @@ public class NetworkProjectile : MonoBehaviour
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
-            Destroy(gameObject);
         }
     }
 
