@@ -35,22 +35,19 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         }
     }
 
-    void Update()
-    {
-        if (isTankDead && PhotonNetwork.LocalPlayer.ActorNumber == deadTankId)
-        {
-            RespawnScreen.SetActive(true);
-        }
-        else
-        {
-            RespawnScreen.SetActive(false);
-        }
-    }
+
 
     public void SetDeadTankId(int tankID)
     {
         deadTankId = tankID;
         isTankDead = true;
+        StartCoroutine(DelayedRespawnScreenActivation(2.2f));
+    }
+
+    private IEnumerator DelayedRespawnScreenActivation(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        RespawnScreen.SetActive(true);
     }
 
     public void SpawnPlayerAtAvailablePoint()
@@ -89,10 +86,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         SpawnPlayerAtAvailablePoint();
     }
 
-    public void DeathScreenActive()
-    {
-        RespawnScreen.SetActive(true);
-    }
+    
 
     private void SetPlayerLayer(GameObject player)
     {

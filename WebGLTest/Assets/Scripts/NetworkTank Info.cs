@@ -291,7 +291,12 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     {
         if (view.IsMine)
         {
-            PhotonNetwork.Destroy(gameObject);
+            gameObject.SetActive(false);
+            Invoke("DelayedDestroy", 2.1f);
         }
+    }
+    void DelayedDestroy()
+    {
+        PhotonNetwork.Destroy(gameObject);
     }
 }
