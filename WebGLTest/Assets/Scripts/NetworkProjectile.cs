@@ -144,14 +144,14 @@ public class NetworkProjectile : MonoBehaviour
             string hitTankName = targetView.Owner.NickName;
 
             // Log the collision information
-            Debug.Log($"Projectile owned by {shooterName} hit tank owned by {hitTankName}");
+            Debug.LogWarning($"Projectile owned by {shooterName} hit tank owned by {hitTankName}");
 
             // Existing code for damage and camera shake...
             targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
             targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
         }
             //collision.gameObject.GetComponent<TankInfo>().TakeDamage(DamageAmt);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
@@ -163,7 +163,7 @@ public class NetworkProjectile : MonoBehaviour
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
