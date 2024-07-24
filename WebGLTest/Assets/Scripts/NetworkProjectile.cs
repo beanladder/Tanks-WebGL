@@ -144,11 +144,12 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
                 string shooterName = shooter != null ? shooter.NickName : "Unknown";
                 string hitTankName = targetView.Owner.NickName;
 
-                Debug.Log($"Projectile owned by {shooterName} hit tank owned by {hitTankName}");
+                Debug.LogWarning($"Projectile owned by {shooterName} hit tank owned by {hitTankName}");
 
                 targetView.RPC("TakeDamage", RpcTarget.All, damageAmt);
                 targetView.RPC("ShakeCamera", RpcTarget.All, impactPosition, impulseDirection, impulseForce);
             }
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Ground"))
         {
@@ -160,6 +161,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
+            Destroy(gameObject);
         }
     }
 
