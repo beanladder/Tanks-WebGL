@@ -89,7 +89,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     [PunRPC]
     public void FireProjectile(int shooterID)
     {
-        GameObject projectile = PhotonNetwork.Instantiate(projectilePrefab.name, firePoint.position, firePoint.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         NetworkProjectile networkProjectile = projectile.GetComponent<NetworkProjectile>();
         if (networkProjectile != null)
         {
