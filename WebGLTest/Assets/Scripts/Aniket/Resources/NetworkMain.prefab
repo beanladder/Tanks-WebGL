@@ -4461,7 +4461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0055471533, y: 0.99377656, z: -0.09487492, w: 0.058104187}
+  m_LocalRotation: {x: 0.0055471524, y: 0.99377656, z: -0.09487491, w: 0.058104187}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21674,6 +21674,10 @@ MonoBehaviour:
   audioSource: {fileID: 6235936474123812615}
   smoothing: 15
   rotationThreshold: 1
+  freeLookCamera: {fileID: 3123428190563532760}
+  initialXSpeed: 0
+  finalXSpeed: 300
+  speedChangeDelay: 2
 --- !u!64 &4992562704267134783
 MeshCollider:
   m_ObjectHideFlags: 0

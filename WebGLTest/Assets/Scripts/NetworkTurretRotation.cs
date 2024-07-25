@@ -69,7 +69,8 @@
 // }
 using Photon.Pun;
 using UnityEngine;
-
+using Cinemachine;  // Make sure to include this for Cinemachine components
+using System.Collections;
 public class NetworkTurretRotation : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float turnSpeed = 15f;
@@ -84,9 +85,24 @@ public class NetworkTurretRotation : MonoBehaviourPunCallbacks, IPunObservable
     private float xRotation, zRotation;
     private float yRotation;
 
+    [SerializeField] private CinemachineFreeLook freeLookCamera; // Reference to the CinemachineFreeLook camera
+    [SerializeField] private float initialXSpeed = 0f;
+    [SerializeField] private float finalXSpeed = 300f;
+    [SerializeField] private float speedChangeDelay = 2f; // Delay in seconds
+
     private void Start()
     {
         mainCam = Camera.main;
+
+        // Start the coroutine to manage camera X-axis speed
+        if (freeLookCamera != null)
+        {
+            StartCoroutine(ManageCameraSpeed());
+        }
+        else
+        {
+            Debug.LogError("CinemachineFreeLook component not assigned.");
+        }
     }
 
     private void Update()
@@ -158,5 +174,17 @@ public class NetworkTurretRotation : MonoBehaviourPunCallbacks, IPunObservable
         {
             networkRotation = (Quaternion)stream.ReceiveNext();
         }
+    }
+
+    private IEnumerator ManageCameraSpeed()
+    {
+        // Set X-axis speed to 0
+        freeLookCamera.m_XAxis.m_MaxSpeed = initialXSpeed;
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(speedChangeDelay);
+
+        // Set X-axis speed to final value
+        freeLookCamera.m_XAxis.m_MaxSpeed = finalXSpeed;
     }
 }
