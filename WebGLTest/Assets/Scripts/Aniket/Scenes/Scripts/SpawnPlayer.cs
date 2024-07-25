@@ -18,7 +18,9 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
     private bool isTankDead = false;
     private PhotonView view;
     public string localPlayerLayerName = "Tank";
-    
+
+    [SerializeField]private GameObject newPlayer;
+
 
     void Awake()
     {
@@ -34,6 +36,7 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             return;
         }
     }
+
 
 
 
@@ -69,14 +72,16 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         }
         SpawnScreen.SetActive(false);
         Vector3 randomPosition = spawnPoints[randomIndex].position;
-        GameObject newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
         SetPlayerLayer(newPlayer);
+        StartCoroutine(FadeInUICanvas());
     }
 
     public void Spawn()
     {
         SpawnScreen.SetActive(false);
         SpawnPlayerAtAvailablePoint();
+        
     }
 
     public void Respawn()
@@ -84,9 +89,11 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
         isTankDead = false;
         RespawnScreen.SetActive(false);
         SpawnPlayerAtAvailablePoint();
+        
     }
 
-    
+
+
 
     private void SetPlayerLayer(GameObject player)
     {
@@ -106,4 +113,42 @@ public class SpawnPlayer : MonoBehaviourPunCallbacks
             SetLayerRecursively(child.gameObject, newLayer);
         }
     }
+    private IEnumerator FadeInUICanvas()
+    {
+        if (newPlayer == null)
+        {
+            Debug.LogWarning("Player instance is not yet created.");
+            yield break;
+        }
+
+        CanvasGroup uiCanvasGroup = newPlayer.GetComponentInChildren<CanvasGroup>();
+        if (uiCanvasGroup == null)
+        {
+            Debug.LogError("CanvasGroup component not found in player instance.");
+            yield break;
+        }
+
+        float duration = 1.7f; // Total fade-in duration
+        float elapsedTime = 0f;
+
+        // Initially, set the alpha to 0
+        uiCanvasGroup.alpha = 0f;
+        uiCanvasGroup.interactable = false;
+        uiCanvasGroup.blocksRaycasts = false;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsedTime / duration);
+            uiCanvasGroup.alpha = alpha;
+            yield return null;
+        }
+
+        // Ensure the alpha is set to 1 at the end
+        uiCanvasGroup.alpha = 1f;
+        uiCanvasGroup.interactable = true;
+        uiCanvasGroup.blocksRaycasts = true;
+    }
+
+
 }
