@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
 using Photon.Realtime;
+using System;
 
 public class NetworkTankInfo : MonoBehaviourPunCallbacks
 {
@@ -169,7 +170,7 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
         isRepairing = false;
 
         // Generate random healing amount
-        float healAmount = Random.Range(healAmountMin, healAmountMax);
+        float healAmount = UnityEngine.Random.Range(healAmountMin, healAmountMax);
 
         // Clamp heal amount so it doesn't exceed maxHealth
         StartCoroutine(HealthAddition(healAmount));
