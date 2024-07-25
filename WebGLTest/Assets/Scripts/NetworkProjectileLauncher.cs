@@ -329,10 +329,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
 
 
     [PunRPC]
-    public void FireProjectile(int shooterID)
-
-
-
     public void FireProjectile(int shooterID, Vector3 position, Quaternion rotation, Vector3 velocity)
 
 
