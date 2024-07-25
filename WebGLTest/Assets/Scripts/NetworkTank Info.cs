@@ -107,7 +107,8 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
                 SpawnPlayer.instance.SetDeadTankId(PhotonNetwork.LocalPlayer.ActorNumber);
             }
             DestructionPhase();
-            DestroyTank();
+            //DestroyTank();
+            view.RPC("DestroyTank",RpcTarget.All);
         }
         else if (currentHealth <= 25)
         {
@@ -286,14 +287,11 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
             }
         }
     }
-
+    [PunRPC]
     private void DestroyTank()
     {
-        if (view.IsMine)
-        {
             gameObject.SetActive(false);
             Invoke("DelayedDestroy", 2.1f);
-        }
     }
     void DelayedDestroy()
     {
