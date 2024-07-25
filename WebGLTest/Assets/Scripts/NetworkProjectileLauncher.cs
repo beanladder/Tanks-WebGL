@@ -49,7 +49,8 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         {
             if (Input.GetMouseButtonDown(0) && canFire)
             {
-                FireProjectile();
+                //FireProjectile();
+                view.RPC("FireProjectile",RpcTarget.All);
                 view.RPC("RecoilAnimation", RpcTarget.All);
                 if (audioSource != null)
                 {
@@ -84,7 +85,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(cooldownTime);
         canFire = true;
     }
-
+    [PunRPC]
     private void FireProjectile()
     {
         int shooterID = PhotonNetwork.LocalPlayer.ActorNumber;
