@@ -218,11 +218,14 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     public Image reloadRing2;
 
     public GameObject reloadSoundObject;
+    public GameObject hitMarker;
 
     private AudioSource audioSource;
     private Vector3 originalTurretPosition;
     private bool canFirePrimary = true;
     private bool canFireSecondary = true;
+
+    private float hitmarkerDuration = 0.2f;
 
     private Coroutine cooldownCoroutine;
     PhotonView view;
@@ -240,6 +243,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         audioSource = GetComponent<AudioSource>();
         reloadRing1.fillAmount = 0;
         reloadRing2.fillAmount = 0;
+        hitMarker.SetActive(false);
     }
 
     void Update()
@@ -323,11 +327,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     }
 
 
-
-
-
-
-
     [PunRPC]
     public void FireProjectile(int shooterID, Vector3 position, Quaternion rotation, Vector3 velocity)
 
@@ -338,6 +337,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         if (networkProjectile != null)
         {
             networkProjectile.SetShooterID(shooterID);
+            networkProjectile.OnHitTank += ShowHitMarker;
         }
 
         GameObject trailEffect = Instantiate(trailPrefab, position, rotation);
@@ -389,5 +389,15 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
             grenadeRigidbody.angularDrag = 1f;
             grenadeRigidbody.drag = grenadeRigidbody.angularDrag - 0.5f;
         }
+    }
+    private void ShowHitMarker(){
+        if(view.IsMine){
+            StartCoroutine(HitmarkerCoroutine());
+        }
+    }
+    private IEnumerator HitmarkerCoroutine(){
+        hitMarker.SetActive(true);
+        yield return new WaitForSeconds(hitmarkerDuration);
+        hitMarker.SetActive(false);
     }
 }

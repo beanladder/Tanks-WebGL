@@ -1,9 +1,8 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class NetworkProjectile : MonoBehaviourPunCallbacks
 {
@@ -13,7 +12,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
     public GameObject boomPrefab;
     public GameObject hitwallPrefab;
     public GameObject test;
-    
+    public event Action OnHitTank;
     private int shooterID;
     private int damageAmt;
 
@@ -42,6 +41,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
         }
         else if (collision.gameObject.CompareTag("Tank"))
         {
+            OnHitTank?.Invoke();
             gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
             gameObject.GetComponent<Renderer>().enabled = false;
             GameObject explosion = Instantiate(boomPrefab, collision.contacts[0].point, Quaternion.identity);
@@ -50,7 +50,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             AudioSource audioSrc = audioCont.GetComponent<AudioSource>();
             audioSrc.Play();
             Destroy(audioCont, 2f);
-            damageAmt = Random.Range(4, 9);
+            damageAmt = UnityEngine.Random.Range(4, 9);
             Vector3 impactPosition = collision.contacts[0].point;
             float impulseForce = damageAmt / 5f;
             Vector3 impulseDirection = (impactPosition - transform.position).normalized;
@@ -93,7 +93,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
         }
         else if (ID == "Ricochet")
         {
-            int chance = Random.Range(0, Ricochet.Length);
+            int chance = UnityEngine.Random.Range(0, Ricochet.Length);
             Ricochet[chance].Play();
         }
     }

@@ -12,7 +12,6 @@ public class NetworkTankInfo : MonoBehaviourPunCallbacks
     public float maxHealth = 100f; // Maximum health of the tank
     public float currentHealth; // Current health of the tank
     public GameObject destroyPrefab;
-    public GameObject test;
     public TMP_Text healthText; // Reference to the TextMeshPro component for displaying health
     [SerializeField] private TMP_Text tankNameText;
     public string playerName;

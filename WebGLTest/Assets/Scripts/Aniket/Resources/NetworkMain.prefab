@@ -4461,7 +4461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146648557106615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0055471524, y: 0.99377656, z: -0.09487491, w: 0.058104187}
+  m_LocalRotation: {x: 0.005547164, y: 0.9937766, z: -0.094874926, w: 0.058104277}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4597,7 +4597,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   destroyPrefab: {fileID: 7723033018868520480, guid: 8acef261b1ab34c29a34718f2033085b, type: 3}
-  test: {fileID: 7798620869882492451}
   healthText: {fileID: 5555579954946067835}
   tankNameText: {fileID: 5705466286288464175}
   playerName: 
@@ -29093,6 +29092,7 @@ MonoBehaviour:
   bulletText2: {fileID: 3899933268783584153}
   reloadRing2: {fileID: 9118774252483275225}
   reloadSoundObject: {fileID: 3329745289782572716}
+  hitMarker: {fileID: 8970080271623255057}
 --- !u!82 &212924047754472705
 AudioSource:
   m_ObjectHideFlags: 0
