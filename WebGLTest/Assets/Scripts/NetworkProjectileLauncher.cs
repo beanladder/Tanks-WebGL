@@ -225,7 +225,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
     private bool canFirePrimary = true;
     private bool canFireSecondary = true;
 
-    private float hitmarkerDuration = 0.2f;
+    private float hitmarkerDuration = 1.5f;
 
     private Coroutine cooldownCoroutine;
     PhotonView view;
