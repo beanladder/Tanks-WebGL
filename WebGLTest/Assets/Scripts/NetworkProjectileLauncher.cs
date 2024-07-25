@@ -132,8 +132,6 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
 
 
 
-    private void FireProjectile()
-
     [PunRPC]
     public void FireProjectile(int shooterID)
 
