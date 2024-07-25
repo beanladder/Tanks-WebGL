@@ -49,8 +49,8 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         {
             if (Input.GetMouseButtonDown(0) && canFire)
             {
-                //FireProjectile();
-                view.RPC("FireProjectile",RpcTarget.All);
+                int shooterID = PhotonNetwork.LocalPlayer.ActorNumber;
+                view.RPC("FireProjectile", RpcTarget.All, shooterID);
                 view.RPC("RecoilAnimation", RpcTarget.All);
                 if (audioSource != null)
                 {
@@ -60,7 +60,7 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
             }
             else if (Input.GetMouseButtonDown(1) && canFire)
             {
-                FireSmokeGrenade();
+                view.RPC("FireSmokeGrenade", RpcTarget.All);
                 view.RPC("RecoilAnimation", RpcTarget.All);
                 if (audioSource != null)
                 {
@@ -85,13 +85,11 @@ public class NetworkProjectileLauncher : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(cooldownTime);
         canFire = true;
     }
-    [PunRPC]
-    private void FireProjectile()
-    {
-        int shooterID = PhotonNetwork.LocalPlayer.ActorNumber;
-        GameObject projectile = PhotonNetwork.Instantiate(projectilePrefab.name, firePoint.position, firePoint.rotation);
-        Debug.Log($"Projectile instantiated by player {shooterID} at {Time.time}");
 
+    [PunRPC]
+    public void FireProjectile(int shooterID)
+    {
+        GameObject projectile = PhotonNetwork.Instantiate(projectilePrefab.name, firePoint.position, firePoint.rotation);
         NetworkProjectile networkProjectile = projectile.GetComponent<NetworkProjectile>();
         if (networkProjectile != null)
         {

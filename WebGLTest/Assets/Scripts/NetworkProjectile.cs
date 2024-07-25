@@ -94,7 +94,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
     public GameObject boomPrefab;
     public GameObject hitwallPrefab;
     public GameObject test;
-
+    
     private int shooterID;
     private int damageAmt;
 
@@ -135,7 +135,7 @@ public class NetworkProjectile : MonoBehaviourPunCallbacks
             Vector3 impactPosition = collision.contacts[0].point;
             float impulseForce = damageAmt / 5f;
             Vector3 impulseDirection = (impactPosition - transform.position).normalized;
-
+            
             PhotonView targetView = collision.gameObject.GetComponent<PhotonView>();
             if (targetView != null)
             {
